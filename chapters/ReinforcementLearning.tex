@@ -1,0 +1,78 @@
+\chapter{Reinforcement Learning Model}
+\section{Introduction}
+Animals and humans are able to adapt their actions depending on their specific goals in the environment on a trial-end-basis.
+Reinforcement learning theories describe reward-based decision-making and adaptive choice of actions of an agent by following three steps: 
+\begin{description}
+    \item[i.]The agent estimates the action values, defined as how much reward value an action will yield.
+    \item[ii.]It selects an action by comparing the action values of multiple alternatives.
+    \item[iii.]It updates the action values by errors of estimated action values.
+\end{description}
+Neuronal models of reinforcement learning assume midbrain dopamine neurons to encode errors of reward expectation({\color{red}add literature}), as well a representation of action values in striatal units \cite{DoyaRL_VS}. However two important points still remain unclear: which typologies of units are mainly involved in reward based selection and/or in the acquirement of action values, and how cross-areal interaction are involved in the computation of prediction error.
+We use here Reinforcement Learning/Forgetting models (\cite{SuttonBarto}) with Q-learning values (\cite{Dayan1}) to fit mice behaviour in go-no go odor discrimination task; we regress afterwards neuronal activity with model values.
+\section{Model}
+%{\color{blue}Start writing equation of reinforcement learning}
+%First Option I tried, Georgia's option {\color{red}cite Georgia's paper}
+%We set up four RL models and we chose the one that better fitted the behaviour for the regression analysis.
+We set up a hybrid Rescorla-Wagner/Pearce-Hall update mechanism (\cite{Koppe}, \cite{Costa}, \cite{Li}) with update of unchosen option (\cite{Katahira}) and the associability related to the chosen and unchosen options, using learning and forgetting parameters ({\color{red} cite Dayan, literature on Q L-F models}).
+The model assigns each state $s$ and action $a$, an action value $Q_{s,a}(t)$ where $t$ is the index of the trial. In our specific case we have two states, corresponding to the two odors presented and two possible actions, i.e., to lick or not to lick. 
+Based on the set of action values the model transforms the The action value for the chosen option is updated by
+\begin{equation}
+Q_{s,a}(t+1)  = Q_{s,a}(t)+k_L\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-q_{s,a}(t)
+\label{eq:Qlearning}
+\end{equation}
+where $\delta$ is the prediction error, i.e., the difference between the reward $r(t)$ and the expected reward value $Q_{s,a}(t)$ for an action $a$ given a state $s$, $k_L$ is the learning parameter and $\alpha_L(t)$ is the Pearce-Hall associability for the chosen option, is a trial-dependent rate component which adjusts in
+accordance with the average accuracy of recent predictions, evolving by
+\begin{equation}
+    \alpha_L(t)=(1-\eta)\cdot\alpha_L(t-1)+\eta\cdot\abs{\delta(t)},\hspace{0.3cm} \eta\in[0,1]
+    \label{eq:Alphalearning}
+\end{equation}
+Note that the $n$'s associability depends on absolute prediction errors from past trials, but not the current one ensuring that $\delta(t)$ was not double counted in the value update. 
+For the unchosen option $a'\neq a$ the action value is updated by
+\begin{equation}
+    Q_{s,a'}(t+1) = Q_{s,a'}(t)-k_F\cdot\alpha_F(t)\cdot Q_{s,a'}(t)
+    \label{eq:Qforgetting}
+\end{equation}
+where $k_F$ is the forgetting rate (\cite{ItoDoya}) and the associability for the unchosen option is time-dependent and evolves as follows
+\begin{equation}
+    \alpha_F(t)=(1-\eta)\cdot\alpha_F(t-1)+\eta\cdot Q_{s,a'}(t-1), \hspace{0.3cm}
+    \eta\in[0,1]
+    \label{eq:Alphaforgetting}
+\end{equation}
+Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pearce Hall model. We applied to our data four different version of the model, the one shown here as presentation is the one that better fit the behavioural data. The other three versions are:
+\begin{description}
+    \item[i.] The presented model is reducible to an hybrid Rescorla Wagner/Pearce Hall update mechanism when we use a learning parameter $k$, and no forgetting parameter, i.e. $k_F = 0$.
+    Then, if $a$ represents the chosen option and $a'\neq a$ the unchosen option, the action values evolve as follows\\
+    $\begin{array}{lcl}
+    Q_{s,a}(t+1)&=& Q_{s,a}(t)+k\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-q_{s,a}(t)\\
+    Q_{s,a'}(t+1)&=&Q_{s,a'}(t)\\
+    \end{array}$
+    \item[ii.] Let $a(t) \in \{1,0\}$ denote the option was chosen at trial $t$, where $1$ stands for "to lick" and $0$ stands for "not to lick". We introduce then two learning parameters $k_{1}$ and $k_{0}$ respectively for the choice $a=1$ and $a=0$ to be estimated by the model, while $k_F$ is fixed to zero.
+    Then when the choice $a=1$ is realized, the action values evolves by\\
+   $\begin{array}{lcl}
+       Q_{s,1}(t+1)&=&Q_{s,1}(t)+k_1\cdot\alpha(t)\cdot\delta(t)\\
+         Q_{s,0}(t+1)&=&Q_{s,0}(t)\\ 
+    \end{array}$\\
+    while if the choice $a=0$ is realized we have\\
+    $\begin{array}{lcl}
+       Q_{s,0}(t+1)&=&Q_{s,0}(t)+k_0\cdot\alpha(t)\cdot\delta(t)\\
+         Q_{s,1}(t+1)&=&Q_{s,1}(t)\\ 
+    \end{array}$
+    \item[iii.] We use a learning model, without forgetting parameters, and we introduce two $\eta$ parameters $\eta_1$ and $\eta_0$ for the choice $1$ and $0$ respectively, to be estimated by model, in order to define two associability $\alpha_{L1}$ and $\alpha_{L0}$ evolving as follows:
+    $\begin{array}{lcl}
+    \alpha_{L1}(t) & = & (1-\eta_1)\cdot\alpha_{L1}(t-1)+\eta_1\cdot\abs{\delta(t)} \\
+    \alpha_{L0}(t) & = & (1-\eta_0)\cdot\alpha_{L0}(t-1)+\eta_0\cdot\abs{\delta(t)} \\
+    \end{array}$\\
+    and action values for the chosen option evolving consequently as in the equation \ref{eq:Qlearning}.
+\end{description}
+\section{Behaviour Fit}
+We compare the models and it resulted the Forgetting$-$Learning Model showing the best behavioural fit. We computed the mice performance and compared it with the action values, furthermore we used the Bayesian Information Criterion to establish which was the best model.\\
+
+\begin{figure}[ht!]
+    \includegraphics[scale=0.3]{figures/ResumeRLPerf.png}
+    \caption{{\color{red} to be modified as follows: only one performance and plot comparison}In figure one example of animal performance and RL model action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of "false alarm" and "miss"trials, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. Those trials at the beginning of the phase some trials.}
+    \label{fig:PerfRL}
+\end{figure}
+    
+
+\section{Regression of model parameters}
+\section{Conclusion}

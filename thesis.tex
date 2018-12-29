@@ -1,0 +1,133 @@
+\errorcontextlines32
+\documentclass[10pt]{book} %twoside and openright are default for the the book class
+\title{Title}
+\author{Carla Filosa}
+\date{\today}
+
+\usepackage{cmtt,lmodern}      %Computer Modern Bright text with Latin Modern math
+\usepackage[T1]{fontenc}           %T1 font encoding to copy and search symbols like
+\usepackage[UKenglish,dutch]{babel} %for appropriate hyphenation
+
+
+\usepackage[paperwidth=17cm,paperheight=24.5cm,top=2.51cm,bottom=2.005cm,inner=2.5cm,outer=1.5cm,headheight=12.0pt,headsep=0.58cm]{geometry}
+
+
+
+\input{macros.tex}
+
+\graphicspath{{figures/}}
+\newenvironment{dedication}
+  {\clearpage           % we want a new page
+   \thispagestyle{empty}% no header and footer
+   \vspace*{\stretch{1}}% some space at the top 
+   \itshape             % the text is in italics
+   \raggedleft          % flush to the right margin
+  }
+  {\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage           % finish off the page
+  }
+%\usepackage{titlesec}
+%\titleformat{\section}{\newpage \large\bfseries}
+%{\thesection.}{0.5em}{} 
+%
+%\titlespacing{\section}{12pc}{1.5ex plus .1ex minus .2ex}{1pc}
+%\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
+\usepackage[backend=biber,style=authoryear,]{biblatex}
+\addbibresource{BIB1.bib}
+\usepackage{fancyhdr}
+\usepackage{appendix} % For appendix
+\usepackage[utf8]{inputenc}
+
+
+\begin{document}
+\mbox{}
+
+%\begin{spacing}{1.1}
+
+\pagenumbering{gobble}  %geen paginanummers
+%\selectlanguage{UKenglish}
+
+\input{chapters/titlepage.tex}
+
+
+\pagenumbering{roman}
+
+
+%\chapter*{}
+%\pagenumbering{gobble}
+%\renewcommand{\epigraphwidth}{\setlength{12cm}}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+%\begin{center}
+%{\Large  ``{ To  \\[2\baselineskip] }''}
+%\end{center}
+
+%\renewcommand{\epigraphwidth}{\setlength{5cm}}
+
+
+%\include{chapters/abstract}
+
+%\clearpage{\pagestyle{empty}\cleardoublepage}
+
+
+\pagestyle{empty}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+
+%%%%%FANCYHDR%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+
+
+\renewcommand{\chaptermark}[1]{ \markboth{#1}{}}
+
+\renewcommand{\sectionmark}[1]{}
+
+
+
+%%%%%%%%%
+
+\pagenumbering{arabic}
+
+
+%%%%%Chapters%%%%%
+%%%%\include{chapters/Boundariescup}
+%%%%%\include{chapters/Analytic_ray_mapping}
+%%%\include{chapters/Extended_ray_mapping}
+
+%\appendix
+%\include{chapters/Appendix_MC}
+%\include{chapters/Sobol}
+%\include{chapters/Boundariescup}
+
+
+\include{chapters/Introduction}
+\include{chapters/CellAssemblyMethod}
+%\include{chapters/LiyaData}
+\include{chapters/MaxData}
+\include{chapters/ReinforcementLearning}
+\include{chapters/Appendix}
+%%%
+\printbibliography
+
+%\bibliographystyle{authoryear}
+
+%\bibliography{BIB1}
+%\bibliographystyle{alpha}
+%\include{chapters/Summary}
+%\include{chapters/cv}
+%\include{chapters/publications}
+%\include{chapters/Acknowledgments}
+
+%%\clearpage{\pagestyle{empty}\cleardoublepage}
+
+
+
+%%\end{spacing}
+
+\end{document}
