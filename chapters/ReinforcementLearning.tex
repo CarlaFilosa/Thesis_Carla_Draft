@@ -70,9 +70,20 @@ We compare the models and it resulted the Forgetting$-$Learning Model showing th
 
 \begin{figure}[ht!]
     \includegraphics[scale=0.3]{figures/ResumeRLPerf.png}
-    \caption{{\color{red} to be modified as follows: only one performance and plot comparison}In figure one example of animal performance and RL model action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of "false alarm" and "miss"trials, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. Those trials at the beginning of the phase some trials.}
+    \caption{{\color{red} to be modified as follows: only one performance plot and plot comparison} In figure one example of animal performance and RL model action values.
+    Odor 1 was rewarded only in the original phase, while Odor 2 was rewarded only in the reversal phase. Top: Performance in all trials, in hit trials and correct rejection trials. Bottom: RL model action values for the action lick, when odor 1/odor 2 occurs (blue/red) and the action no lick when odor 1/odor 2 is presented (green/black). %Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of "false alarm" and "miss"trials, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. Those trials at the beginning of the phase some trials.
+    }
     \label{fig:PerfRL}
 \end{figure}
+In figure one example of animal performance and RL model action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of $"$false alarm$"$ and $"$miss trials$"$, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. That happened especially as the experiment or the new phase began for the first 5-10 trials.\\
+From the Bayesian Information Criterion (BIC) the L-F model results to be the best model (figure), confirming what is evident from the action values plots in figure (\ref{fig:PerfRL}).
+\begin{figure}
+    %\centering
+    \includegraphics[scale=0.3]{figures/BIC_ModelCompare.png}
+    \caption{BIC Information Criterion for the four models implemented}
+    \label{fig:BIC}
+\end{figure}
+
     
 
 \section{Regression of model parameters}
