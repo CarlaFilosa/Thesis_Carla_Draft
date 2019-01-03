@@ -14,7 +14,7 @@ We use here Reinforcement Learning/Forgetting models (\cite{SuttonBarto}) with Q
 %{\color{blue}Start writing equation of reinforcement learning}
 %First Option I tried, Georgia's option {\color{red}cite Georgia's paper}
 %We set up four RL models and we chose the one that better fitted the behaviour for the regression analysis.
-We set up a hybrid Rescorla-Wagner/Pearce-Hall update mechanism (\cite{Koppe}, \cite{Costa}, \cite{Li}) with update of unchosen option (\cite{Katahira}) and the associability related to the chosen and unchosen options, using learning and forgetting parameters ({\color{red} cite Dayan, literature on Q L-F models}).
+We set up a Q Learning-Forgetting model (Q L-F model) starting from an hybrid Rescorla-Wagner/Pearce-Hall update mechanism (\cite{Koppe}, \cite{Costa}, \cite{Li}) with update of unchosen option (\cite{Katahira}) and the associability related to the chosen and unchosen options, using learning and forgetting parameters ({\color{red} cite Dayan, literature on Q L-F models}).
 The model assigns each state $s$ and action $a$, an action value $Q_{s,a}(t)$ where $t$ is the index of the trial. In our specific case we have two states, corresponding to the two odors presented and two possible actions, i.e., to lick or not to lick. 
 Based on the set of action values the model transforms the The action value for the chosen option is updated by
 \begin{equation}
@@ -75,16 +75,25 @@ We compare the models and it resulted the Forgetting$-$Learning Model showing th
     }
     \label{fig:PerfRL}
 \end{figure}
-In figure one example of animal performance and RL model action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of $"$false alarm$"$ and $"$miss trials$"$, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. That happened especially as the experiment or the new phase began for the first 5-10 trials.\\
-From the Bayesian Information Criterion (BIC) the L-F model results to be the best model (figure), confirming what is evident from the action values plots in figure (\ref{fig:PerfRL}).
+In figure one example of animal performance and RL-models action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of $"$false alarm$"$ and $"$miss trials$"$, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. That happened especially as the experiment or the new phase began for the first 5-10 trials of the phase.\\
+From the Bayesian Information Criterion (BIC) the L-F model results to be the best model fig.(\ref{fig:BIC}), confirming the evidences of the action values plots in fig.(\ref{fig:PerfRL}).
 \begin{figure}
     %\centering
     \includegraphics[scale=0.3]{figures/BIC_ModelCompare.png}
-    \caption{BIC Information Criterion for the four models implemented}
+    \caption{{\color{red}Change figure and title of the plots} BIC Information Criterion for the four models implemented}
     \label{fig:BIC}
 \end{figure}
-
+To see whether the neural activity is correlated with the behaviour, we regress the neuronal activity and the assembly activity with the Q L-F model action values $Qs$, error prediction $\delta$, and associability $\alpha$ and behavioural measures. 
     
-
 \section{Regression of model parameters}
+We carried out a multiple regression analysis of neuronal and assembly activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
+Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
+\begin{equation}
+\begin{cases}
+y(t)=b_0+\sum_l b_l\cdot M_l+\epsilon(t)\\
+\epsilon(t)=\sum_m c_m\cdot N_m 
+\end{cases}
+\end{equation}
+where $M_l$ are the regressors of the Q L-F model part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model regressors. The set of vectors $N_m$ are the regressors of the residual part, namely, $a$, $l_{in}$, $l_{out}$ and $o$, while $c_m$ are the weights of the residual part.
+In a similar manner is possible to build a generalized linear model with logarithmic link function, considering that electrophysiological data are poisson distributed. 
 \section{Conclusion}
