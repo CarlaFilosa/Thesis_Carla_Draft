@@ -90,15 +90,40 @@ We carried out a multiple regression analysis of neuronal and assembly's activit
 Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
 \begin{equation}
 \begin{cases}
-y(t)=b_0+\sum_l b_l\cdot M_l+\epsilon(t)\\
-\epsilon(t)=\sum_m c_m\cdot N_m 
+y(t)=b_0+\sum\limits_{l}^{L} b_l\cdot M_l+\epsilon(t)\\
+\epsilon(t)=\sum\limits_i^I c_i\cdot N_i
 \end{cases}
+\label{eq:MultiLinRe}
 \end{equation}
-where $y$ are the observations, the neuronal/assembly activity in this case, $M_l$ are the regressors of the Q L-F model part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model regressors. The set of vectors $N_m$ are the regressors of the residual part, namely, $a$, $l_{in}$, $l_{out}$ and $o$, while $c_m$ are the weights of the residual part.
+where $y$ are the observations, the neuronal{\color{blue}/assembly's} activity in this case, $M$ is the ($T\times L$) regressor's Matrix of the Q L-F model part, where $T$ is the number of trials and $L$ the number of regressors. $M$ has as columns
+the regressors of the model's part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model's regressors. $N$ is the ($T\times I$) regressor matrix of the residual part, where $I$ is the number of regressors of the residual part. N has as columns the regressors $a$, $l_{in}$, $l_{out}$ and $o$, while $c_i$ are the weights of the residual part.
 Linear regression models assume response variables to be normally distributed. Neuronal responses are poisson distributed (although the normal distribution is in this case a good approximation), {\color{blue} and assemblies show Gamma distribution,} thus considering our data distributions, we built a generalized linear model (GLM), with GLM is possible to generalize the simple linear regression by allowing for response variables that have arbitrary distributions and for an arbitrary function of response variables, the link function, to vary linearly with the predicted values, rather than assuming that the response itself must vary linearly. The mean $\mu$ of distributions depends on the independent variables, or the regressors, $X$, as follows:
 \begin{equation}
 E(Y)=\mu=g^{-1}(X\cdot \beta)
+\label{eq:GLM}
 \end{equation}
-where $g$ is the link function. There is always a well-defined canonical link function which is derived from the exponential of the response's density function. For Poisson observation the canonical link function is the logarithimic.
+where $g$ is the link function. There is always a well-defined canonical link function which is derived from the exponential of the response's density function. For Poisson observation the canonical link function is the logarithmic. Thus the neuronal activities mean can be expressed by the following:
+\begin{equation}
+\begin{cases}
+\log(\mu)=b_0+\sum\limits_l^L b_l\cdot M_l+\epsilon(t)\\
+\epsilon(t)=\sum\limits_i^I c_i\cdot N_i 
+\end{cases}
+\label{eq:PoisLinRe}
+\end{equation}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.25]{figures/PreRewDistr_An1neu6_FSI.png}
+    \includegraphics[scale=0.25]{figures/PostRewDistr_An1neu6_FSI_.png}
+    \caption{Example of one unit firing rate distribution in the pre-reward range [-0.5 s,0s] and during the post reward period [0s,0.5s], choosing as starting time the reward delivery.}
+    \label{fig:DistributionEx}
+\end{figure}
 %However, in some cases it makes sense to try to match the domain of the link function to the range of the distribution function's mean, or use a non-canonical link function for algorithmic purposes, for example Bayesian probit regression. 
-\section{Conclusion}
+\section{Results}
+From the regression analysis, as one could predict, VS units emerged to be correlated with the $Q$ values, in particular FSI units show this correlation very clear.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{figures/y_yhatAnimal2neu6_FSI.png}
+    %\includegraphics[scale=0.3]{figures/CorrelationExAn1neu6_RightAx.png}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
