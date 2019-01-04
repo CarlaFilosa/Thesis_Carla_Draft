@@ -85,8 +85,8 @@ From the Bayesian Information Criterion (BIC) the L-F model results to be the be
 \end{figure}
 To see whether the neural activity is correlated with the behaviour, we regress the neuronal activity and the assembly activity with the Q L-F model action values $Qs$, error prediction $\delta$, and associability $\alpha$ and behavioural measures. 
     
-\section{Regression of model parameters}
-We carried out a multiple regression analysis of neuronal and assembly activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
+\section{Multiple regression of neuronal and assembly's activity}
+We carried out a multiple regression analysis of neuronal and assembly's activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
 Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
 \begin{equation}
 \begin{cases}
@@ -94,6 +94,11 @@ y(t)=b_0+\sum_l b_l\cdot M_l+\epsilon(t)\\
 \epsilon(t)=\sum_m c_m\cdot N_m 
 \end{cases}
 \end{equation}
-where $M_l$ are the regressors of the Q L-F model part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model regressors. The set of vectors $N_m$ are the regressors of the residual part, namely, $a$, $l_{in}$, $l_{out}$ and $o$, while $c_m$ are the weights of the residual part.
-In a similar manner is possible to build a generalized linear model with logarithmic link function, considering that electrophysiological data are poisson distributed. 
+where $y$ are the observations, the neuronal/assembly activity in this case, $M_l$ are the regressors of the Q L-F model part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model regressors. The set of vectors $N_m$ are the regressors of the residual part, namely, $a$, $l_{in}$, $l_{out}$ and $o$, while $c_m$ are the weights of the residual part.
+Linear regression models assume response variables to be normally distributed. Neuronal responses are poisson distributed (although the normal distribution is in this case a good approximation), {\color{blue} and assemblies show Gamma distribution,} thus considering our data distributions, we built a generalized linear model (GLM), with GLM is possible to generalize the simple linear regression by allowing for response variables that have arbitrary distributions and for an arbitrary function of response variables, the link function, to vary linearly with the predicted values, rather than assuming that the response itself must vary linearly. The mean $\mu$ of distributions depends on the independent variables, or the regressors, $X$, as follows:
+\begin{equation}
+E(Y)=\mu=g^{-1}(X\cdot \beta)
+\end{equation}
+where $g$ is the link function. There is always a well-defined canonical link function which is derived from the exponential of the response's density function. For Poisson observation the canonical link function is the logarithimic.
+%However, in some cases it makes sense to try to match the domain of the link function to the range of the distribution function's mean, or use a non-canonical link function for algorithmic purposes, for example Bayesian probit regression. 
 \section{Conclusion}
