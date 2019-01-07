@@ -8,6 +8,12 @@ Taking advantage of well defined neuron typologies classifications both in VS an
 %According to their response properties, neurons in VTA are classified in Type I (dopaminergic), Type II(GABAergic) and Type III; according to their electrophysiological properties, neurons in VS are di-vided in medium spiny neurons (MSN), cholinergic interneurons (CIN), and fast spiking interneurons(FSI), the latter are mostly pallidal units.
 \section{Description of experiment and data set}
 The task was a go-no go reversal odor discrimination task. Two odors were presented to the mouse, one rewarded (CS+) with reward probability 0.9, the other one not rewarded (CS-). Learning the task consisted in licking at least twice when CS+ was presented (hit trials) and not licking during or after the CS- presentation (correct rejection trials). Once the performance criterion was reached, contingencies were switched. Lick window was open for an interval ranging from 1500 $ms$ to 2000 $ms$ for different sessions after a delay from 500 $ms$ to 1500 $ms$. Only licks happening in the lick window interval were counted as valid to get the reward.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{figures/experiment.png}
+    \caption{Experimental setup and mice performance}
+    \label{fig:experiment}
+\end{figure}
 \section{Single cells analysis}
 \section{Preliminary cell assemblies results}
 Preliminary cell assemblies analysis were aimed to understand the size of the concentration of the shared pairs, namely how many units are involved in pairs and, among those, how the units typologies are distributed.
@@ -26,7 +32,7 @@ We start our analysis from time scales distribution involved in detection pairs.
 \caption{{\color{red}Important!! Re do the figures with GIMPS include text with title} Bin distribution for intra-regional and inter-regional pairs. A) VS-VTA pairs show a bimodal distribution, meaning two temporal scale involved in inter-regional activtion patterns. B) VS-VS pairs bin distribution presents a peak at 50 $ms$, specifically in this region the pairs MSN-FSI high show an highly peaked distribution, almost centered at the peak of 50 $ms$, plot (B.2), while in MSN-FSI low distribution, albeit the peak is still at 50 $ms$, is evident the predominance of very precise time scales, including bins from 10 $ms$ to 50 $ms$, with respect to the larger time scale plot (B.1).}
 \label{fig:BinDistr}
 \end{figure}
-Clear differences in time scales distribution of pairs detected in VS, VTA and VS-VTA emerge in fig.(\ref{fig:BinDistr}). Inter-regional pairs (VS-VTA) have a time scales distribution with a peak around 80 $ms$ while. Two time scales clearly emerge, the first, preciser, ranged from 10 $ms$ to 250 $ms$, and the latter, broader, peaked at 1.6 $s$. Intra-regional VTA-VTA pairs instead don't present any peak in time scales distribution. Intra-regional VS-VS bin size distribution is peaked around 50 $ms$. In VS we noticed differences between MSN and high-firing-rate FSI pairs and MSN and low-firing-rate FSI bin size distributions: specifically the firsts show higher temporal precision than the latter. {\color{red}{Include Figure of MSN-FSI and caption of bin size distribution}}.
+Clear differences in time scales distribution of pairs detected in VS, VTA and VS-VTA emerge in fig.(\ref{fig:BinDistr}). Inter-regional pairs (VS-VTA) have a time scales distribution peaked around 80 $ms$. Two time scales clearly emerge, the first, preciser, ranged from 10 $ms$ to 250 $ms$, and the latter, broader, peaked at 1.6 $s$. Intra-regional VTA-VTA pairs instead don't present any peak in time scales distribution. Intra-regional VS-VS bin size distribution is peaked around 50 $ms$. In VS we noticed differences between MSN and high-firing-rate FSI pairs and MSN and low-firing-rate FSI bin size distributions: specifically the firsts show higher temporal precision than the latter. {\color{red}{Include Figure of MSN-FSI and caption of bin size distribution}}.
 Directionality between VS and VTA was a point of particular interest for our study. We studied separately lag distribution of VS-VTA pairs detected in the preciser and broader temporal scales, as highlighted from bin sizes distribution. Preciser VS-VTA pairs show slight directionality in the direction VS (fig. \ref{fig:LagInSecAll}). A zoom in preciser VS-VTA pairs reveals the directionality being mainly carried by MSN-Type I pairs.
 \begin{figure}[H]
 \centering
@@ -42,12 +48,20 @@ Directionality between VS and VTA was a point of particular interest for our stu
 \caption{blabla}
 \label{fig:LagInSecAll}
 \end{figure}
-
+In figure one example of directional assembly.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figures/1_21Lastrev1Pru_An4Poster2.png}
+    \caption{An example of directional assembly.}
+    \label{fig:directional_assembly}
+\end{figure}
 
 
 %\section{Discussion}
 %\section{Combination of single neuron and assemblies analysis}
 %\subsection{Directionality using classification}
 \subsection{Significant task related response for typology}
-The assemblies were pruned according their significant task related activity, that was tested with Friedman's test and a non parametric version of the repeated measures Anova. We preferred to use non-parametric tests to be free from the assumption of gaussianity of the observations. Results of the two tests were consistent each other. The two relevant events of the task were the odor onset and the reward delivery, then we choose whether the assemblies showed a significant activity in three windows: Post-Stimulus [0s, 0.5s], Pre-Reward [-0.5s, 0s], Post-Reward [0s, 05s], the baseline was chosen in the interval [-0.8s, -0.3s] from the odor onset. Post-hoc analysis were performed using the Bonferroni's criterion {\color{red}check whether the criterion was Bonferroni of some other}
+Our interest was focused first of all to the small temporal scale.
+Here, the assemblies were pruned according their significant task related activity, that was tested with Friedman's test and a non parametric version of the repeated measures Anova. We preferred to use non-parametric tests to be free from the assumption of gaussianity of the observations. Results of the two tests were consistent each other. The two relevant events of the task were the odor onset and the reward delivery, then we choose whether the assemblies showed a significant activity in three windows: Post-Stimulus [0s, 0.5s], Pre-Reward [-0.5s, 0s], Post-Reward [0s, 05s], the baseline was chosen in the interval [-1s, -0.5s] from the odor onset. Post-hoc analysis were performed using the Bonferroni's criterion {\color{red}check whether the criterion was Bonferroni of some other}. Almost $80\%$ of the VS-VTA assemblies showed a task related activity significant different from the baseline or from another of the windows considered. Of the significant assemblies $\%$ were composed by MSN-Type I units, $\%$ by FSI low-Type I, $\%$ by FSI high-Type I, $\%$ MSN-Type II, $\%$ by FSI low-Type II, $\%$ by FSI high-Type II, the other possible units combinations constitutes a minority and all toghether were the $\%$ {\color{red} Insert numbers of percentage}.
+
 \section{Conclusion}
