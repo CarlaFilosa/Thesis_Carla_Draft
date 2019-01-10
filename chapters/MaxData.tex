@@ -16,7 +16,14 @@ The task presented is a go-no go reversal odor discrimination task. Two odors we
 \end{figure}
 \section{Single cells analysis}
 \section{Preliminary cell assemblies results}
-Preliminary cell assemblies analysis were aimed to understand the size of the concentration of the shared pairs, namely how many units are involved in pairs and, among those, how the units typologies are distributed.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{figures/GlobalRegionPieandLegenda1.png}
+    \caption{Pie charts of neuron typologies in VS and VTA }
+    \label{fig:GlobalPie}
+\end{figure}
+Preliminary cell assemblies analysis were aimed to understand the size of the concentration of the shared pairs, namely how many units are involved in pairs and, among those, how the units typologies are distributed in assembly pairs.
+We have $803$ VS units and $272$ VTA units in total that were distributed as shown in fig.(\ref{fig:GlobalPie})
 {\color{red} Include figure pie charts for all reversal paradigma}
 \section{Time scales, directionality}
 Applying the cell-assembly algorithm we were able to detect synchronous ($lag=0$) and asynchronous ($lag\neq 0$) cell assemblies at arbitrary time scale ($\Delta$). Time scales distribution results to be different for intra- regional assembly pairs (pairs with units from VS or VTA) and inter-regional assemblies pairs (pairs with units from both VS and VTA). It's important to point out that, in case of inter-regional pairs, the lag distribution it's a instruments to measure directionality between two regions, indicating which unit fires first leading the activation pattern activity and which one consequently follows. In our case $lag >0$ means VS precedes in activity VTA, and $lag <0$ the opposite, $lag=0$ means that the two units are  simultaneous in activation at the precision of the time scale at which are detected.
