@@ -1,6 +1,7 @@
 \chapter{Reinforcement Learning Model}
 %CIAO BELLA
 \section{Introduction}
+The description made until last paragraph is rather static, whereas the performed task was highly dynamic. In fact the animal had to assign and re-assign a value to the rewarded odor to be able to predict the reward.
 Animals and humans are able to adapt their actions depending on their specific goals in the environment on a trial-end-basis.
 Reinforcement learning theories describe reward-based decision-making and adaptive choice of actions of an agent by following three steps: 
 \begin{description}
@@ -8,7 +9,8 @@ Reinforcement learning theories describe reward-based decision-making and adapti
     \item[ii.]It selects an action by comparing the action values of multiple alternatives.
     \item[iii.]It updates the action values by errors of estimated action values.
 \end{description}
-Neuronal models of reinforcement learning assume midbrain dopamine neurons to encode errors of reward expectation({\color{red}add literature}), as well a representation of action values in striatal units \cite{DoyaRL_VS}. However two important points still remain unclear: which typologies of units are mainly involved in reward based selection and/or in the acquirement of action values, and how cross-areal interaction are involved in the computation of prediction error.
+Neuronal models of reinforcement learning assume midbrain dopamine neurons to encode errors of reward expectation({\color{red}add literature}), as well a representation of action values in striatal units \cite{DoyaRL_VS}. However is not fully understood how the reward prediction and the prediction error are formed and encoded by the VS-VTA network.
+%%
 We use here Reinforcement Learning/Forgetting models (\cite{SuttonBarto}) with Q-learning values (\cite{Dayan1}) to fit mice behaviour in go-no go odor discrimination task; we regress afterwards neuronal activity with model values.
 \section{Model}
 %{\color{blue}Start writing equation of reinforcement learning}
