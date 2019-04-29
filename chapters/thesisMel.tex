@@ -1,7 +1,7 @@
 \errorcontextlines32
-\documentclass[11pt]{book} %twoside and openright are default for the the book class
+\documentclass[10pt]{book} %twoside and openright are default for the the book class
 \title{Title}
-\author{Carla Filosa}
+\author{Carmela Filosa}
 \date{\today}
 
 \usepackage{cmtt,lmodern}      %Computer Modern Bright text with Latin Modern math
@@ -32,14 +32,15 @@
 %{\thesection.}{0.5em}{} 
 %
 %\titlespacing{\section}{12pc}{1.5ex plus .1ex minus .2ex}{1pc}
-%\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
-\usepackage[backend=biber,style=authoryear,]{biblatex}
-\addbibresource{BIB1.bib}
+
 \usepackage{fancyhdr}
+
 \usepackage{appendix} % For appendix
+
+
 \usepackage[utf8]{inputenc}
 
-
+ 
 \begin{document}
 \mbox{}
 
@@ -96,40 +97,35 @@
 
 
 %%%%%Chapters%%%%%
-%%%%\include{chapters/Boundariescup}
-%%%%%\include{chapters/Analytic_ray_mapping}
-%%%\include{chapters/Extended_ray_mapping}
-
-%\appendix
-%\include{chapters/Appendix_MC}
-%\include{chapters/Sobol}
-%\include{chapters/Boundariescup}
-
-
+\include{chapters/Acronyms1}
+\include{chapters/Nomenclature}
 \include{chapters/Introduction}
-\include{chapters/CellAssemblyMethod}
-%\include{chapters/LiyaData}
-\include{chapters/MaxData}
-\include{chapters/ReinforcementLearning}
+\include{chapters/Non_imaging_optics}
+\include{chapters/Ray_tracing}
+\include{chapters/PS_ray_tracing}
+\include{chapters/Boundaries}
+\include{chapters/triangulation}
+\include{chapters/Analytic_ray_mapping}
+\include{chapters/Extended_ray_mapping}
+\include{chapters/Fresnel}
+\include{chapters/Conclusions}
 \appendix
-\include{chapters/AppendixA}
-\include{chapters/MatAndMet}
-%%%
-\printbibliography
+\include{chapters/Appendix_MC}
+%\include{chapters/Sobol}
+\include{chapters/Boundariescup}
 
-%\bibliographystyle{authoryear}
 
-%\bibliography{BIB1}
-%\bibliographystyle{alpha}
-%\include{chapters/Summary}
-%\include{chapters/cv}
-%\include{chapters/publications}
-%\include{chapters/Acknowledgments}
+\bibliographystyle{ieeetr}
+\bibliography{Bib_US1}
+\include{chapters/Summary}
+\include{chapters/cv}
+\include{chapters/publications}
+\include{chapters/Acknowledgments}
 
-%%\clearpage{\pagestyle{empty}\cleardoublepage}
+%\clearpage{\pagestyle{empty}\cleardoublepage}
 
 
 
-%%\end{spacing}
+%\end{spacing}
 
 \end{document}
