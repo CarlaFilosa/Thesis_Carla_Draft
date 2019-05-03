@@ -1,15 +1,33 @@
 \chapter{Cell assemblies analysis}
 \label{chap:AssemblyAnalysis}
+In this chapter I present the assemblies analysis conducted on the data set presented in \autoref{chap:Dataset}, using the cell assemblies algorithm and the single units classification respectively presented in \autoref{chap:AssemblyMethod} and \autoref{chap:UnitsAnalysis}.
+Since we were interested in cross areal interactions between Ventral Striatum and Ventral Tegmental Area, I focus in this work on the inter-regional assemblies. Furthermore the only way to study the directionality between the two region is to focus the assembly analysis at level of inter-regional pairs, namely assembly formed by two neurons, one neuron in Ventral Striatum and one neuron of Ventral Tegmental area. It is easy to understand that, at pairs-level, the lag in activation between units in assembly (one outcome of the cell assembly algorithm) indicates the lag in activation between the two regions of concern.
+Using the units classification, inter-regional pairs were classified according to underlying cell types. Classified and not classified units occurred in the two regions as shown in fig. (\ref{fig:fig:PieRegions}). The inter-regional pairs formed by those units occurred as is shown in pie-chart in figure. {\color{red} to be rephrased}. Performing a Pearson's Chi square test...{\color{red} test results}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{figures/PieAssemblies1.png}
-    \caption{Pie charts of assemblies types. We have four principal inter-regional assemblies types. }
-    \label{fig:PieAssemblies}
+    \includegraphics[scale=0.6]{figures/PieRegions1.pdf}
+    \includegraphics[scale=0.5]{figures/PieAssembliesTot1.png}
+    \caption{Pie charts of assemblies types. Not indicated percentage are $<1\%$. Missing pieces of cake indicates pairs that include not classified units. The first four more represented inter-regional pairs including only classified units are pairs between fast spiking and gabaergic neurons ($20\%$), striatal projection neurons and dopaminergic neurons ($18\%$), fast spiking and dopaminergic units ($13\%$) and striatal projecton and gabaergic units ($9\%$). }
+    \label{fig:PieAssembliesTot}
 \end{figure}
-Preliminary cell assemblies analysis were aimed to understand the size of the concentration of the shared pairs, namely how many units are involved in pairs and, among those, how the units typologies were distributed in assembly pairs. Classified units were distributed in the two regions as shown in fig. (\ref{fig:PieAssemblies}) {\color{red} to be rephrased}. Performing a Pearson's Chi square test...{\color{red} test results}
+\begin{table}
+    \centering
+\begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}|p{3cm}| }
+ \hline
+ \multicolumn{4}{|c|}{Pearson$'$s $\chi^2$ test} \\
+ \hline
+ & DAN & GABA & GLU\\
+ \hline
+ SPN & 135 (102.23) & 70 (89.10) & 11 (24.66)\\
+ \hline
+ FSN & 97 (136.78) & 148 (119.22) & 44 (33)\\
+ \hline
+ CIN & 25 (17.99) & 6 (15.68) & 7 (4.34)\\
+ \hline
+\end{tabular}
+\end{table}
 
-{\color{red} Include figure pie charts for all reversal paradigma}
-\section{Time scales, directionality}
+\section{Time scales and directionality}
 Applying the cell-assembly algorithm we were able to detect synchronous ($lag=0$) and asynchronous ($lag\neq 0$) cell assemblies at arbitrary time scale ($\Delta$). Time scales distribution results to be different for intra- regional assembly pairs (pairs with units from VS or VTA) and inter-regional assemblies pairs (pairs with units from both VS and VTA). It's important to point out that, in case of inter-regional pairs, the lag distribution it's a instruments to measure directionality between two regions, indicating which unit fires first, leading the activation pattern activity, and which one consequently follows. In our case $lag >0$ means VS precedes in activity VTA, and $lag <0$ the opposite, $lag=0$ means that the two units are  simultaneous in activation at the precision of the time scale at which they were detected.
 We start our analysis from time scales distribution involved in detection pairs.
 \begin{figure}[H]
@@ -19,7 +37,6 @@ We start our analysis from time scales distribution involved in detection pairs.
 \includegraphics[scale=0.4]{figures/AllBinVSVS.png}
 %\includegraphics[scale=0.2]{figures/VS_VS_SLet.png}
 \includegraphics[scale=0.2]{figures/VTA_VTA_SLet.png}
-
 \caption{{\color{red}Important!! Re do the figures with GIMPS include text with title} Bin distribution for intra-regional and inter-regional pairs. A) VS-VTA pairs show a bimodal distribution, meaning two temporal scale involved in inter-regional activtion patterns. B) VS-VS pairs bin distribution presents a peak at 50 $ms$, specifically in this region the pairs MSN-FSI high show an highly peaked distribution, almost centered at the peak of 50 $ms$, plot (B.2), while in MSN-FSI low distribution, albeit the peak is still at 50 $ms$, is evident the predominance of very precise time scales, including bins from 10 $ms$ to 50 $ms$, with respect to the larger time scale plot (B.1).}
 \label{fig:BinDistr}
 \end{figure}
