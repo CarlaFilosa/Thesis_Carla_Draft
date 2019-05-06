@@ -1,8 +1,12 @@
 \chapter{Cell assemblies analysis}
 \label{chap:AssemblyAnalysis}
 In this chapter I present the assemblies analysis conducted on the data set presented in \autoref{chap:Dataset}, using the cell assemblies algorithm and the single units classification respectively presented in \autoref{chap:AssemblyMethod} and \autoref{chap:UnitsAnalysis}.
-Since we were interested in cross areal interactions between Ventral Striatum and Ventral Tegmental Area, I focus in this work on the inter-regional assemblies. Furthermore the only way to study the directionality between the two region is to focus the assembly analysis at level of inter-regional pairs, namely assembly formed by two neurons, one neuron in Ventral Striatum and one neuron of Ventral Tegmental area. It is easy to understand that, at pairs-level, the lag in activation between units in assembly (one outcome of the cell assembly algorithm) indicates the lag in activation between the two regions of concern.
-Using the units classification, inter-regional pairs were classified according to underlying cell types. Classified and not classified units occurred in the two regions as shown in fig. (\ref{fig:fig:PieRegions}). The inter-regional pairs formed by those units occurred as is shown in pie-chart in figure. {\color{red} to be rephrased}. Performing a Pearson's Chi square test...{\color{red} test results}
+The algorithm is free to detect any spike pattern coordination at any time scales.
+Applying the cell-assembly algorithm we were able to detect synchronous ($lag=0$) and asynchronous ($lag\neq 0$) cell assemblies at arbitrary time scale ($\Delta$). 
+Since we were interested in cross areal interactions an directionality between Ventral Striatum and Ventral Tegmental Area, I focus in this work on the inter-regional assembly-pairs. Inter-regional assembly-pairs means assemblies formed by two neurons, one neuron in Ventral Striatum and one neuron of Ventral Tegmental area. This is  an intuitive way to study the directionality between two regions: at pairs-level in fact, the lag in activation between units in assembly (one outcome of the cell assembly algorithm) indicates the lag in activation between the two regions of concern. In our nomenclature a positive lag ($lag>0$) means that the VS unit is preceding in activation the VTA unit: VS is leading and VTA is following; while a negative lag ($lag<0$) means that the VTA unit is preceding the activation of the VS unit: we can say that VTA is leading and VS is following. 
+
+\section{Cell types occurrence}
+Using the units classification, inter-regional pairs were classified according to underlying cell types. Classified and not classified units occurred in the two regions as shown in fig. (\ref{fig:PieAssembliesTot} (top)). The inter-regional pairs formed by those units occurred as is shown in pie-chart in fig. (\ref{fig:PieAssembliesTot} (bottom)). We can see that, selecting only classified units, four assemblies types occurs more often than other, they are pairs formed by fast spiking and gabaergic neurons ($20\%$), striatal projection neurons and dopaminergic neurons ($18\%$), fast spiking and dopaminergic units ($13\%$) and striatal projecton and gabaergic units ($9\%$). To see whether assembly types occur by chance or there is a relationship between the unit type activated in one region and the resulting assembly pairs, Pearson's $\chi^2$ test were conducted. Specifically, given the pairs types occurrence, we hypothesize a preference by fast spiking neurons for gabaergic neurons (and/or vice-versa) and a preference by striatal projecton neurons for dopaminergic neurons (and/or vice-versa). The $\chi^2$ test were performed on the directional pairs ($lag\neq0$) and separately on $vs\rightarrow vta$ ($lag>0$) and $vs \leftarrow vta$ ($lag<0$). In both cases, the $\chi^2$ test revealed a dependence between the unit-type and the resulting inter-regional pairs. The p-values of $\chi^2$ test were significant at the confidence level $\alpha = 0.05$. In direction $vs\rightarrow vta$ $p=2\times10^{-4}$ ($p=4\times10^{-4}$ using Yates correction), in direction $vs \leftarrow vta$: $p=9\times10^{-3}$ ($p=0.017$ using Yates correction). In tables (\ref{tab:chisquare_vsvta} and \ref{tab:chisquare_vtavs}) are shown the contingency tables of the $\chi^2$ tests for the two directionalities. In rows the activated cell types of the leading region, in columns the coupled selected cell types of the follower region. In the tables are shown the number of pairs between the two cell-types and in brackets $()$ the expected values. Both in $vs\rightarrow vta$ and in $vs\leftarrow vta$ directionality the real value of couples $SPN+DAN$ and $FSN+GABA$ exceed the expected value as we hypothesized. Those preference does not depend on directionality.
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/PieRegions1.pdf}
@@ -10,45 +14,62 @@ Using the units classification, inter-regional pairs were classified according t
     \caption{Pie charts of assemblies types. Not indicated percentage are $<1\%$. Missing pieces of cake indicates pairs that include not classified units. The first four more represented inter-regional pairs including only classified units are pairs between fast spiking and gabaergic neurons ($20\%$), striatal projection neurons and dopaminergic neurons ($18\%$), fast spiking and dopaminergic units ($13\%$) and striatal projecton and gabaergic units ($9\%$). }
     \label{fig:PieAssembliesTot}
 \end{figure}
-\begin{table}
-    \centering
-\begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}|p{3cm}| }
+\begin{table}[H]
+    %\centering
+\begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}| }
  \hline
- \multicolumn{4}{|c|}{Pearson$'$s $\chi^2$ test} \\
+ \multicolumn{3}{|c|}{Pearson$'$s $\chi^2$ test} \\
  \hline
- & DAN & GABA & GLU\\
+ & DAN pairs & GABA pairs\\
  \hline
- SPN & 135 (102.23) & 70 (89.10) & 11 (24.66)\\
+ SPN & 76 (63.77) & 35 (47.23) \\
  \hline
- FSN & 97 (136.78) & 148 (119.22) & 44 (33)\\
- \hline
- CIN & 25 (17.99) & 6 (15.68) & 7 (4.34)\\
+ FSN & 32 (44.23) & 45 (32.77)\\
  \hline
 \end{tabular}
+\caption{bla bla}
+\label{tab:chisquare_vsvta}
 \end{table}
 
-\section{Time scales and directionality}
-Applying the cell-assembly algorithm we were able to detect synchronous ($lag=0$) and asynchronous ($lag\neq 0$) cell assemblies at arbitrary time scale ($\Delta$). Time scales distribution results to be different for intra- regional assembly pairs (pairs with units from VS or VTA) and inter-regional assemblies pairs (pairs with units from both VS and VTA). It's important to point out that, in case of inter-regional pairs, the lag distribution it's a instruments to measure directionality between two regions, indicating which unit fires first, leading the activation pattern activity, and which one consequently follows. In our case $lag >0$ means VS precedes in activity VTA, and $lag <0$ the opposite, $lag=0$ means that the two units are  simultaneous in activation at the precision of the time scale at which they were detected.
-We start our analysis from time scales distribution involved in detection pairs.
+\begin{table}[H]
+\begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}| }
+ \hline
+ \multicolumn{3}{|c|}{Pearson$'$s $\chi^2$ test} \\
+ \hline
+ & SPN pairs & FSN pairs\\
+ \hline
+ DAN & 18 (12.06) & 29 (34.94) \\
+ \hline
+ GABA & 11 (16.94) & 55 (49.06)\\
+ \hline
+\end{tabular}
+\caption{bla bla}
+\label{tab:chisquare_vtavs}
+\end{table}
+\section{Cross areal interactions time scales}
+In this chapter a study on time scales involved in cross-areal interactions is presented. From the bimodal temporal scale ($\Delta$) distribution of cross-areal interaction emerges a segregation in two time scales for cross-areal interaction (figure (\ref{fig:BinDistr})).
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.2]{figures/VS_VTA_SLet.png}
-%\includegraphics[scale=0.4]{figures/VS_VS_SLet1.png}
-\includegraphics[scale=0.4]{figures/AllBinVSVS.png}
-%\includegraphics[scale=0.2]{figures/VS_VS_SLet.png}
-\includegraphics[scale=0.2]{figures/VTA_VTA_SLet.png}
-\caption{{\color{red}Important!! Re do the figures with GIMPS include text with title} Bin distribution for intra-regional and inter-regional pairs. A) VS-VTA pairs show a bimodal distribution, meaning two temporal scale involved in inter-regional activtion patterns. B) VS-VS pairs bin distribution presents a peak at 50 $ms$, specifically in this region the pairs MSN-FSI high show an highly peaked distribution, almost centered at the peak of 50 $ms$, plot (B.2), while in MSN-FSI low distribution, albeit the peak is still at 50 $ms$, is evident the predominance of very precise time scales, including bins from 10 $ms$ to 50 $ms$, with respect to the larger time scale plot (B.1).}
+%\centering
+\includegraphics[scale=0.45]{figures/VS_VTA_Short1.png}
+\caption{Bin distribution for inter-regional pairs. VS-VTA pairs show a bimodal distribution, meaning two temporal scale involved in inter-regional activation patterns.%B) VS-VS pairs bin distribution presents a peak at 50 $ms$, specifically in this region the pairs MSN-FSI high show an highly peaked distribution, almost centered at the peak of 50 $ms$, plot (B.2), while in MSN-FSI low distribution, albeit the peak is still at 50 $ms$, is evident the predominance of very precise time scales, including bins from 10 $ms$ to 50 $ms$, with respect to the larger time scale plot (B.1).
+}
 \label{fig:BinDistr}
 \end{figure}
-Clear differences in time scales distribution of pairs detected in VS, VTA and VS-VTA emerge in fig.(\ref{fig:BinDistr}). While we observed assemblies of temporal precision at the scale of few tens of milliseconds only within either VS or VTA, assemblies of lower temporal precision were detected across VS-VTA units. The temporal precision of this last group displayed a bimodal distribution with peaks around $80$ milliseconds and one $1.6$ second, revealing the presence of two time scales, the first, preciser, ranged from 10 $ms$ to 250 $ms$, and the second including broader bin sizes. Intra-regional VTA-VTA pairs instead don't present any peak in time scales distribution. Intra-regional VS-VS bin size distribution is peaked around 50 $ms$. In VS we noticed differences between MSN and high-firing-rate FSI pairs and MSN and low-firing-rate FSI bin size distributions: specifically the firsts show higher temporal precision than the latter. {\color{red}{Include Figure of MSN-FSI and caption of bin size distribution}}.
-Bin width and lags analysis reveals time scale segregation, that can reveal in turn different assembly-activation patterns. In fig.(\ref{fig:AsActBinLag}) heat maps of assembly activity, detected in a particular paradigm, show differences in activation patterns among different bin width and lag. %% In the paradigm in examination animals were well-trained, it was the third time that the same couple of odor were presented with the same stimulus duration length.
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.45]{figures/AsActPerBinLag1.png}
-    \caption{Assembly-activation patterns given time bins and lags. In a.) totality of assemblies of one experimental paradigm, b,c,d. assemblies of same paradigm of a. selected for bin size ($\Delta$) and lag, $\Delta < 0.25 s$ and $lag > 0$ (b.), $\Delta > 0.25 s$ and $lag > 0$ (c.), $lag < 0$ (d.)}
-    \label{fig:AsActBinLag}
+\begin{figure}[H]
+%\centering
+\includegraphics[scale=0.45]{figures/VS_VS_S.png}
+\caption{VS-VS pairs bin distribution presents a peak at 50 $ms$}
+\label{fig:BinDistr}
 \end{figure}
-{\color{red}Include fig with all reversal paradigm and see which differences can be mentioned!!!}
+\begin{figure}[H]
+%\centering
+\includegraphics[scale=0.45]{figures/VTA_VTA_S.png}
+\caption{VTA-VTA temporal scale distribution does not present any peak.}
+\label{fig:BinDistr}
+\end{figure}
+This segregation is typical of inter-regional pairs, in fact a comparison with intra-regional pairs in Ventral Striatum and Ventral Tegmantal area show interesting differences.
+While we observed assemblies of temporal precision at the scale of few tens of milliseconds only within either VS or VTA, assemblies of lower temporal precision were detected across VS-VTA units. The temporal precision of this last group displayed a bimodal distribution with peaks around $80$ milliseconds and one $1.6$ second, revealing the presence of two time scales, the first, preciser, ranged from 10 $ms$ to 250 $ms$, and the second including broader bin sizes. Intra-regional VTA-VTA pairs instead don't present any peak in time scales distribution. Intra-regional VS-VS bin size distribution is peaked around 50 $ms$. In VS we noticed differences between SPN and high-firing-rate SPN pairs and SPN and low-firing-rate FSN bin size distributions: specifically the firsts show higher temporal precision than the latter. {\color{red}{Include Figure of SPN -FSN and caption of bin size distribution}}.
+\section{Directionality} 
 The considerations above on the time scales distribution led us to study separately lag distribution of VS-VTA pairs detected in preciser and broader temporal scales highlighted from bin sizes distribution. We divided then these two assemblies population for the further study of directionality.
 Interestingly lag distribution of precise and broad time scales are both asymmetric, indicating that the VS activation leads the activation of the VTA neuron (fig. \ref{fig:LagInSecAll}). The two distribution show however remarkable differences: broader time scales pairs show a fat-long tailed distribution, whereas precise time scales lag distribution.
 Focusing our study on the more precise inter-regional pairs, we observed that specifically, the directional assemblies were composed of striatal and pallidal projection neurons leading dopaminergic VTA neurons (MSN and Type I pairs). Importantly, inter unit activation lags of assemblies containing pallidal neurons (FSI) were shorter than those containing striatal projection neurons (MSN), compatibly with assumed connectivity.
@@ -73,6 +94,14 @@ In fig. (\ref{fig:directional_assembly}) a directional assembly. On top is shown
     \caption{Directional assembly. On top mean and standard deviation of the assembly's activity for paired (grey) and unpaired odor trials (purple) in the original phase. On bottom raster plot and firing rate (mean and standard deviation) of units in assembly. x-axis origin correspond to the odor onset, while the red line marks the end of the stimulus duration. The examined assembly has a positive lag, that means VS preceding in activity VTA, from neuronal activity we can see in fact the VS unit activate before than the VTA unit.}
     \label{fig:directional_assembly}
 \end{figure}
+Bin width and lags analysis reveals time scale segregation, that can reveal in turn different assembly-activation patterns. In fig.(\ref{fig:AsActBinLag}) heat maps of assembly activity, detected in a particular paradigm, show differences in activation patterns among different bin width and lag. %% In the paradigm in examination animals were well-trained, it was the third time that the same couple of odor were presented with the same stimulus duration length.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.45]{figures/AsActPerBinLag1.png}
+    \caption{Assembly-activation patterns given time bins and lags. In a.) totality of assemblies of one experimental paradigm, b,c,d. assemblies of same paradigm of a. selected for bin size ($\Delta$) and lag, $\Delta < 0.25 s$ and $lag > 0$ (b.), $\Delta > 0.25 s$ and $lag > 0$ (c.), $lag < 0$ (d.)}
+    \label{fig:AsActBinLag}
+\end{figure}
+{\color{red}Include fig with all reversal paradigm and see which differences can be mentioned!!!}
 \section{Conclusion}
 From the inter-regional time precision distribution (bin size $\Delta$) we deduced that VS-VTA interactions are two time scales interactions. Looking at the assembly activity patterns we observed a dissection between the more precise time scale and the broader time scale inter-regional pairs. 
 With the lags between units activation we have distinguished three types of assemblies: synchronous, positive directional and negative directional assemblies. From lag distributions one deduces that precise and broad time scale pairs show directionality in the direction of VS leading VTA.
