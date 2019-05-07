@@ -1,12 +1,12 @@
 \chapter{Cell assemblies analysis}
 \label{chap:AssemblyAnalysis}
-In this chapter I present the assemblies analysis conducted on the data set presented in \autoref{chap:Dataset}, using the cell assemblies algorithm and the single units classification respectively presented in \autoref{chap:AssemblyMethod} and \autoref{chap:UnitsAnalysis}.
+In this chapter I present the assembly analysis conducted on the data set presented in \autoref{chap:Dataset}, using the cell assembly algorithm and the single units classification respectively presented in \autoref{chap:AssemblyMethod} and \autoref{chap:UnitsAnalysis}.
 The algorithm is free to detect any spike pattern coordination at any time scales.
-Applying the cell-assembly algorithm we were able to detect synchronous ($lag=0$) and asynchronous ($lag\neq 0$) cell assemblies at arbitrary time scale ($\Delta$). 
-Since we were interested in cross areal interactions an directionality between Ventral Striatum and Ventral Tegmental Area, I focus in this work on the inter-regional assembly-pairs. Inter-regional assembly-pairs means assemblies formed by two neurons, one neuron in Ventral Striatum and one neuron of Ventral Tegmental area. This is  an intuitive way to study the directionality between two regions: at pairs-level in fact, the lag in activation between units in assembly (one outcome of the cell assembly algorithm) indicates the lag in activation between the two regions of concern. In our nomenclature a positive lag ($lag>0$) means that the VS unit is preceding in activation the VTA unit: VS is leading and VTA is following; while a negative lag ($lag<0$) means that the VTA unit is preceding the activation of the VS unit: we can say that VTA is leading and VS is following. 
+Thus, applying the cell-assembly algorithm we were able to detect synchronous ($lag=0$) and asynchronous ($lag\neq 0$) cell assemblies at arbitrary time scale ($\Delta$). The time scales are explored by running over different bin sizes of assembly-detection, and the lag, that is one outcome of the cell assembly algorithm, is the distance in activation between units in assembly.
+Since we were interested in cross areal interactions an directionality between Ventral Striatum and Ventral Tegmental Area, I focus in this work on the inter-regional assembly-pairs. Inter-regional assembly-pairs means assemblies formed by two neurons, of which one neuron is in Ventral Striatum and one neuron is in Ventral Tegmental area. This is  an intuitive way to study the directionality between two regions: at pairs-level in fact, the lag in activation between units in assembly indicates the lag in activation between the two regions of concern. In our nomenclature a positive lag ($lag>0$) means that the VS unit is preceding in activation the VTA unit: VS is leading and VTA is following; while a negative lag ($lag<0$) means that the VTA unit is preceding the activation of the VS unit: we can say that VTA is leading and VS is following. 
 
 \section{Cell types occurrence}
-Using the units classification, inter-regional pairs were classified according to underlying cell types. Classified and not classified units occurred in the two regions as shown in fig. (\ref{fig:PieAssembliesTot} (top)). The inter-regional pairs formed by those units occurred as is shown in pie-chart in fig. (\ref{fig:PieAssembliesTot} (bottom)). We can see that, selecting only classified units, four assemblies types occurs more often than other, they are pairs formed by fast spiking and gabaergic neurons ($20\%$), striatal projection neurons and dopaminergic neurons ($18\%$), fast spiking and dopaminergic units ($13\%$) and striatal projecton and gabaergic units ($9\%$). To see whether assembly types occur by chance or there is a relationship between the unit type activated in one region and the resulting assembly pairs, Pearson's $\chi^2$ test were conducted. Specifically, given the pairs types occurrence, we hypothesize a preference by fast spiking neurons for gabaergic neurons (and/or vice-versa) and a preference by striatal projecton neurons for dopaminergic neurons (and/or vice-versa). The $\chi^2$ test were performed on the directional pairs ($lag\neq0$) and separately on $vs\rightarrow vta$ ($lag>0$) and $vs \leftarrow vta$ ($lag<0$). In both cases, the $\chi^2$ test revealed a dependence between the unit-type and the resulting inter-regional pairs. The p-values of $\chi^2$ test were significant at the confidence level $\alpha = 0.05$. In direction $vs\rightarrow vta$ $p=2\times10^{-4}$ ($p=4\times10^{-4}$ using Yates correction), in direction $vs \leftarrow vta$: $p=9\times10^{-3}$ ($p=0.017$ using Yates correction). In tables (\ref{tab:chisquare_vsvta} and \ref{tab:chisquare_vtavs}) are shown the contingency tables of the $\chi^2$ tests for the two directionalities. In rows the activated cell types of the leading region, in columns the coupled selected cell types of the follower region. In the tables are shown the number of pairs between the two cell-types and in brackets $()$ the expected values. Both in $vs\rightarrow vta$ and in $vs\leftarrow vta$ directionality the real value of couples $SPN+DAN$ and $FSN+GABA$ exceed the expected value as we hypothesized. Those preference does not depend on directionality.
+Using the units classification, inter-regional pairs were classified according to underlying cell types. 
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/PieRegions1.pdf}
@@ -14,11 +14,12 @@ Using the units classification, inter-regional pairs were classified according t
     \caption{Pie charts of assemblies types. Not indicated percentage are $<1\%$. Missing pieces of cake indicates pairs that include not classified units. The first four more represented inter-regional pairs including only classified units are pairs between fast spiking and gabaergic neurons ($20\%$), striatal projection neurons and dopaminergic neurons ($18\%$), fast spiking and dopaminergic units ($13\%$) and striatal projecton and gabaergic units ($9\%$). }
     \label{fig:PieAssembliesTot}
 \end{figure}
+Classified and not classified units occurred in the two regions as shown in fig. (\ref{fig:PieAssembliesTot} (top)). The inter-regional pairs formed by those units occurred as is shown in pie-chart in fig. (\ref{fig:PieAssembliesTot} (bottom)). We can see that, selecting only classified units, four assemblies types occurs more often than other, they are pairs formed by fast spiking and gabaergic neurons ($20\%$), striatal projection neurons and dopaminergic neurons ($18\%$), fast spiking and dopaminergic units ($13\%$) and striatal projecton and gabaergic units ($9\%$). To see whether assembly types occur by chance or there is a relationship between the unit type activated in one region and the resulting assembly pairs, Pearson's $\chi^2$ test were conducted. Specifically, given the pairs types occurrence, we hypothesize a preference by fast spiking neurons for gabaergic neurons (and/or vice-versa) and a preference by striatal projecton neurons for dopaminergic neurons (and/or vice-versa). The $\chi^2$ test were performed on the directional pairs ($lag\neq0$) and separately on $vs\rightarrow vta$ ($lag>0$) and $vs \leftarrow vta$ ($lag<0$). In both cases, the $\chi^2$ test revealed a dependence between the unit-type and the resulting inter-regional pairs. The p-values of $\chi^2$ test were significant at the confidence level $\alpha = 0.05$. In direction $vs\rightarrow vta$ $p=2\times10^{-4}$ ($p=4\times10^{-4}$ using Yates correction), in direction $vs \leftarrow vta$: $p=9\times10^{-3}$ ($p=0.017$ using Yates correction). In tables (\ref{tab:chisquare_vsvta} and \ref{tab:chisquare_vtavs}) are shown the contingency tables of the $\chi^2$ tests for the two directionalities. In rows the activated cell types of the leading region, in columns the coupled selected cell types of the follower region. In the tables are shown the number of pairs between the two cell-types and in brackets $()$ the expected values. Both in $vs\rightarrow vta$ and in $vs\leftarrow vta$ directionality the real value of couples $SPN+DAN$ and $FSN+GABA$ exceed the expected value as we hypothesized. The preference does not depend on directionality.
 \begin{table}[H]
     %\centering
 \begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}| }
  \hline
- \multicolumn{3}{|c|}{Pearson$'$s $\chi^2$ test} \\
+ \multicolumn{3}{|c|}{Pearson$'$s $\chi^2$ test ($vs \rightarrow vta$)} \\
  \hline
  & DAN pairs & GABA pairs\\
  \hline
@@ -26,15 +27,21 @@ Using the units classification, inter-regional pairs were classified according t
  \hline
  FSN & 32 (44.23) & 45 (32.77)\\
  \hline
+ \multicolumn{3}{|c|}{$\chi^2$ statistic  13.47}\\
+ \multicolumn{3}{|c|}{p-value = $2\times10^{-4}$}\\
+ \hline
+ \multicolumn{3}{|c|}{$\chi^2$ statistic Yates correction 12.39}\\
+ \multicolumn{3}{|c|}{p-value = $4\times10^{-4}$}\\
+ \hline
 \end{tabular}
-\caption{bla bla}
+\caption{Pearson$'$s $\chi^{2}$ test contingency table. We test the dependency between the neuron type in VS and the neuron type in VTA with which the pair is formed, for pairs with specific directionality $vs \rightarrow vta$. The $\chi^2$ test show a dependency among variables, meaning that resulting pair depends on the neuron types involved.}
 \label{tab:chisquare_vsvta}
 \end{table}
 
 \begin{table}[H]
 \begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}| }
  \hline
- \multicolumn{3}{|c|}{Pearson$'$s $\chi^2$ test} \\
+ \multicolumn{3}{|c|}{Pearson$'$s $\chi^2$ test ($vs \leftarrow vta$)} \\
  \hline
  & SPN pairs & FSN pairs\\
  \hline
@@ -42,8 +49,14 @@ Using the units classification, inter-regional pairs were classified according t
  \hline
  GABA & 11 (16.94) & 55 (49.06)\\
  \hline
+ \multicolumn{3}{|c|}{$\chi^2$ statistic  6.73}\\
+ \multicolumn{3}{|c|}{p-value = 0.009}\\
+ \hline
+ \multicolumn{3}{|c|}{$\chi^2$ statistic Yates correction 5.65}\\
+ \multicolumn{3}{|c|}{p-value = 0.017}\\
+ \hline
 \end{tabular}
-\caption{bla bla}
+\caption{Pearson$'$s $\chi^{2}$ test contingency table. We test the dependency between the neuron type in VTA and the neuron type in VS with which the pair is formed, for pairs with specific directionality $vs \leftarrow vta$. The $\chi^2$ test show a dependency among variables, meaning that resulting pair depends on the neuron types involved.}
 \label{tab:chisquare_vtavs}
 \end{table}
 \section{Cross areal interactions time scales}
