@@ -199,16 +199,48 @@ From the inter-regional time scales distribution we deduced VS-VTA pairs have tw
 
  \section{Pair-types task-related pattern}
  \label{sec:TaskResp}
- In the previous section we conclude that time scale segregation and directionality might reflect specific task-related coding feature, using an example we have shown how different directionality reveal different pairs activity patterns. We have seen as well that different assembly-pairs have different directionality distribution and SPN-DAN assembly-pairs, in particular, exhibit a clear $VS\rightarrow VTA$ directionality.\\Thus in this section we investigate if different assembly-pairs-types have different task-related activity patterns, which express different task-related feature coding.\\
-\\We tested the responsiveness of each assembly-pair to the conditioned stimulus (CS $+/-$) and the unconditioned stimulus (US), through an analysis of variance performed using a paired Friedman's test. The time intervals were 0.5 $sec$ long, they were chosen as follow: CS $+/-$ interval satisfied the condition $t \in [0, 0.5]$ $sec$ considering as starting point the odor onset, CS$+/-$cont. was the window including each time $t$ satisfying $t \in [-0.5, 0]$ $sec$ before the reward retrieval, in which the the odor was still present, US interval included times $t \in [0,0.5]$ from the reward delivery, in addition we considered as baseline the interval $t \in [-0.8, -0.3]$ $sec$ before the odor onset. For each trial the baseline interval was a time window of 0.5 $sec$ long, before the odor onset when no external stimuli were present, in which no task related activity could have interfered with the spontaneous neural activity. As shown by an example of the neural activity averaged across trials in fig.\ref{fig:Baseline} during the baseline period no activity pattern emerges besides the spontaneous neural activity.\\
-Analysis of variance compares the means of several groups to test the hypothesis that they are all equal, against the general alternative that they are not all equal. This alternative was in our case too general. Hence, in the cases in which we obtained an omnibus significant $\chi^2$ test, the post-hoc procedure were designed using the matlab function $\textit{multcompare}$ whose critical values where computed with Bonferroni's method.
+In the previous section we conclude that time scale segregation and directionality might reflect specific task-related coding feature, using an example we have shown how different directionality reveal different pairs activity patterns. We have seen as well that different assembly-pairs have different directionality distribution and SPN-DAN assembly-pairs, in particular, exhibit a clear $VS\rightarrow VTA$ directionality.\\Thus in this section we investigate if different assembly-pairs-types have different task-related activity patterns, which express different task-related feature coding.\\
+We tested the responsiveness of each assembly-pair to the conditioned stimulus (CS $+/-$) and the unconditioned stimulus (US), through an analysis of variance performed using a paired Friedman's test on the trial by trial assembly-pair activity in the different windows. The time intervals were 0.5 $sec$ long, they were chosen as follow: CS $+/-$ interval satisfied the condition $t \in [0, 0.5]$ $sec$ considering as starting point the odor onset, CS$+/-$cont. was the window including each time $t$ satisfying $t \in [-0.5, 0]$ $sec$ before the reward retrieval, in which the the odor was still present, US interval included times $t \in [0,0.5]$ from the reward delivery, in addition we considered as baseline the interval $t \in [-0.8, -0.3]$ $sec$ before the odor onset. For each trial the baseline interval was a time window of 0.5 $sec$ long, before the odor onset when no external stimuli were present, in which no task related activity could have interfered with the spontaneous neural activity. As shown by an example of the neural activity averaged across trials in fig.\ref{fig:Baseline} during the baseline period no activity pattern emerges besides the spontaneous neural activity.\\
+Analysis of variance compares the means of several groups to test the hypothesis that they are all equal, against the general alternative that they are not all equal. This alternative was in our case too general. Hence, in the cases in which we obtained an omnibus significant $\chi^2$ test, the post-hoc procedure were designed using the matlab function $\textit{multcompare}$ whose critical values where computed with Bonferroni's method.\\
+In fig.\ref{fig:SPN_Ex} two examples of assembly-pairs resulting significant for Friedman's test on which a post-hoc analysis revealed significance between two groups: baseline and CS+ window (top) and baseline and CS+ cont. window (bottom). The trial by trial assembly-pair activity is shown, 
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/Baseline.png}
     \caption{Baseline interval choice. For each trial the baseline interval was a time window in which no task related activity could have interfered with the spontaneous neural activity, as shown by an example of the neural activity averaged across trials.}
     \label{fig:Baseline}
 \end{figure}
- In fig.\ref{fig:HeatPairsDan} assembly-pairs tested with Friedman's test and resulting to have significant task related response in original phase. In order: A1. SPN-DAN assembly-pairs in original phase: a good portion of those pairs became active early at the rewarded stimulus (CS+) presentation, a good portion remains active during the stimulus presentation (CS+ cont.), until the reward retrival (US), only a small fraction is active only in US window, this kind of answer makes those assembly-pair-types good candidate for Reward Prediction (RP) coding. In A.2 the same assembly-pairs in the reversal phase. FSN-DAN assembly-pairs on contrast have a phasic response to the rewarded stimulus (CS+) and reward retrival (US) (B.1); in B.2 same FSN-DAN pairs in the reversal phase, a good portion of units responsive to CS+ in original phase, became in reversal responsive to US. This kind of answer makes those assembly-pair-types good candidate for Reward Prediction Error (RPE) coding.
+\begin{figure}
+    \centering
+   % \includegraphics[scale=0.4]{figures/SPN_DANexStim1.png}
+    \includegraphics[scale=0.4]{figures/SPN_DANexPreRew.png}
+    
+   \vspace{1cm}
+   
+   \includegraphics[scale=0.4]{figures/FSN_DANexStimRew.png}
+    \caption{Example of two SPN-DAN assembly-pairs significant after the analysis of variance for which the post-hoc test shown that in both cases two groups out of for were significant different, respectively the baseline and the CS+ window (top), and the baseline and the CS+ cont. (bottom).}
+    \label{fig:SPN_Ex}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figures/SPN_DANHisto.png}
+    
+    \vspace{1cm}
+    
+    \includegraphics[scale=0.4]{figures/FSN_DANHisto.png}
+\caption{Considering only the significant pairs we report the percentage of them significant with respect to the baseline in the windows $CS+$, $CS+ cont.$, $US$. The total amount can exceed the $100\%$ because if for example one pair were found significant in the US window and CS+ cont. with respect to the baseline, this assembly-pair was double counted.}
+    \label{fig:FriedHistoDAN}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figures/SPN_GABAHisto.png}
+    
+    \vspace{1cm}
+    
+    \includegraphics[scale=0.4]{figures/FSN_GABAHisto.png}
+    \caption{Considering only the significant pairs we report the percentage of them significant with respect to the baseline in the windows $CS+$, $CS+ cont.$, $US$. The total amount can exceed the $100\%$ because if for example one pair were found significant in the US window and CS+ cont. with respect to the baseline, this assembly-pair was double counted.}
+    \label{fig:FriedHistoGABA}
+\end{figure}
+In fig.\ref{fig:HeatPairsDan} assembly-pairs tested with Friedman's test and resulting to have significant task related response in original phase. In order: A1. SPN-DAN assembly-pairs in original phase: a good portion of those pairs became active early at the rewarded stimulus (CS+) presentation, a good portion remains active during the stimulus presentation (CS+ cont.), until the reward retrieval (US), only a small fraction is active only in US window, this kind of answer makes those assembly-pair-types good candidate for Reward Prediction (RP) coding. In A.2 the same assembly-pairs in the reversal phase. FSN-DAN assembly-pairs on contrast have a phasic response to the rewarded stimulus (CS+) and reward retrival (US) (B.1); in B.2 same FSN-DAN pairs in the reversal phase, a good portion of units responsive to CS+ in original phase, became in reversal responsive to US. This kind of answer makes those assembly-pair-types good candidate for Reward Prediction Error (RPE) coding.
  \begin{figure}
      \centering
      \includegraphics[scale=0.36]{figures/HeatSPN_DAN.pdf}
