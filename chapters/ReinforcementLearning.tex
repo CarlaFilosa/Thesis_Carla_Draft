@@ -1,5 +1,5 @@
 \chapter{Reinforcement Learning Model}
-%\label{chap:RL}
+\label{chap:RL}
 \section{Introduction}
 The description made until last paragraph is rather static, whereas the performed task was highly dynamic. In fact the animal had to assign and re-assign a value to the rewarded odor to be able to predict the reward.
 Animals and humans are able to adapt their actions depending on their specific goals in the environment on a trial-end-basis.
@@ -70,6 +70,7 @@ Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pear
     and action values for the chosen option evolving consequently as in the equation \ref{eq:Qlearning}.
 \end{description}
 \section{Behaviour Fit}
+\label{sec:Behavior}
 We compare the models and it resulted the Forgetting$-$Learning Model showing the best behavioural fit. We computed the mice performance and compared it with the action values, furthermore we used the Bayesian Information Criterion to establish which was the best model.\\
 
 \begin{figure}[ht!]
@@ -90,6 +91,7 @@ From the Bayesian Information Criterion (BIC) the L-F model results to be the be
 To see whether the neural activity is correlated with the behaviour, we regress the neuronal activity and the assembly activity with the Q L-F model action values $Qs$, error prediction $\delta$, and associability $\alpha$ and behavioural measures. 
     
 \section{Uncertainty and prediction error signal in pair-types}
+\label{sec:CorrRL}
 We carried out a multiple regression analysis of neuronal and assembly's activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
 Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
 \begin{equation}
@@ -121,6 +123,8 @@ where $g$ is the link function. There is always a well-defined canonical link fu
     \caption{Example of one unit firing rate distribution in the pre-reward range [-0.5 s,0s] and during the post reward period [0s,0.5s], choosing as starting time the reward delivery.}
     \label{fig:DistributionEx}\end{figure}
 %%%%%%However, in some cases it makes sense to try to match the domain of the link function to the range of the distribution function's mean, or use a non-canonical link function for algorithmic purposes, for example Bayesian probit regression. 
+\section{Regression}
+\label{sec:Regression}
 \section{Conclusion}
 From the regression analysis, as one could predict, VS units emerged to be correlated with the $Q$ values, in particular FSI units show this correlation very clear.
 {\color{red}insert percentage of units correlated and in which period, detailed with how many units are part of assemblies and add as well.}
