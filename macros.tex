@@ -157,7 +157,30 @@
 \DeclareMathOperator{\supp}{supp}
 
 
-
+\makeatletter
+\newenvironment{largefigure}[1][0pt]{ 
+  \clearpage % finish last page and flush previous floats
+  % save current textheight
+  \newlength{\@prevtextheight}\setlength{\@prevtextheight}{\textheight} 
+  % extend textheight and recompute internal float parameters
+  \setlength{\textheight}{\textheight + #1}
+  \global\@colht\textheight % reset \@colht 
+  \global\@colroom\textheight % reset \@colroom
+  \@floatplacement
+  % force float to appear at top of page
+  \setlength{\@fptop}{0pt} 
+  \begin{figure}[!p]
+}{
+  \end{figure}
+  \clearpage % flush the float
+  % restore textheight and all
+  \setlength{\textheight}{\@prevtextheight}
+  \global\@colht\textheight 
+  \global\@colroom\textheight
+  \@floatplacement
+  \setlength{\@fptop}{0pt plus 1fill}
+}
+\makeatother
 
 
 
