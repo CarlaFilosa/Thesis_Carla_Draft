@@ -12,8 +12,6 @@
 
 \usepackage[paperwidth=18cm,paperheight=24.5cm,top=2.51cm,bottom=2.005cm,inner=2.5cm,outer=1.5cm,headheight=15.0pt,headsep=0.58cm]{geometry}
 
-
-
 \input{macros.tex}
 
 \graphicspath{{figures/}}
@@ -34,8 +32,15 @@
 %
 %\titlespacing{\section}{12pc}{1.5ex plus .1ex minus .2ex}{1pc}
 %\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
-\usepackage[backend=biber,style=authoryear,]{biblatex}
+%\usepackage[backend=biber,style=authoryear, maxnames=4]{biblatex}
+%\usepackage[backend=biber, style=apa, apamaxprtauth=<3>]{biblatex}
+%\usepackage[maxbibnames=99]{biblatex}
+\usepackage[style=authoryear,maxbibnames=99,maxcitenames=2,backend=biber]{biblatex}
 \addbibresource{BIB1.bib}
+%\usepackage{natbib}
+%\bibliographystyle{abbrvnat}
+%\setcitestyle{authoryear,open={((},close={))}}
+
 \usepackage{fancyhdr}
 \usepackage{appendix} % For appendix
 \usepackage[utf8]{inputenc}
@@ -135,7 +140,9 @@
 \include{chapters/FriedAnova}
 \include{chapters/RL_MatAndMet}
 
+%\bibliography{BIB1}
 %%%
+%\bibliographystyle{apalike}
 \printbibliography
 %\bibliographystyle{authoryear}
 %\bibliography{BIB1}
