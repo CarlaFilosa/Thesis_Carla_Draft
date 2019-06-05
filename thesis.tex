@@ -4,15 +4,27 @@
 \author{Carla Filosa}
 \date{\today}
 
-\usepackage{cmtt,lmodern}      %Computer Modern Bright text with Latin Modern math
-\usepackage[T1]{fontenc}           %T1 font encoding to copy and search symbols like
-\usepackage[UKenglish,dutch]{babel} %for appropriate hyphenation
+%\usepackage{cmtt,lmodern}      %Computer Modern Bright text with Latin Modern math
+\usepackage[utf8]{fontenc}           %T1 font encoding to copy and search symbols like
+\usepackage[UKenglish]{babel} %for appropriate hyphenation
 %\usepackage{cleveref}
+
+\input{macros.tex}
+%Imports bibliography file
+
+\usepackage[
+backend=biber,
+style=authoryear,
+maxcitenames=2,
+]{biblatex}
+
+\addbibresource{sample.bib} 
 
 
 \usepackage[paperwidth=18cm,paperheight=24.5cm,top=2.51cm,bottom=2.005cm,inner=2.5cm,outer=1.5cm,headheight=15.0pt,headsep=0.58cm]{geometry}
 
-\input{macros.tex}
+
+
 
 \graphicspath{{figures/}}
 \newenvironment{dedication}
@@ -26,20 +38,13 @@
    \vspace{\stretch{1}} % space at bottom is three times that at the top
    \clearpage           % finish off the page
   }
-%\usepackage{titlesec}
-%\titleformat{\section}{\newpage \large\bfseries}
-%{\thesection.}{0.5em}{} 
-%
-%\titlespacing{\section}{12pc}{1.5ex plus .1ex minus .2ex}{1pc}
-%\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
-%\usepackage[backend=biber,style=authoryear, maxnames=4]{biblatex}
-%\usepackage[backend=biber, style=apa, apamaxprtauth=<3>]{biblatex}
-%\usepackage[maxbibnames=99]{biblatex}
-\usepackage[style=authoryear,maxbibnames=99,maxcitenames=2,backend=biber]{biblatex}
-\addbibresource{BIB1.bib}
-%\usepackage{natbib}
-%\bibliographystyle{abbrvnat}
-%\setcitestyle{authoryear,open={((},close={))}}
+
+%\usepackage[
+%backend=biber,
+%style=authoryear,
+%maxnames=2,
+%]{biblatex}
+%\addbibresource{BIB1.bib}
 
 \usepackage{fancyhdr}
 \usepackage{appendix} % For appendix
@@ -95,7 +100,6 @@
 
 \pagestyle{fancy}
 
-
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{}}
 
 \renewcommand{\sectionmark}[1]{}
@@ -108,10 +112,6 @@
 
 
 %%%%%Chapters%%%%%
-%%%%\include{chapters/Boundariescup}
-%%%%%\include{chapters/Analytic_ray_mapping}
-%%%\include{chapters/Extended_ray_mapping}
-
 %\appendix
 %\include{chapters/Appendix_MC}
 %\include{chapters/Sobol}
@@ -131,7 +131,7 @@
 \include{chapters/Introduction}
 \include{chapters/Overview}
 \include{chapters/DataSetCellsAnalysis}
-%\include{chapters/CellAssemblyMethod}
+\include{chapters/CellAssemblyMethod}
 \include{chapters/AssemblyAnalysis}
 \include{chapters/ReinforcementLearning}
 \include{chapters/Conclusion}
@@ -139,19 +139,10 @@
 \include{chapters/MatAndMet}
 \include{chapters/FriedAnova}
 \include{chapters/RL_MatAndMet}
+%\include{chapters/ciao}
 
-%\bibliography{BIB1}
-%%%
-%\bibliographystyle{apalike}
+\medskip
 \printbibliography
-%\bibliographystyle{authoryear}
-%\bibliography{BIB1}
-%\bibliographystyle{alpha}
-%\include{chapters/Summary}
-%\include{chapters/cv}
-%\include{chapters/publications}
-%\include{chapters/Acknowledgments}
-%%\clearpage{\pagestyle{empty}\cleardoublepage}
 
 
 
