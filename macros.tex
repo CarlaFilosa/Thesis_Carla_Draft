@@ -1,6 +1,7 @@
 %!TEX root = thesis.tex
 %%%% PACKAGES %%%%
 \usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
@@ -62,6 +63,13 @@
   \endgroup
 }
 
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 
 %%%%% THEOREMS, etc ... %%%%%%%
 
