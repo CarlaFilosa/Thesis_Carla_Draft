@@ -46,7 +46,7 @@ where $k_F$ is the forgetting rate (\cite{ItoDoya}) and the associability for th
 \end{equation}
 Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pearce Hall model. We applied to our data four different version of the model, the one shown here as presentation is the one that better fit the behavioural data. The other three versions are:
 \begin{description}
-    \item[i.] \textbf{Resorla-Wagner.} The presented model is reducible to an hybrid Rescorla Wagner/Pearce Hall update mechanism when we use a learning parameter $k$, and no forgetting parameter, i.e. $k_F = 0$.
+    \item[i.] \textbf{Rescorla-Wagner.} The presented model is reducible to an hybrid Rescorla Wagner/Pearce Hall update mechanism when we use a learning parameter $k$, and no forgetting parameter, i.e. $k_F = 0$.
     Then, if $a$ represents the chosen option and $a'\neq a$ the unchosen option, the action values evolve as follows\\
     $\begin{array}{lcl}
     Q_{s,a}(t+1)&=& Q_{s,a}(t)+k\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-q_{s,a}(t)\\
@@ -72,7 +72,7 @@ Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pear
 \end{description}
 \section{Behaviour Fit}
 \label{sec:Behavior}
-The best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
+The pure Rescorla-Wagner model is the model with  less number of parameters. {\color{red}add discussion on likelihhod ratio, nested model}The best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
 %{\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ } {\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ }
 where
 
