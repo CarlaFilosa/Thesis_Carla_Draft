@@ -72,12 +72,13 @@ Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pear
 \end{description}
 \section{Behaviour Fit}
 \label{sec:Behavior}
-The pure Rescorla-Wagner model has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed, and all the three version can be reduced to the pure Rescorla-Wagner. We compared the pure Rescorla-Wagner with each of the proposed models through separated Likelihood Ratio tests ({\color{red}insert reference}) for nested models. Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare: 
+The pure Rescorla-Wagner model has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed, and all the three versions can be reduced to the pure Rescorla-Wagner, each of three models is nested with the pure Rescorla-Wagner. Thus using Likelihood Ratio tests we can test for each alternative model whether it is better than the Rescorla-Wagner.({\color{red}insert reference})Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare: 
 \begin{equation}
 LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 \label{eq:LRT}
 \end{equation}
-The simpler model (s) has fewer parameters than the general model (g).
+The simpler model (s) has fewer parameters than the general model (g).\\
+Basically, the test compares the fit of two models. The null hypothesis is that the smaller model is the $"$best$"$ model. It is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
 Doing so, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.
 {\color{red}add discussion on likelihood ratio, nested model}The best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
 %{\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ } {\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ }
