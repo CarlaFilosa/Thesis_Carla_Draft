@@ -63,16 +63,23 @@ Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pear
        Q_{s,0}(t+1)&=&Q_{s,0}(t)+k_0\cdot\alpha(t)\cdot\delta(t)\\
          Q_{s,1}(t+1)&=&Q_{s,1}(t)\\ 
     \end{array}$
-    \item[iii.] \textbf{Rescorla-Wagner with two $\eta$ parameters.} We use a learning model, without forgetting parameters, and we introduce two $\eta$ parameters $\eta_1$ and $\eta_0$ for the choice $1$ and $0$ respectively, to be estimated by model, in order to define two associability $\alpha_{L1}$ and $\alpha_{L0}$ evolving as follows:
-   $\begin{array}{lcl}
-    \alpha_{L1}(t) & = & (1-\eta_1)\cdot\alpha_{L1}(t-1)+\eta_1\cdot\abs{\delta(t)} \\
-    \alpha_{L0}(t) & = & (1-\eta_0)\cdot\alpha_{L0}(t-1)+\eta_0\cdot\abs{\delta(t)} \\
+    \item[iii.] \textbf{Rescorla-Wagner with two $\eta$ parameters.} We use a learning model, without forgetting parameters, and we introduce two $\eta$ parameters $\eta_1$ and $\eta_0$ for the choice $1$ and $0$ respectively, to be estimated by model. The associability $\alpha_L$ evolves as follow:\\
+   $\begin{array}{lcll}
+    \alpha_{L}(t) & = & (1-\eta_1)\cdot\alpha_{L}(t-1)+\eta_1\cdot\abs{\delta(t)} & \mbox{if\,\,}  a=1,\\
+    \alpha_{L}(t) & = & (1-\eta_0)\cdot\alpha_{L}(t-1)+\eta_0\cdot\abs{\delta(t)} & \mbox{if\,\,}  a=0.\\
     \end{array}$\\
     and action values for the chosen option evolving consequently as in the equation \ref{eq:Qlearning}.
 \end{description}
 \section{Behaviour Fit}
 \label{sec:Behavior}
-The pure Rescorla-Wagner model is the model with  less number of parameters. {\color{red}add discussion on likelihhod ratio, nested model}The best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
+The pure Rescorla-Wagner model has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed, and all the three version can be reduced to the pure Rescorla-Wagner. We compared the pure Rescorla-Wagner with each of the proposed models through separated Likelihood Ratio tests ({\color{red}insert reference}) for nested models. Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare: 
+\begin{equation}
+LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
+\label{eq:LRT}
+\end{equation}
+The simpler model (s) has fewer parameters than the general model (g).
+Doing so, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.
+{\color{red}add discussion on likelihood ratio, nested model}The best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
 %{\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ } {\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ }
 where
 
