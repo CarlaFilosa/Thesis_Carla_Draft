@@ -77,17 +77,18 @@ The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the t
 LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 \label{eq:LRT}
 \end{equation}
-where \hat{\theta} are the parameters values that maximize the likelihood function.
+where $\hat{\theta}$ are the parameters values that maximize the likelihood function.
 The simpler model (s) has fewer parameters than the general model (g), the latter can be reduced to the simpler model after imposing some constraint (null hypothesis).\\
 LRT compares the fit of two models. The null hypothesis is that the smaller model is the $"$best$"$ model. LRT has an asymptotic $\chi^2$ distribution. The null hypothesis is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
 In this way in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the Rescorla-Wagner and the Learning-Forgetting, the second model reveals to be the $"$best$"$ model for each animal.{\color{red}show pvalues in a tables}
-A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hybrid Rescorla-Wagner. In this case the best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
+A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hybrid Rescorla-Wagner. In this case the best model was evaluated using the Bayesian Information Criterion (BIC), that is is a criterion for model selection among a finite set of models where the model with the lowest BIC is preferred. BIC is formally defined as (\cite{Schwarz})
 \begin{equation}
     BIC=k\log(n)-2\log(\hat{\mathcal{L}})
 \end{equation}
 where:
 ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model.
-From the Bayesian Information Criterion (BIC) the L-F model results to be the best model fig.(\ref{fig:BIC}), confirming the evidences of the action values plots in fig.(\ref{fig:PerfRL}).
+Following Raftery’s approach, we considered that a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 5 and 10 is strong, and a difference larger than 10 is very strong (\cite{Raftery}).\\
+From the Bayesian Information Criterion (BIC) the L-F model resulted to be the best model fig.(\ref{fig:BIC}), confirming the evidences of the action values plots in fig.(\ref{fig:PerfRL}).
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/BIC_ModelCompare.png}
