@@ -70,24 +70,30 @@ Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pear
     \end{array}$\\
     and action values for the chosen option evolving consequently as in the equation \ref{eq:Qlearning}.
 \end{description}
-\section{Behaviour Fit}
+\section{Goodness of Fit}
 \label{sec:Behavior}
-The pure Rescorla-Wagner model has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed, and all the three versions can be reduced to the pure Rescorla-Wagner, each of three models is nested with the pure Rescorla-Wagner. Thus using Likelihood Ratio tests we can test for each alternative model whether it is better than the Rescorla-Wagner.({\color{red}insert reference})Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare: 
+The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner.({\color{red}insert reference})Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare: 
 \begin{equation}
 LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 \label{eq:LRT}
 \end{equation}
-The simpler model (s) has fewer parameters than the general model (g).\\
-Basically, the test compares the fit of two models. The null hypothesis is that the smaller model is the $"$best$"$ model. It is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
-Doing so, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.
-{\color{red}add discussion on likelihood ratio, nested model}The best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
-%{\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ } {\displaystyle \mathrm {BIC} =\ln(n)k-2\ln({\widehat {L}}).\ }
-where
-
-%{\displaystyle {\hat {L}}} \hat L = the maximized value of the likelihood function of the model {\displaystyle M} M, i.e. {\displaystyle {\hat {L}}=p(x\mid {\widehat {\theta }},M)} {\displaystyle {\hat {L}}=p(x\mid {\widehat {\theta }},M)}, where {\displaystyle {\widehat {\theta }}} {\displaystyle {\widehat {\theta }}} are the parameter values that maximize the likelihood function;
-%{\displaystyle x} x = the observed data;
-%{\displaystyle n} n = the number of data points in {\displaystyle x} x, the number of observations, or equivalently, the sample size;
-%{\displaystyle k} k = the number of parameters estimated by the model. For example, in multiple linear regression, the estimated parameters are the intercept, the {\displaystyle q} q slope parameters, and the constant variance of the errors; thus, {\displaystyle k=q+2} {\displaystyle k=q+2}.
+where \hat{\theta} are the parameters values that maximize the likelihood function.
+The simpler model (s) has fewer parameters than the general model (g), the latter can be reduced to the simpler model after imposing some constraint (null hypothesis).\\
+LRT compares the fit of two models. The null hypothesis is that the smaller model is the $"$best$"$ model. LRT has an asymptotic $\chi^2$ distribution. The null hypothesis is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
+In this way in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the Rescorla-Wagner and the Learning-Forgetting, the second model reveals to be the $"$best$"$ model for each animal.{\color{red}show pvalues in a tables}
+A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hybrid Rescorla-Wagner. In this case the best model was evaluated using the Bayesian Information Criterion, that is formally defined as (\cite{Schwarz})
+\begin{equation}
+    BIC=k\log(n)-2\log(\hat{\mathcal{L}})
+\end{equation}
+where:
+${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model.
+From the Bayesian Information Criterion (BIC) the L-F model results to be the best model fig.(\ref{fig:BIC}), confirming the evidences of the action values plots in fig.(\ref{fig:PerfRL}).
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{figures/BIC_ModelCompare.png}
+    \caption{{\color{red}Change figure and title of the plots} BIC Information Criterion for the four models implemented}
+    \label{fig:BIC}
+\end{figure}
 \begin{figure}
 \centering
     \includegraphics[scale=0.42]{figures/PerfEndrevAn1.png}
@@ -99,13 +105,7 @@ where
     \label{fig:PerfRL}
 \end{figure}
 In figure one example of animal performance and RL-models action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of $"$false alarm$"$ and $"$miss trials$"$, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. That happened especially as the experiment or the new phase began for the first 5-10 trials of the phase.\\
-From the Bayesian Information Criterion (BIC) the L-F model results to be the best model fig.(\ref{fig:BIC}), confirming the evidences of the action values plots in fig.(\ref{fig:PerfRL}).
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{figures/BIC_ModelCompare.png}
-    \caption{{\color{red}Change figure and title of the plots} BIC Information Criterion for the four models implemented}
-    \label{fig:BIC}
-\end{figure}
+
 To see whether the neural activity is correlated with the behaviour, we regress the neuronal activity and the assembly activity with the Q L-F model action values $Qs$, error prediction $\delta$, and associability $\alpha$ and behavioural measures. 
     
 \section{Uncertainty and prediction error signal in pair-types}
