@@ -79,7 +79,7 @@ LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 \end{equation}
 where $\hat{\theta}$ are the parameters values that maximize the likelihood function.
 The simpler model (s) has fewer parameters than the general model (g), the latter can be reduced to the simpler model after imposing some constraint (null hypothesis).\\
-LRT compares the fit of two models. The null hypothesis is that the smaller model is the $"$best$"$ model. LRT has an asymptotic $\chi^2$ distribution. The null hypothesis is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
+LRT compares the fit of two models and has an asymptotic $\chi^2$ distribution. The null hypothesis is that the smaller model is the $"$best$"$ model.  The null hypothesis is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
 In this way in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the Rescorla-Wagner and the Learning-Forgetting, the second model reveals to be the $"$best$"$ model for each animal.{\color{red}show pvalues in a tables}
 A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hybrid Rescorla-Wagner. In this case the best model was evaluated using the Bayesian Information Criterion (BIC), that is is a criterion for model selection among a finite set of models where the model with the lowest BIC is preferred. BIC is formally defined as (\cite{Schwarz})
 \begin{equation}
@@ -89,12 +89,13 @@ where:
 ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model.
 Following Raftery’s approach, we considered that a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 5 and 10 is strong, and a difference larger than 10 is very strong (\cite{Raftery}).\\
 From the Bayesian Information Criterion (BIC) the L-F model resulted to be the best model fig.(\ref{fig:BIC}), confirming the evidences of the action values plots in fig.(\ref{fig:PerfRL}).
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{figures/BIC_ModelCompare.png}
-    \caption{{\color{red}Change figure and title of the plots} BIC Information Criterion for the four models implemented}
-    \label{fig:BIC}
-\end{figure}
+{\color{red}Missing: BIC PLOT. Proper BIC discussion!!! }
+%\begin{figure}
+ %   \centering
+ %   \includegraphics[scale=0.6]{figures/BIC_ModelCompare.png}
+ %   \caption{{\color{red}Change figure and title of the plots} BIC Information Criterion for the four models implemented}
+ %   \label{fig:BIC}
+%\end{figure}
 \begin{figure}
 \centering
     \includegraphics[scale=0.42]{figures/PerfEndrevAn1.png}
@@ -111,30 +112,34 @@ To see whether the neural activity is correlated with the behaviour, we regress 
     
 \section{Uncertainty and prediction error signal in pair-types}
 \label{sec:CorrRL}
-We carried out a multiple regression analysis of neuronal and assembly's activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
-Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
-\begin{equation}
-\begin{cases}
-y(t)=b_0+\sum\limits_{l}^{L} b_l\cdot M_l+\epsilon(t)\\
-\epsilon(t)=\sum\limits_i^I c_i\cdot N_i
-\end{cases}
-\label{eq:MultiLinRe}
-\end{equation}
-where $y$ are the observations, the neuronal{\color{blue}/assembly's} activity in this case, $M$ is the ($T\times L$) regressor's Matrix of the Q L-F model part, where $T$ is the number of trials and $L$ the number of regressors. $M$ has as columns
-the regressors of the model's part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model's regressors. $N$ is the ($T\times I$) regressor matrix of the residual part, where $I$ is the number of regressors of the residual part. N has as columns the regressors $a$, $l_{in}$, $l_{out}$ and $o$, while $c_i$ are the weights of the residual part.
-Linear regression models assume response variables to be normally distributed. Neuronal responses are Poisson distributed (although the normal distribution is in this case a good approximation), {\color{blue} and assemblies show Gamma distribution,} thus considering our data distributions, we built a generalized linear model (GLM), with GLM is possible to generalize the simple linear regression by allowing for response variables that have arbitrary distributions and for an arbitrary function of response variables, the link function, to vary linearly with the predicted values, rather than assuming that the response itself must vary linearly. The mean $\mu$ of distributions depends on the independent variables, or the regressors, $X$, as follows:
-\begin{equation}
-E(Y)=\mu=g^{-1}(X\cdot \beta)
-\label{eq:GLM}
-\end{equation}
-where $g$ is the link function. There is always a well-defined canonical link function which is derived from the exponential of the response's density function. For Poisson observation the canonical link function is the logarithmic. Thus the neuronal activities mean can be expressed by the following:
-\begin{equation}
-\begin{cases}
-\log(\mu)=b_0+\sum\limits_l^L b_l\cdot M_l+\epsilon(t)\\
-\epsilon(t)=\sum\limits_i^I c_i\cdot N_i 
-\end{cases}
-\label{eq:PoisLinRe}
-\end{equation}
+We assume VS-VTA interactions being able to predict the reward and compute prediction error. We used a reinforcement learning model to parameterize the learning functions, if the assembly-pairs code for some aspects of the learning they correlate with some reinforcement learning functions.\\
+In \hyperref[sec:TaskResp]{~Section \ref*{sec:TaskResp}} we hinted which kind of trial variability in assembly activity we expect when the assembly predicts the reward and computes prediction error.\\
+An intuitive way to use the task variability to see the correlations with model functions consists in dividing the task in two phases: the unstable. 
+If the assembly predicts the reward in the CS window we expect 
+%We carried out a multiple regression analysis of neuronal and assembly's activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
+%Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
+%\begin{equation}
+%\begin{cases}
+%y(t)=b_0+\sum\limits_{l}^{L} b_l\cdot M_l+\epsilon(t)\\
+%\epsilon(t)=\sum\limits_i^I c_i\cdot N_i
+%\end{cases}
+%\label{eq:MultiLinRe}
+%\end{equation}
+%where $y$ are the observations, the neuronal{\color{blue}/assembly's} activity in this case, $M$ is the ($T\times L$) regressor's Matrix of the Q L-F model part, where $T$ is the number of trials and $L$ the number of regressors. $M$ has as columns
+%the regressors of the model's part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model's regressors. $N$ is the ($T\times I$) regressor matrix of the residual part, where $I$ is the number of regressors of the residual part. N has as columns the regressors $a$, $l_{in}$, $l_{out}$ and $o$, while $c_i$ are the weights of the residual part.
+%Linear regression models assume response variables to be normally distributed. Neuronal responses are Poisson distributed (although the normal distribution is in this case a good approximation), {\color{blue} and assemblies show Gamma distribution,} thus considering our data distributions, we built a generalized linear model (GLM), with GLM is possible to generalize the simple linear regression by allowing for response variables that have arbitrary distributions and for an arbitrary function of response variables, the link function, to vary linearly with the predicted values, rather than assuming that the response itself must vary linearly. The mean $\mu$ of distributions depends on the independent variables, or the regressors, $X$, as follows:
+%\begin{equation}
+%E(Y)=\mu=g^{-1}(X\cdot \beta)
+%\label{eq:GLM}
+%\end{equation}
+%where $g$ is the link function. There is always a well-defined canonical link function which is derived from the exponential of the response's density function. For Poisson observation the canonical link function is the logarithmic. Thus the neuronal activities mean can be expressed by the following:
+%\begin{equation}
+%\begin{cases}
+%\log(\mu)=b_0+\sum\limits_l^L b_l\cdot %M_l+\epsilon(t)\\
+%\epsilon(t)=\sum\limits_i^I c_i\cdot N_i 
+%\end{cases}
+%\label{eq:PoisLinRe}
+%\end{equation}
 \begin{figure}
     \centering
     \includegraphics[scale=0.25]{figures/PreRewDistr_An1neu6_FSI.png}
@@ -145,12 +150,13 @@ where $g$ is the link function. There is always a well-defined canonical link fu
 \section{Regression}
 \label{sec:Regression}
 \section{Conclusion}
-From the regression analysis, as one could predict, VS units emerged to be correlated with the $Q$ values, in particular FSI units show this correlation very clear.
-{\color{red}insert percentage of units correlated and in which period, detailed with how many units are part of assemblies and add as well.}
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{figures/y_yhatAnimal2neu6_FSI.png}
-    \includegraphics[scale=0.3]{figures/CorrelationExAn1neu6_RightAx.png}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
+%From the regression analysis, as one could predict, VS units emerged to be correlated with the $Q$ values, in particular FSI units show this correlation very clear.
+
+
+%\begin{figure}
+ %   \centering
+ %   \includegraphics[scale=0.3]{figures/y_yhatAnimal2neu6_FSI.png}
+ %   \includegraphics[scale=0.3]{figures/CorrelationExAn1neu6_RightAx.png}
+  %  \caption{Caption}
+ %   \label{fig:my_label}
+%\end{figure}
