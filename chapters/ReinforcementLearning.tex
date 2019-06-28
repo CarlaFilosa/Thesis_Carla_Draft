@@ -88,7 +88,7 @@ A further test was needed to understand whether the Learning-Forgetting was the 
 where:
 ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model.
 Following Raftery’s approach, we considered that a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 5 and 10 is strong, and a difference larger than 10 is very strong (\cite{Raftery}).\\
-From the Bayesian Information Criterion (BIC) the L-F model resulted to be the best model fig.(\ref{fig:BIC}), confirming the evidences of the action values plots in fig.(\ref{fig:PerfRL}).
+From the Bayesian Information Criterion (BIC) the L-F model resulted to be the best model figure(\ref{fig:BIC}), confirming the evidences of the action values plots in figure(\ref{fig:PerfRL}).
 {\color{red}Missing: BIC PLOT. Proper BIC discussion!!! }
 \begin{figure}
     \centering
@@ -110,19 +110,19 @@ From the Bayesian Information Criterion (BIC) the L-F model resulted to be the b
     Odor 1 was rewarded only in the original phase, while Odor 2 was rewarded only in the reversal phase. Top: Performance in all trials, in hit trials and correct rejection trials. Bottom: RL model action values for the action lick, when odor 1/odor 2 occurs (blue/red) and the action no lick when odor 1/odor 2 is presented (green/black).}
     \label{fig:PerfRL}
 \end{figure}
-In figure one example of animal performance and RL-models action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of $"$false alarm$"$ and $"$miss trials$"$, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. That happened especially as the experiment or the new phase began for the first 5-10 trials of the phase.\\
+In figure\ref{fig:PerfRL} one example of animal performance and RL-models action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of $"$false alarm$"$ and $"$miss trials$"$, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. That happened especially as the experiment or the new phase began for the first 5-10 trials of the phase.\\
 %To see whether the neural activity is correlated with the behaviour, we regress the neuronal activity and the assembly activity with the Q L-F model action values $Qs$, error prediction $\delta$, and associability $\alpha$ and behavioural measures. 
 \section{Uncertainty and prediction error signal in pair-types}
 \label{sec:CorrRL}
 We assume VS-VTA interactions being able to predict the reward and compute prediction error. We used a reinforcement learning model to parameterize the learning functions, if the assembly-pairs code for some aspects of the learning they correlate with some reinforcement learning functions.\\
 In \hyperref[sec:TaskResp]{~Section \ref*{sec:TaskResp}} we hinted which kind of trial variability in assembly activity we expect when the assembly predicts the reward and computes prediction error, doing a parallelism with the dopamine neurons response in case of probabilistic reward \cite{Fiorillo}.\\
-If the assembly-pairs activity codes for the reward prediction we expect intense activity in the CS window during the stable phase, when the animal is able to predict the reward, this case in the probabilistic reward comparison is similar to the case in which the probability to get the reward is equal to 1 or high (see fig. \ref{fig:RewPred} top); whereas during the unstable phase we expect few activation in CS window because the animal is uncertain to get the reward, this case sis comparable with the case of reward probability equal to 0.25 or below (see fig. \ref{fig:RewPred} bottom). In other words we expect the assembly-pair activity in CS window to anti-correlate with the uncertainty $\alpha_L(t)$, indeed the uncertainty is high at the beginning of the task and goes down at the end of the original phase, to raise up again at the beginning of the reversal phase. 
+If the assembly-pairs activity codes for the reward prediction we expect intense activity in the CS window during the stable phase, when the animal is able to predict the reward, this case in the probabilistic reward comparison is similar to the case in which the probability to get the reward is equal to 1 or high (see figure \ref{fig:RewPred} top); whereas during the unstable phase we expect few activation in CS window because the animal is uncertain to get the reward, this case sis comparable with the case of reward probability equal to 0.25 or below (see figure\ref{fig:RewPred} bottom). In other words we expect the assembly-pair activity in CS window to anti-correlate with the uncertainty $\alpha_L(t)$, indeed the uncertainty is high at the beginning of the task and goes down at the end of the original phase, to raise up again at the beginning of the reversal phase. 
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/PreRegress.png}
     \caption{(A) Comparison between the uncertainty $\alpha(t)$ and the SPN-DAN assembly pairs activity in the stable and unstable phase. For this example only trials in which the rewarded odor was presented are shown. The analysis was restricted to the CS window, because the prediction of the reward happens immediately after the stimulus onset. If assembly pairs code for reward prediction, in the unstable phase characterized by high uncertainty to get the reward the assembly-pairs activity in CS window is low, whereas in the stable phase characterized by low uncertainty the assembly-pairs activity is high. The difference between the assembly-pairs activity in stable and unstable phase is significantly different to zero (B).}
     \label{fig:StableUnstableAlphaCS}
-\end{figure}In fig. \ref{fig:StableUnstableAlphaCS} we show an intuitive way to use the task variability in order to see the correlations with model functions. We divided the task in two phases: a first phase constituted by first trials in which we think the animal is learning the task and is uncertain about the reward outcome, we call this phase the unstable phase; a second phase is on the other hand constituted by last trials of the task in which the animal has learnt the task rule and it is more certain about the reward outcome when a rewarded or unrewarded odor is presented.\\We compare the assembly-pairs activity in unstable and stable phase. The difference between the two phases is significantly different from zero only for SPN-DAN pairs.\\This found highlights a possible specificity of assembly-pairs types coding, that will be proved in the next sessions.\\
+\end{figure}In figure\ref{fig:StableUnstableAlphaCS} we show an intuitive way to use the task variability in order to see the correlations with model functions. We divided the task in two phases: a first phase constituted by first trials in which we think the animal is learning the task and is uncertain about the reward outcome, we call this phase the unstable phase; a second phase is on the other hand constituted by last trials of the task in which the animal has learnt the task rule and it is more certain about the reward outcome when a rewarded or unrewarded odor is presented.\\We compare the assembly-pairs activity in unstable and stable phase. The difference between the two phases is significantly different from zero only for SPN-DAN pairs.\\This found highlights a possible specificity of assembly-pairs types coding, that will be proved in the next sessions.\\
 With similar arguments we can assume that, if the assembly-pairs compute reward prediction error their activity should correlate with the prediction error $\delta(t)$ in the US window. At the beginning of the task, when the prediction error is high we expect in US window high assembly-pairs response in conformity with the high surprise of the animal to get the reward, while when the task is learnt the surprise to get the reward and the prediction error are smaller and we expect less activity.\\
 In order to prove that there is a specific VS-VTA interaction path involved in the reward prediction coding and prediction error computing, we regress the assembly-pair activity with the uncertainty $\alpha (t)$ and prediction error $\delta (t)$ functions of the reinforcement learning model (Q learning-forgetting model).
 %We carried out a multiple regression analysis of neuronal and assembly's activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
@@ -150,10 +150,9 @@ In order to prove that there is a specific VS-VTA interaction path involved in t
 %\label{eq:PoisLinRe}
 %\end{equation}
 
-%%%%%%However, in some cases it makes sense to try to match the domain of the link function to the range of the distribution function's mean, or use a non-canonical link function for algorithmic purposes, for example Bayesian probit regression. 
 \section{Regression}
 \label{sec:Regression}
-In the previous sessions we presented the Q learning-forgetting model to parameterize the learning functions. Our main questions are if assembly-pairs predict the reward and compute prediction errors and if different assembly types have different coding features. On this purpose we focus on the uncertainty $\alpha(t)$ and the prediction error $\delta(t)$.
+In the previous sessions we presented the Q learning-forgetting model to parameterize the learning functions. Our main questions are: do assembly-pairs predict the reward and compute prediction error? and do different assembly-pair types compute different component of prediction error? and more specifically which are the assembly-pair types computing the evaluation component of the prediction error, parameterized in reinforcement learning model? On this purpose, we focus on the uncertainty $\alpha(t)$ and the prediction error $\delta(t)$.
 \begin{figure}
     \centering
     \includegraphics[scale=0.33]{figures/Rev2An2As1_rew.png}
@@ -166,7 +165,19 @@ In the previous sessions we presented the Q learning-forgetting model to paramet
     \hspace{1cm}
     \includegraphics[scale=0.33]{figures/Firstrev1An4As5.png}
     \caption{Some example of pair activity distributions in CS and US window. Assembly-pair distribution can be approximated with Poisson's distribution. To regress out the assembly-pair activity with $\alpha(t)$ and $\delta(t)$ we use a Poisson linear model which is tailored for Poisson distributed observations.}
-    \label{fig:DistributionEx}\end{figure}
+    \label{fig:DistributionEx}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{figures/alphaRegrNew.png}
+    
+    \vspace{1cm}
+    \includegraphics[scale=0.6]{figures/deltaRegr.png}
+    \caption{Top: Results obtained regressing out $\alpha$. \textbf{Top left:} Box plot of standardized $\beta^*$ regression coefficients. In Poisson linear model the coefficient $\beta$ indicate the variation in percentage of the observations values when the dependent variable increase of one unit. \textbf{Top right:} empirical cumulative distribution function of $\beta^*$}
+    \label{fig:AlphaDeltaReg}
+\end{figure}
+    
+    
 \section{Conclusion}
 %From the regression analysis, as one could predict, VS units emerged to be correlated with the $Q$ values, in particular FSI units show this correlation very clear.
 
