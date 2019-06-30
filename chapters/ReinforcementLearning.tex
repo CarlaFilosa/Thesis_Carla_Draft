@@ -124,35 +124,25 @@ If the assembly-pairs activity codes for the reward prediction we expect intense
     \label{fig:StableUnstableAlphaCS}
 \end{figure}In figure\ref{fig:StableUnstableAlphaCS} we show an intuitive way to use the task variability in order to see the correlations with model functions. We divided the task in two phases: a first phase constituted by first trials in which we think the animal is learning the task and is uncertain about the reward outcome, we call this phase the unstable phase; a second phase is on the other hand constituted by last trials of the task in which the animal has learnt the task rule and it is more certain about the reward outcome when a rewarded or unrewarded odor is presented.\\We compare the assembly-pairs activity in unstable and stable phase. The difference between the two phases is significantly different from zero only for SPN-DAN pairs.\\This found highlights a possible specificity of assembly-pairs types coding, that will be proved in the next sessions.\\
 With similar arguments we can assume that, if the assembly-pairs compute reward prediction error their activity should correlate with the prediction error $\delta(t)$ in the US window. At the beginning of the task, when the prediction error is high we expect in US window high assembly-pairs response in conformity with the high surprise of the animal to get the reward, while when the task is learnt the surprise to get the reward and the prediction error are smaller and we expect less activity.\\
-In order to prove that there is a specific VS-VTA interaction path involved in the reward prediction coding and prediction error computing, we regress the assembly-pair activity with the uncertainty $\alpha (t)$ and prediction error $\delta (t)$ functions of the reinforcement learning model (Q learning-forgetting model).
-%We carried out a multiple regression analysis of neuronal and assembly's activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
-%Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
-%\begin{equation}
-%\begin{cases}
-%y(t)=b_0+\sum\limits_{l}^{L} b_l\cdot M_l+\epsilon(t)\\
-%\epsilon(t)=\sum\limits_i^I c_i\cdot N_i
-%\end{cases}
-%\label{eq:MultiLinRe}
-%\end{equation}
-%where $y$ are the observations, the neuronal{\color{blue}/assembly's} activity in this case, $M$ is the ($T\times L$) regressor's Matrix of the Q L-F model part, where $T$ is the number of trials and $L$ the number of regressors. $M$ has as columns
-%the regressors of the model's part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model's regressors. $N$ is the ($T\times I$) regressor matrix of the residual part, where $I$ is the number of regressors of the residual part. N has as columns the regressors $a$, $l_{in}$, $l_{out}$ and $o$, while $c_i$ are the weights of the residual part.
-%Linear regression models assume response variables to be normally distributed. Neuronal responses are Poisson distributed (although the normal distribution is in this case a good approximation), {\color{blue} and assemblies show Gamma distribution,} thus considering our data distributions, we built a generalized linear model (GLM), with GLM is possible to generalize the simple linear regression by allowing for response variables that have arbitrary distributions and for an arbitrary function of response variables, the link function, to vary linearly with the predicted values, rather than assuming that the response itself must vary linearly. The mean $\mu$ of distributions depends on the independent variables, or the regressors, $X$, as follows:
-%\begin{equation}
-%E(Y)=\mu=g^{-1}(X\cdot \beta)
-%\label{eq:GLM}
-%\end{equation}
-%where $g$ is the link function. There is always a well-defined canonical link function which is derived from the exponential of the response's density function. For Poisson observation the canonical link function is the logarithmic. Thus the neuronal activities mean can be expressed by the following:
-%\begin{equation}
-%\begin{cases}
-%\log(\mu)=b_0+\sum\limits_l^L b_l\cdot %M_l+\epsilon(t)\\
-%\epsilon(t)=\sum\limits_i^I c_i\cdot N_i 
-%\end{cases}
-%\label{eq:PoisLinRe}
-%\end{equation}
+In the next session we mathematically formalize these concepts in order to quantify the correlations with $\alpha(t)$ and $\delta(t)$ an thus prove whether there is a specific VS-VTA interaction path involved in the reward prediction coding and prediction error computing. 
+
 
 \section{Regression}
 \label{sec:Regression}
-In the previous sessions we presented the Q learning-forgetting model to parameterize the learning functions. Our main questions are: do assembly-pairs predict the reward and compute prediction error? and do different assembly-pair types compute different component of prediction error? and more specifically which are the assembly-pair types computing the evaluation component of the prediction error, parameterized in reinforcement learning model? On this purpose, we focus on the uncertainty $\alpha(t)$ and the prediction error $\delta(t)$.
+In the previous sessions we presented the Q learning-forgetting model to parameterize the learning functions. Our main questions are: do assembly-pairs predict the reward and compute prediction error? and do different assembly-pair types compute different component of prediction error? and more specifically which assembly-pair types compute the evaluation component of the prediction error parameterized in reinforcement learning model? As discussed in the previous session, if an assembly-pair computes reward prediction error we expect the assembly-activity being anticorrelated with the uncertainty $\alpha(t)$ in the CS window and correlated with the prediction error $\delta(t)$ in the US (real or expected reward) window. In order to quantify these correlations we regress the assembly-pair activity with $\alpha (t)$ and $\delta (t)$. The two regressions are built separately: we regress out the uncertainty $\alpha(t)$ in the CS window and the prediction error $\delta(t)$ in the US (real or expected) window.\\
+Since the majority if the inter-regional pairs follow a Poisson distribution (see figure \ref{fig:DistributionEx}), we selected these pairs and built two generalized linear models with logarithmic link function, tailored for Poisson distributed data.
+The assembly-pairs activity is a sample of n observations $\mathbf{Y}=(y_1, y_2,..., y_n)$ which can be treated as realizations of independent Poisson random variables, with $Y\sim P(\mu)$, in generalized linear model the mean (and therefore the variance), $\mu$, of the distribution depends on the independent variables, $X$, through:
+$E (\mathbf {Y} )={\boldsymbol {\mu }}=g^{-1}(\mathbf {X} {\boldsymbol {\beta }})$ where $g$ is the link function, logarithmic in our case. The two regression models used can be written as follow:
+\begin{equation}
+    log(\mu_t)=\beta_0+\beta\cdot\alpha(t)
+    \label{eq:regrAlpha}
+\end{equation}
+\begin{equation}
+    log(\mu_t)=\beta_0+\beta\cdot\delta(t)
+    \label{eq:regrDelta}
+\end{equation}
+
+
 \begin{figure}
     \centering
     \includegraphics[scale=0.33]{figures/Rev2An2As1_rew.png}
@@ -189,3 +179,28 @@ In the previous sessions we presented the Q learning-forgetting model to paramet
   %  \caption{Caption}
  %   \label{fig:my_label}
 %\end{figure}
+
+%We carried out a multiple regression analysis of neuronal and assembly's activity by the four action values of the Q F-L model, $\delta(t)$, $\alpha_L(t)$ and $\alpha_F(t)$. To further test whether the neuronal and assembly activities were correlated with the parameters of subsequent lick movements, or the odor identity, we analyzed the residual components, $\epsilon(t)$, using lick related variables and the odor identity, namely, the mouse's action choice $a(t)$, the lick frequency within the lick-window $l_{in}(t)$, the lick frequency outside the lick-window, before the opening,$l_{out}(t)$ and the odor identity $o(t)$.
+%Thus we model the neuronal or assembly activity $y(t)$ during the post-stimulus, pre-reward and post-reward periods in the $t-th$ trial as follows:\\
+%\begin{equation}
+%\begin{cases}
+%y(t)=b_0+\sum\limits_{l}^{L} b_l\cdot M_l+\epsilon(t)\\
+%\epsilon(t)=\sum\limits_i^I c_i\cdot N_i
+%\end{cases}
+%\label{eq:MultiLinRe}
+%\end{equation}
+%where $y$ are the observations, the neuronal{\color{blue}/assembly's} activity in this case, $M$ is the ($T\times L$) regressor's Matrix of the Q L-F model part, where $T$ is the number of trials and $L$ the number of regressors. $M$ has as columns
+%the regressors of the model's part, namely, the vectors $Q_{1,1}$, $Q_{1,0}$, $Q_{2,1}$, $Q_{2,0}$, $\delta$, $\alpha_L$, $\alpha_F$; the set of values $b_m$ are regressor parameters or weights related to the model's regressors. $N$ is the ($T\times I$) regressor matrix of the residual part, where $I$ is the number of regressors of the residual part. N has as columns the regressors $a$, $l_{in}$, $l_{out}$ and $o$, while $c_i$ are the weights of the residual part.
+%Linear regression models assume response variables to be normally distributed. Neuronal responses are Poisson distributed (although the normal distribution is in this case a good approximation), {\color{blue} and assemblies show Gamma distribution,} thus considering our data distributions, we built a generalized linear model (GLM), with GLM is possible to generalize the simple linear regression by allowing for response variables that have arbitrary distributions and for an arbitrary function of response variables, the link function, to vary linearly with the predicted values, rather than assuming that the response itself must vary linearly. The mean $\mu$ of distributions depends on the independent variables, or the regressors, $X$, as follows:
+%\begin{equation}
+%E(Y)=\mu=g^{-1}(X\cdot \beta)
+%\label{eq:GLM}
+%\end{equation}
+%where $g$ is the link function. There is always a well-defined canonical link function which is derived from the exponential of the response's density function. For Poisson observation the canonical link function is the logarithmic. Thus the neuronal activities mean can be expressed by the following:
+%\begin{equation}
+%\begin{cases}
+%\log(\mu)=b_0+\sum\limits_l^L b_l\cdot %M_l+\epsilon(t)\\
+%\epsilon(t)=\sum\limits_i^I c_i\cdot N_i 
+%\end{cases}
+%\label{eq:PoisLinRe}
+%\end{equation}
