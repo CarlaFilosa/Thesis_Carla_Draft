@@ -24,7 +24,7 @@ We set up a Q Learning-Forgetting model (Q L-F model) starting from an hybrid Re
 The model assigns each state $s$ and action $a$, an action value $Q_{s,a}(t)$ where $t$ is the index of the trial. In our specific case we have two states, corresponding to the two odors presented and two possible actions, i.e., to lick or not to lick. 
 Based on the set of action values the model transforms the The action value for the chosen option is updated by
 \begin{equation}
-Q_{s,a}(t+1)  = Q_{s,a}(t)+k_L\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-Q_{s,a}(t)
+Q_{s,a}(t+1)  = Q_{s,a}(t)+k_L\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-Q_{s,a}(t-1)
 \label{eq:Qlearning}
 \end{equation}
 where $\delta$ is the prediction error, i.e., the difference between the reward $r(t)$ and the expected reward value $Q_{s,a}(t)$ for an action $a$ given a state $s$, $k_L$ is the learning parameter and $\alpha_L(t)$ is the Pearce-Hall associability for the chosen option, is a trial-dependent rate component which adjusts in accordance with the average accuracy of recent predictions, evolving by
@@ -130,20 +130,72 @@ In the next session we mathematically formalize these concepts in order to quant
 \section{Regression}
 \label{sec:Regression}
 In the previous sessions we presented the Q learning-forgetting model to parameterize the learning functions. Our main questions are: do assembly-pairs predict the reward and compute prediction error? and do different assembly-pair types compute different component of prediction error? and more specifically which assembly-pair types compute the evaluation component of the prediction error parameterized in reinforcement learning model? As discussed in the previous session, if an assembly-pair computes reward prediction error we expect the assembly-activity being anticorrelated with the uncertainty $\alpha(t)$ in the CS window and correlated with the prediction error $\delta(t)$ in the US (real or expected reward) window. In order to quantify these correlations we regress the assembly-pair activity with $\alpha (t)$ and $\delta (t)$. The two regressions are built separately: we regress out the uncertainty $\alpha(t)$ in the CS window and the prediction error $\delta(t)$ in the US (real or expected) window.\\
-Since the majority if the inter-regional pairs follow a Poisson distribution (see figure \ref{fig:DistributionEx}), we selected these pairs and built two generalized linear models with logarithmic link function, tailored for Poisson distributed data.
+Since the majority of the inter-regional pairs follow a Poisson distribution (see figure \ref{fig:DistributionEx}), we selected these pairs and built two generalized linear models with logarithmic link function, tailored for Poisson distributed data.
 The assembly-pairs activity is a sample of n observations $\mathbf{Y}=(y_1, y_2,..., y_n)$ which can be treated as realizations of independent Poisson random variables, with $Y\sim P(\mu)$, in generalized linear model the mean (and therefore the variance), $\mu$, of the distribution depends on the independent variables, $X$, through:
-$E (\mathbf {Y} )={\boldsymbol {\mu }}=g^{-1}(\mathbf {X} {\boldsymbol {\beta }})$ where $g$ is the link function, logarithmic in our case. The two regression models used can be written as follow:
+$E (\mathbf {Y} )={\boldsymbol {\mu }}=g^{-1}(\mathbf {X} {\boldsymbol {\beta }})$ where $g$ is the link function, logarithmic in our case, $\boldsymbol{\beta}$ are unknown parameters estimated by the model, through which is quantified the relationship between the dependent and independent variables. The two regression models used can be written as follow:
 \begin{equation}
-    log(\mu_t)=\beta_0+\beta\cdot\alpha(t)
+    \log(\mu_t)=\beta_0+\beta\cdot\alpha(t-1)
     \label{eq:regrAlpha}
 \end{equation}
+we notice that in equation \ref{eq:Qlearning} we use the uncertainty of the trial $t$ ($\alpha(t)$) to update the reward expectation value of the trial $t+1$ ($Q_{s,a}(t+1)$), the uncertainty $\alpha(t)$ is updated only after the update of $\delta(t)$, which happens at the reward time, then in the CS window of the trial $t$, where the update is not yet computed, we regress out the uncertainty $\alpha(t-1)$ with the assembly-pair activity of the trial $t$.
 \begin{equation}
-    log(\mu_t)=\beta_0+\beta\cdot\delta(t)
+    \log(\mu_t)=\beta_0+\beta\cdot\delta(t)
     \label{eq:regrDelta}
 \end{equation}
+On the other hand we regress out the prediction error $\delta$ in US the window, which start either at the reward time or at the expected reward time when the unrewarded odor is presented (see \hyperref[sec:TaskResp]{~Chapter \ref*{sec:TaskResp}} for the window specification). In this window the update is already computed, thus we regress out the prediction error of the trial $t$ with the assembly activity at the trial $t$.\\
+Before to present the results a clarification about the meaning of the coefficient $\beta$ in Poisson regression is needed.\\
+Coefficients $\beta$ tell us how changes in the independent variables are associated with changes in the dependent variable.
+The two regression presented can be written as Poisson regression with one independent variable $x$:
+\begin{equation}
+    \log(\mu)=\beta_0+\beta_1\cdot x
+    \label{eq:betaCoeff}
+\end{equation}
+So, if we have an initial value of the covariate $x_0$, then the predicted value of the mean $\mu_0$ is given by:
+\begin{equation*}
+    \log(\mu_0)=\beta_0+\beta_1\cdot x_0
+    \label{eq:betaCoeff0}
+\end{equation*}
+If we now increase the covariate by 1, we get a new mean $\mu_1$,
+\begin{equation*}
+    \log(\mu_1)=\beta_0+\beta(x_0+1)=\beta_0+\beta_1x_0+\beta_1=\log(\mu_0)+\beta_1
+    \label{eq:betaCoeff1}
+\end{equation*}
+So the log of the mean of $Y$ increases by $\beta_1$ when we increase $x$ by 1.
+In general we can say that in Poisson regression, the regression coefficients $\beta$ are interpreted as the difference between the log of expected counts, where formally, this can be written as:
+\begin{equation}
+    \beta=\log(\mu_{t+1})-\log(\mu_t)
+    \label{eq:BetaRelLog}
+\end{equation}
+But we are not really interested in how the log mean changes, we would like to know on average how $Y$ changes. 
+Let do the exponential transformation:
+\begin{equation}
+    \mu_{t+1}=\mu_t\cdot \exp(\beta)
+    \label{eq:BetaRelExp}
+\end{equation}
+It is important to note the difference with the linear regression: in normal linear regression the relationship between the observations and $\beta$ is additive, whereas in Poisson linear regression the relationship is multiplicative.\\
+The equation \ref{eq:BetaRelExp} can be written in term of the percentage increase of the count number after dividing both members of the equation by $\mu_t$ and subtracting both members by 1, doing so we obtain:
+\begin{equation}
+\exp(\beta)-1=\frac{\mu_{t+1}-\mu_t}{\mu_t}
+    \label{eq:BetaPerc}
+\end{equation}
+The last equation can be interpreted as the percentage increase of the count number.\\
+This interpretation allow us to use the coefficients  $\beta$ in order to understand how changes in percentage the assembly activity in relation to the change of the variables $\alpha$ and $\delta$.\\Since we compare results among different assembly-pairs and sessions we need to standardize the coefficients $\beta$ resulting from the regression. Standardized $\beta$ can be expressed through the following:
+\begin{equation}
+    \beta^*=\beta\cdot\frac{\sigma(x)}{\sigma(Y)}
+    \label{eq:betaStand}
+\end{equation}
+Results of two regressions are reported in figure \ref{fig:AlphaDeltaReg}.\\
+To easily read the plot in the term of percentage instead of the $\beta$ coefficients we report the $\beta^*$ transformed as:
+\begin{equation}
+    \beta^*\rightarrow \exp(\beta^*)-1
+    \label{eq:BetaPlot}
+\end{equation}
+We report only the statistically significant coefficient. After the pruning of only Poisson distributed assembly, and considering only statistically significant associations between the response and the regressor, we have in total the $33\%$ of SPN-DAN assembly-pairs when we regress out $\alpha$ and the $25\%$ of SPN-DAN assembly-pairs regressing out $\delta$.\\Of the remaining SPN-DAN assembly-pairs the $80\%$ anticorrelate with the uncertainty $\alpha$ and the $~88\%$ correlate with the prediction error $\delta$.
 
 
-\begin{figure}
+
+
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.33]{figures/Rev2An2As1_rew.png}
     \hspace{1cm}
@@ -157,7 +209,7 @@ $E (\mathbf {Y} )={\boldsymbol {\mu }}=g^{-1}(\mathbf {X} {\boldsymbol {\beta }}
     \caption{Some example of pair activity distributions in CS and US window. Assembly-pair distribution can be approximated with Poisson's distribution. To regress out the assembly-pair activity with $\alpha(t)$ and $\delta(t)$ we use a Poisson linear model which is tailored for Poisson distributed observations.}
     \label{fig:DistributionEx}
 \end{figure}
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.6]{figures/alphaRegrNew.png}
     
