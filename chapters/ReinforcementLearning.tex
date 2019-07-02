@@ -20,7 +20,7 @@ Reinforcement learning model are usually set up as follows:
     \item Learned values are then translated into action probabilities via a softmax function, maximized with respect some free parameters.
 \end{itemize}
 
-We set up a Q Learning-Forgetting model (Q L-F model) starting from an hybrid Rescorla-Wagner/Pearce-Hall update mechanism (\cite{Koppe}, \cite{Costa}, \cite{Li}) with update of unchosen option (\cite{Katahira}) and the associability related to the chosen and unchosen options, using learning and forgetting parameters ({\color{red} cite Dayan, literature on Q L-F models}).
+We set up a Q Learning-Forgetting model (Q L-F model) starting from an hybrid Rescorla-Wagner/Pearce-Hall update mechanism (\cite{Koppe}, \cite{Costa}, \cite{Li}), our model is also provided of an update of unchosen option using learning and forgetting parameters (\cite{ItoDoya1}, \cite{Katahira}).
 The model assigns each state $s$ and action $a$, an action value $Q_{s,a}(t)$ where $t$ is the index of the trial. In our specific case we have two states, corresponding to the two odors presented and two possible actions, i.e., to lick or not to lick. 
 Based on the set of action values the model transforms the The action value for the chosen option is updated by
 \begin{equation}
@@ -38,13 +38,13 @@ For the unchosen option $a'\neq a$ the action value is updated by
     Q_{s,a'}(t+1) = Q_{s,a'}(t)-k_F\cdot\alpha_F(t)\cdot Q_{s,a'}(t)
     \label{eq:Qforgetting}
 \end{equation}
-where $k_F$ is the forgetting rate (\cite{ItoDoya}) and the associability for the unchosen option is time-dependent and evolves as follows
+where $k_F$ is the forgetting rate (\cite{ItoDoya1}), in our model the associability for the unchosen option is as well a time-dependent component and evolves as follows
 \begin{equation}
     \alpha_F(t)=(1-\eta)\cdot\alpha_F(t-1)+\eta\cdot Q_{s,a'}(t-1), \hspace{0.3cm}
     \eta\in[0,1]
     \label{eq:Alphaforgetting}
 \end{equation}
-Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pearce Hall model. We applied to our data four different version of the model, the one shown here as presentation is the one that better fit the behavioural data. The other three versions are:
+Note that using $k_F = 0$ the model is reduced to the hybrid Rescorla Wagner model. We applied to our data four different version of the model, the one shown here as presentation is the one that better fit the behavioural data. The other three versions are:
 \begin{description}
     \item[i.] \textbf{Rescorla-Wagner.} The presented model is reducible to an hybrid Rescorla Wagner/Pearce Hall update mechanism when we use a learning parameter $k$, and no forgetting parameter, i.e. $k_F = 0$.
     Then, if $a$ represents the chosen option and $a'\neq a$ the unchosen option, the action values evolve as follows\\
@@ -72,24 +72,68 @@ Note that using $k_F = 0$ the model is reduced to the basic Rescorla Wagner/Pear
 \end{description}
 \section{Goodness of Fit}
 \label{sec:Behavior}
-The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner.({\color{red}insert reference})Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare: 
+The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner. Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare (\cite{NeymanPearson}, \cite{King}): 
 \begin{equation}
 LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 \label{eq:LRT}
 \end{equation}
 where $\hat{\theta}$ are the parameters values that maximize the likelihood function.
 The simpler model (s) has fewer parameters than the general model (g), the latter can be reduced to the simpler model after imposing some constraint (null hypothesis).\\
-LRT compares the fit of two models and has an asymptotic $\chi^2$ distribution. The null hypothesis is that the smaller model is the $"$best$"$ model.  The null hypothesis is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
-In this way in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the Rescorla-Wagner and the Learning-Forgetting, the second model reveals to be the $"$best$"$ model for each animal.{\color{red}show pvalues in a tables}
-A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hybrid Rescorla-Wagner. In this case the best model was evaluated using the Bayesian Information Criterion (BIC), that is is a criterion for model selection among a finite set of models where the model with the lowest BIC is preferred. BIC is formally defined as (\cite{Schwarz})
+LRT compares the fit of two models and has an asymptotic $\chi^2$ distribution. The null hypothesis is that the smaller model is the $"$best$"$ model and it is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
+In this way in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the hybrid Rescorla-Wagner (hRW) and the learning-forgetting (QLF) model, the second model reveals to be the $"$best$"$ model.
+\begin{table}[H]
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+\multicolumn{4}{|c|}{\cellcolor{blue!25}{Comparison between hRW model and QLF model (Likelihood ratio test)}}\\
+\hline
+ \cellcolor[gray]{0.9} animal & \cellcolor[gray]{0.9} $\mathcal{L}_s / \mathcal{L}_g$& \cellcolor[gray]{0.9} $\chi^2 statistic$ & \cellcolor[gray]{0.9} p-value\\
+ \hline
+ 1& 1.77e-25 & 113.98 & \colorbox{cyan}{0}\\
+ \hline
+ 2& 4.02e-08 & 34.05 & \colorbox{cyan}{5.35e-09}\\
+ \hline
+ 3 & 1.34e-04 & 17.82 & \colorbox{cyan}{2.42e-05}\\
+ \hline
+ 4 & 3.43e-34 & 154.10 & \colorbox{cyan}{0}\\
+ \hline
+ 5 & 6.18e-19 & 83.85 & \colorbox{cyan}{0}\\
+ \hline
+ 6 & 1.22e-08 & 36.44 & \colorbox{cyan}{1.57e-09}\\
+ \hline
+ 7 & 1.62e-24 & 109.55 & \colorbox{cyan}{0}\\
+ \hline
+ 8 & 3.77e-10 & 43.39 & \colorbox{cyan}{4.47e-11}\\
+ \hline
+ 9 & 0.95 & 0.09 & \colorbox{yellow}{0.75}\\
+ \hline
+ 10 & 2.87e-05 & 20.91 & \colorbox{cyan}{4.80e-06}\\
+ \hline
+ 11 & 1.25e-38 & 174.53 & \colorbox{cyan}{0}\\
+ \hline
+ 12 & 2.37e-05 & 21.30 & \colorbox{cyan}{3.93e-06}\\
+ \hline
+ 13 & 8.16e-07 & 28.03 & \colorbox{cyan}{1.19e-07}\\
+ \hline
+ 14 & 3.99e-02 & 6.44 & \colorbox{cyan}{1.11e-02}\\
+ \hline
+ 15 & 7.37e-16 & 69.68 & \colorbox{cyan}{1.11e-16}\\
+ \hline
+ 16 & 7.24e-43 & 194.06 & \colorbox{cyan}{0}\\
+ \hline
+ 17 & 2.67e-05 & 21.06 & \colorbox{cyan}{4.45e-06}\\
+ \hline
+\end{tabular}
+\caption{Likelihood ratio test performed in 17 animals. The null hypothesis is that the model with fewer parameters is the best model, this hypothesis is tested through the $\chi^2$ statistic. If the $\chi^2$ statistic is large the null hypothesis is rejected. In last column the p-value of the $\chi^2$ statistic, in blue p-values below significance level $\alpha=0.05$ indicate that the null hypothesis is rejected. In yellow not significant p-values.}
+\end{table}
+
+A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hybrid Rescorla-Wagner. In this case, since the models are not nested and they have same number of parameters, the best model was evaluated using the Bayesian Information Criterion (BIC), that is is a criterion for model selection among a finite set of models where the model with the lowest BIC is preferred (\cite{Schwarz}, (\cite{NeathCavanaugh})). BIC is formally defined as 
 \begin{equation}
     BIC=k\log(n)-2\log(\hat{\mathcal{L}})
 \end{equation}
 where:
 ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model.
-Following Raftery’s approach, we considered that a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 5 and 10 is strong, and a difference larger than 10 is very strong (\cite{Raftery}).\\
+Following Raftery’s approach (\cite{Raftery}), a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 6 and 10 is strong, and a difference larger than 10 is very strong .\\
 From the Bayesian Information Criterion (BIC) the L-F model resulted to be the best model figure(\ref{fig:BIC}), confirming the evidences of the action values plots in figure(\ref{fig:PerfRL}).
-{\color{red}Missing: BIC PLOT. Proper BIC discussion!!! }
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figures/BIC_Value.png}
@@ -211,10 +255,10 @@ We report only the statistically significant coefficient. After the pruning of o
 \end{figure}
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.6]{figures/alphaRegrNew.png}
+    \includegraphics[scale=0.5]{figures/alphaRegrNew.png}
     
     \vspace{1cm}
-    \includegraphics[scale=0.6]{figures/deltaRegr.png}
+    \includegraphics[scale=0.5]{figures/deltaRegr.png}
     \caption{Top: Results obtained regressing out $\alpha$. \textbf{Top left:} Box plot of standardized $\beta^*$ regression coefficients. In Poisson linear model the coefficient $\beta$ indicate the variation in percentage of the observations values when the dependent variable increase of one unit. \textbf{Top right:} empirical cumulative distribution function of $\beta^*$}
     \label{fig:AlphaDeltaReg}
 \end{figure}
