@@ -72,7 +72,7 @@ Note that using $k_F = 0$ the model is reduced to the hybrid Rescorla Wagner mod
 \end{description}
 \section{Goodness of Fit}
 \label{sec:Behavior}
-The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner. Likelihood ratio test (LRT) is formalize as the ratio of the likelihood functions of the models to compare (\cite{NeymanPearson}, \cite{King}): 
+The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner. Likelihood ratio test (LRT) is formalized as the ratio of the likelihood functions of the models to compare (\cite{NeymanPearson}, \cite{King}): 
 \begin{equation}
 LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 \label{eq:LRT}
@@ -80,7 +80,7 @@ LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 where $\hat{\theta}$ are the parameters values that maximize the likelihood function.
 The simpler model (s) has fewer parameters than the general model (g), the latter can be reduced to the simpler model after imposing some constraint (null hypothesis).\\
 LRT compares the fit of two models and has an asymptotic $\chi^2$ distribution. The null hypothesis is that the smaller model is the $"$best$"$ model and it is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
-In this way in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the hybrid Rescorla-Wagner (hRW) and the learning-forgetting (QLF) model, the second model reveals to be the $"$best$"$ model.
+In this way, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the hybrid Rescorla-Wagner (hRW) and the learning-forgetting (QLF) model, the second model reveals to be the $"$best$"$ model.
 \begin{table}[H]
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 \hline
@@ -234,8 +234,7 @@ To easily read the plot in the term of percentage instead of the $\beta$ coeffic
     \beta^*\rightarrow \exp(\beta^*)-1
     \label{eq:BetaPlot}
 \end{equation}
-We report only the statistically significant coefficient. After the pruning of only Poisson distributed assembly, and considering only statistically significant associations between the response and the regressor, we have in total the $33\%$ of SPN-DAN assembly-pairs when we regress out $\alpha$ and the $25\%$ of SPN-DAN assembly-pairs regressing out $\delta$.\\Of the remaining SPN-DAN assembly-pairs the $80\%$ anticorrelate with the uncertainty $\alpha$ and the $~88\%$ correlate with the prediction error $\delta$.
-
+We report only the statistically significant coefficient. After the pruning of only Poisson distributed assembly, and considering only statistically significant associations between the response and the regressor, we have in total the $33\%$ of SPN-DAN assembly-pairs when we regress out $\alpha$ and the $25\%$ of SPN-DAN assembly-pairs regressing out $\delta$.\\In figure \ref{fig:AlphaDeltaReg} the $\beta^*$ coefficient as defined above resulting in regression model \ref{eq:regrAlpha} (figure \ref{fig:AlphaDeltaReg} top left) and in regression model \ref{eq:regrDelta} (figure \ref{fig:AlphaDeltaReg} bottom left). $\beta^*$ above indicates a positive correlation between the assembly-pair activity and the model variable $\alpha$ ($\delta$) whereas a $\beta^*$ below zero indicates a negative correlation. The value of $\beta^*$ indicates the change in percentage in assembly activity in relation to a change of one unit of the variable $\alpha$ ($\delta$).\\SPN-DAN assembly-pairs anticorrelate with uncertainty $\alpha$ in CS window and correlate with prediction error $\delta$ in US window. On the other hand FSN-DAN do not show any preferential direction in correlation with $\alpha$ and $\delta$ and the $\beta^*$ are equally distributed around zero. These results confirm the hypothesis that SPN-DAN pairs specifically convey for the reward prediction error.
 
 
 
