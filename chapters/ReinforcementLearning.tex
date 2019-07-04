@@ -4,8 +4,6 @@
 In the last session we analyzed the task-related activity patterns of principal assembly-pair types.\\Significant task related activity was tested with Friedman test in stimulus presentation (CS+/-) interval, stimulus continued\footnote{The window right before the reward delivery time, or the expected reward time in False Alarm trials, or the hypothetical reward time in Correct Rejection trials.} (CS+/- cont.) interval, and reward\footnote{Or expected reward in False Alarm trials, or Hypothetical Reward in Correct Rejection trials.}.\\We found a good portion of SPN-DAN pairs becoming active early at stimulus presentation, another important group being active later during the stimulus presentation, and only a small fraction of SPN-DAN pairs active only at the retrieval.\\SPN-DAN activation broader than the FSN-DAN activation, and is worth to recall that the mean lag of FSN-DAN pairs is shorter than the mean lag of SPN-DAN pairs. Time scale and activation profile suggest that those two pair types reflect the two component of the prediction error coding. Specifically SPN-DAN pairs are good candidates for the signal identification and evaluation crucial for reward prediction and reward prediction error coding as defined in classical reinforcement learning model.\\On the other hand we observed that FSN-DAN pairs are early activated by the stimulus on onset and they phasic activate at the reward time. The early activation can corresponds the detection of the stimulus, namely the first component of reward prediction error signalling not directly involved in the learning, but crucial inasmuch as evolves in the identification and valuation component.\\FSN-DAN are homogeneous in their conditioned stimuli response, either rewarded or unrewarded, but extremely diversified in their activation in response to different unconditioned stimuli. In False Alarm trials a good portion of FSN-DAN is depressed before and after the expected reward time. Such activity could reflect emotional feelings of the animal during the task, that could be only partially involved in the reward prediction error definition given by reinforcement learning model.\\The analysis of task related responses cannot read the highly dynamic of task, the task was indeed such that the animal had to assign and re-assign a value to the rewarded odor to be able to predict the reward. Only taking in account this dynamic we can understand whether and how SPN-DAN and FSN-DAN pairs compute reward prediction error, and if different cell-assembly types specialize in different aspects of the complex task-related coding.\\To take all this into account, we used the reinforcement learning technique (\cite{RescorlaWagner}, \cite{Sutton}, \cite{SuttonBarto}).\\$"$Reinforcement learning$"$ is an area in machine learning, in which an agent tries to learn the best action to take, depending on the circumstances in which this action will be performed, this approach can incorporate any changes in the environment of the decision making process. In psychology, from where the idea of this machinery derives, the concept is known as “learning by reinforcement”: the agent receives a reward or punishment, depending on the decision made, through the experience he is able to associate the actions that generate the greatest reward for each situation that the environment presents, and to avoid unrewarded actions or actions that generate punishment.\\
 Machine learning uses the same idea: the machine observes a state and, based on this, chooses an action to take and receives the reward associated with that specific action in that state, thus obtaining the information of this specific combination. The process is repeated until the machine is able to choose the best action to take for each of the possible scenarios to be observed in the future.\\In the contingencies of the experiment conducted in our lab, two odor were presented and only one was associated with a reward with a probability of 0.9. Each time one odor was presented the mouse chose to take the action (lick or not lick) that maximized the reward and minimized his effort. the task was learnt when the animal was able to lick for the rewarded odor and not lick when the unrewarded odor was presented.\\To model this learning process we set up a Rescorla-Wagner model with Pearce Hall update mechanism (\cite{RescorlaWagner}, \cite{PearceHall}, \cite{Li}, \cite{Costa}, \cite{Koppe}).\\
 
-%%
-%We use here Reinforcement Learning/Forgetting models (\cite{SuttonBarto}) with Q-learning values (\cite{Dayan1}) to fit mice behaviour in go-no go odor discrimination task; we regress afterwards neuronal activity with model values.
 \section{Model}
 %%%%%{\color{blue}Start writing equation of reinforcement learning}
 %%%%%First Option I tried, Georgia's option {\color{red}cite Georgia's paper}
@@ -70,6 +68,28 @@ Note that using $k_F = 0$ the model is reduced to the hybrid Rescorla Wagner mod
     \end{array}$\\
     and action values for the chosen option evolving consequently as in the equation \ref{eq:Qlearning}.
 \end{description}
+In figure one example of animal performance and RL-models action
+values. When the odor is rewarded the expectancy of reward related to the lick
+action reproduce the hit performance as one could intuitively predict, while, for non
+rewarded odor, the reward expectation associated to the no-lick action decrease as
+the correct rejection performance increase. Action values associated to lick for non
+rewarded odor and non-lick for rewarded odor give us an estimation of false alarm
+and miss trials, namely respectively trials in which the odor was not rewarded and
+the mouse went for the reward, or in which the odor was rewarded and the mouse
+sat quiet. That happened especially as the experiment or the new phase began for
+the first 5-10 trials of the phase.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.42]{figures/PerfEndrevAn1.png}
+    \includegraphics[scale=0.42]{figures/QValuesEndrevAn1.png}
+    \includegraphics[scale=0.42]{figures/AlphaEndrevAn1.png}
+    \includegraphics[scale=0.42]{figures/DeltaEndrevAn1.png}
+    \caption{In figure one example of animal performance and RL model action
+values. Odor 1 was rewarded only in the original phase, while Odor 2 was rewarded
+only in the reversal phase. In order from the top to bottom: Performance in all trials, in hit trials and correct rejection trials. RL model action values for the action lick, when odor 1/odor 2 occurs (blue/red) and the action no lick when odor 1/odor 2 is presented
+(green/black). Uncertainty $\alpha_L(t)$ for the chose option (red line), and $\alpha_F(t)$ for the unchosen option (blue line). Prediction error $\delta(t)$.}
+    \label{fig:L-Fmodel}
+\end{figure}
 \section{Goodness of Fit}
 \label{sec:Behavior}
 The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner. Likelihood ratio test (LRT) is formalized as the ratio of the likelihood functions of the models to compare (\cite{NeymanPearson}, \cite{King}): 
@@ -80,7 +100,7 @@ LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
 where $\hat{\theta}$ are the parameters values that maximize the likelihood function.
 The simpler model (s) has fewer parameters than the general model (g), the latter can be reduced to the simpler model after imposing some constraint (null hypothesis).\\
 LRT compares the fit of two models and has an asymptotic $\chi^2$ distribution. The null hypothesis is that the smaller model is the $"$best$"$ model and it is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
-In this way, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the hybrid Rescorla-Wagner (hRW) and the learning-forgetting (QLF) model, the second model reveals to be the $"$best$"$ model.
+In this way, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the hybrid Rescorla-Wagner (hRW) and the learning-forgetting model (QLF), the second model reveals to be the $"$best$"$ model.
 \begin{table}[H]
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 \hline
@@ -133,7 +153,7 @@ A further test was needed to understand whether the Learning-Forgetting was the 
 where:
 ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model.
 Following Raftery’s approach (\cite{Raftery}), a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 6 and 10 is strong, and a difference larger than 10 is very strong .\\
-From the Bayesian Information Criterion (BIC) the L-F model resulted to be the best model figure \ref{fig:BIC}, confirming the evidences of the action values plots in figure{\color{red} metti la figura del confronto tra modelli}.\\
+The Bayesian Information Criterion (BIC) the L-F model resulted to be the best model figure \ref{fig:BIC}.\\
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figures/BIC_Value.png}
@@ -144,17 +164,14 @@ From the Bayesian Information Criterion (BIC) the L-F model resulted to be the b
     \caption{On top BIC Information Criterion for the three models proposed as alternative of the hybrid Rescorla-Wagner. The BIC was computed separately for each animal, and we report the mean and the standard error. The best model is the model with the lower BIC, indicated as BIC*. The L-F model revealed to be the best model for the more than 80$\%$ of the animals. The $2\eta$ model was never the best model and the $2\kappa$ model was the best model for less the 20$\%$ of the animals, it is worth to notice that also when the L-F model was not the best model, the difference between its BIC and the BIC* rarely passed the value 5. On bottom the difference between the BIC of each model (BIC$_{model}$) and BIC*, this difference was computed separately for each animal and we report the mean and the standard error.}
     \label{fig:BIC}
 \end{figure}
+In figure \ref{fig:4models} action values of the four proposed models. In the gray box the animal's performance is reported as indication of actions taken in task. The importance of the forgetting term is particularly clear if we look at the action values $Q_{1,0}(T)$ in original phase and $Q_{2,0}(t)$ in reversal phase curves. The unchosen option (which often corresponds to  not-licking for rewarded odor when the task is learnt) does not update the action values in models that do not provide the forgetting term. Which implies that the action value of rewarded odor and not-licking action remains stable at the value of the last update when the non-licking action was chosen (see $Q_{1,0}$ in A.,B.,C.), that however does not correspond to the real value assigned by animal persistently licking when that odor is presented. The learning-forgetting model instead reproduces in this sense the entire perspective of learning dynamic, assuming that the unchosen option is consciously not taken at the moment that the opposite action is chosen. The small increases of $Q_{1,0}$ and $Q_{2,0}$ that occur respectively before trial no.50 and after trial no.150 is due to the fact that when the animal is too reluctant to lick a reward is given to encourage the lick choice for the rewarded odor. 
 \begin{figure}
-\centering
-    \includegraphics[scale=0.42]{figures/PerfEndrevAn1.png}
-    \includegraphics[scale=0.42]{figures/QValuesEndrevAn1.png}
-    \includegraphics[scale=0.42]{figures/AlphaEndrevAn1.png}
-    \includegraphics[scale=0.42]{figures/DeltaEndrevAn1.png}
-    \caption{In figure one example of animal performance and RL model action values.
-    Odor 1 was rewarded only in the original phase, while Odor 2 was rewarded only in the reversal phase. Top: Performance in all trials, in hit trials and correct rejection trials. Bottom: RL model action values for the action lick, when odor 1/odor 2 occurs (blue/red) and the action no lick when odor 1/odor 2 is presented (green/black).}
-    \label{fig:PerfRL}
+    \centering
+    \includegraphics[scale=0.75]{figures/Resume4models3.png}
+    \caption{Animal performance (top left) compared to the action values of the four models (A.B.C.D.)}
+    \label{fig:4models}
 \end{figure}
-In figure \ref{fig:PerfRL} one example of animal performance and RL-models action values. When the odor is rewarded the expectancy of reward related to the lick action reproduce the hit performance as one could intuitively predict, while, for non rewarded odor, the reward expectation associated to the no-lick action decrease as the correct rejection performance increase. Action values associated to lick for non rewarded odor and non-lick for rewarded odor give us an estimation of $"$false alarm$"$ and $"$miss trials$"$, namely respectively trials in which the odor was not rewarded and the mouse went for the reward, or in which the odor was rewarded and the mouse sat quiet. That happened especially as the experiment or the new phase began for the first 5-10 trials of the phase.\\
+
 %To see whether the neural activity is correlated with the behaviour, we regress the neuronal activity and the assembly activity with the Q L-F model action values $Qs$, error prediction $\delta$, and associability $\alpha$ and behavioural measures. 
 \section{Uncertainty and prediction error signal in pair-types}
 \label{sec:CorrRL}
