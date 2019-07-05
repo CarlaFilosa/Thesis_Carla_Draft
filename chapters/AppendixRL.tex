@@ -17,9 +17,17 @@ In figure \ref{fig:PavRL_ex} is shown an example of, from the top to the bottom,
     \caption{From the top to the bottom, the animal performance, the reward expectation values $V$, the uncertainty $\alpha$ and the reward prediction error $\delta$.}
     \label{fig:PavRL_ex}
 \end{figure}
-We tested whether SPN-DAN pairs encode reward prediction error signals using the same argument of \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}. If the prediction signal is conveyed by SPN-DAN pairs, their activity must correlate with the certainty, which an anticorrelation with the model function $\alpha$, and correlate with prediction error, exemplified by $\delta$ in reinforcement learning models.
-{\color{red}da finire}
-$\alpha$ and $\delta$ were regressed out in two separated Poisson regression models with the SPN-DAN pairs activity. \textbf{Left:} box plot of standardized regression coefficients $\beta^*$. \textbf{Right:} empirical cumulative distribution function of $\beta^*$
+We tested whether SPN-DAN pairs encode reward prediction error signals using the same argument of \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}. If the prediction signal is conveyed by SPN-DAN pairs, their activity must correlate with the certainty, which implies an anticorrelation with the model function $\alpha$, and correlate with prediction error, exemplified by $\delta$ in reinforcement learning models.\\
+This hypothesis was tested regressing out $\alpha$ and $\delta$ in two distinct Poisson regression models, where the observations are the SPN-DAN pairs activity. The processes were modeled as follows:
+\begin{equation*}
+    \log(\mu_t)=\beta_0+\beta\cdot\alpha(t-1)
+\end{equation*}
+and 
+\begin{equation*}
+    \log(\mu_t)=\beta_0+\beta\cdot\delta(t)
+\end{equation*}
+From where $\beta$ parameters are estimated, which inform about correlations between observations and regressors, indicating the percentage variation in observations when the regressor changes of one unit. For detailed discussion see \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}.\\
+In figure \ref{fig:RL_alphadelta} we show on the left side box plots of standardized regression coefficients $\beta^*$, on the right side empirical cumulative distribution function of $\beta^*$.
 \begin{figure}
    \centering
     \includegraphics[scale=0.5]{figures/AlphaAndDeltaPavSPN1.png}
