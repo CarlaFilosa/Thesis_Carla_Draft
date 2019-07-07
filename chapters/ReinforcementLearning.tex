@@ -44,6 +44,12 @@ where $k_F$ is the forgetting rate (\cite{ItoDoya1}), in our model the associabi
     \eta\in[0,1]
     \label{eq:Alphaforgetting}
 \end{equation}
+Learned values are then translated into action probabilities via a softmax function:
+\begin{equation}
+p(a|s)=\frac{e^{\beta Q_{s,a}(t)}}{\sum_l e^{\beta Q_{s,l}(t)}}
+\label{eq:ProbMod}
+\end{equation}
+where $\beta$ is a free parameter, usually called inverse temperature, that governs the animals$'$ exploitation/exploration.\\
 Note that using $k_F = 0$ the model is reduced to the hybrid Rescorla Wagner model. We applied to our data four different version of the model, the one shown here as presentation is the one that better fit the behavioural data. The other three versions are:
 \begin{description}
     \item[i.] \textbf{Rescorla-Wagner.} The presented model is reducible to an hybrid Rescorla Wagner/Pearce Hall update mechanism when we use a learning parameter $k$, and no forgetting parameter, i.e. $k_F = 0$.
@@ -92,17 +98,20 @@ only in the reversal phase. In order from the top to bottom: Performance in all 
 (green/black). Uncertainty $\alpha_L(t)$ for the chose option (red line), and $\alpha_F(t)$ for the unchosen option (blue line). Prediction error $\delta(t)$.}
     \label{fig:L-Fmodel}
 \end{figure}
-\section{Model Selection}
+\section{Model Estimation and Selection}
 \label{sec:Behavior}
-The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner. Likelihood ratio test (LRT) is formalized as the ratio of the likelihood functions of the models to compare (\cite{NeymanPearson}, \cite{King}): 
-\begin{equation}
-LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
-\label{eq:LRT}
-\end{equation}
+Given the action probabilities as defined by equation \ref{eq:ProbMod},the model log-likelihood can be expressed as $l=\sum_{t} \log p(a_t|s_t,Q_t,\theta_t)$. Where $\theta$ are the model parameters, as defined model by model in the previous session, which were estimated for each animal by maximum likelihood using MATLAB$'$s active set algorithm (fmincon), which relies onsolving the Karush-Kuhn-Tucker equations by quasi-Newton methods, starting from 100 different initial conditions to avoid local minima. The maximized log-likelihood value was later entered into a model comparison analysis\footnote{Part of the scripts used were adapted from some previous scripts developed and provided by dr. Georgia Koppe}.\\
+The hybrid Rescorla-Wagner model (i.) has fewer parameters with respect to the three adapted Rescorla-Wagner versions proposed (ii.,iii., L-F model), and all the three versions can be transformed to the hybrid Rescorla-Wagner by imposing constraints on the former's parameters. Thus using Likelihood Ratio tests for nested models we could test for each alternative model proposed whether it was better than the hybrid Rescorla-Wagner. Likelihood ratio test (LRT) is formalized as the ratio of the likelihood functions of the models to compare (\cite{NeymanPearson}, \cite{King}) as follows:\\
+ \hspace{5cm} $LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})$\\
+%\begin{equation}
+%LRT = -2 \log (\frac{\mathcal{L}_s(\hat{\theta})}{\mathcal{L}_g(\hat{\theta})})
+%\label{eq:LRT}
+%\end{equation}
 where $\hat{\theta}$ are the parameters values that maximize the likelihood function.
 The simpler model (s) has fewer parameters than the general model (g), the latter can be reduced to the simpler model after imposing some constraint (null hypothesis).\\
 LRT compares the fit of two models and has an asymptotic $\chi^2$ distribution. The null hypothesis is that the smaller model is the $"$best$"$ model and it is rejected when the test statistic is large. In other words, if the null hypothesis is rejected, then the larger model is a significant improvement over the smaller one.\\
-In this way, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the hybrid Rescorla-Wagner (hRW) and the learning-forgetting model (QLF), the second model reveals to be the $"$best$"$ model.
+In this way, in each test we tested whether the addition of one parameter to the pure Rescorla-Wagner model was needed and brought an improvement. The tests were conducted separately for each animal.\\In the comparison between the hybrid Rescorla-Wagner (hRW) and the learning-forgetting model (QLF), the second model reveals to be the $"$best$"$ model in $95\%$ of cases.\\
+In table \ref{tab:ModelComparison} LRT and the relatives $\chi^2$ statistic and p-values in two paradigms.
 \begin{table}[H]
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 \hline
@@ -146,12 +155,12 @@ In this way, in each test we tested whether the addition of one parameter to the
  \hline
 \end{tabular}
 \caption{Likelihood ratio test performed in 17 animals. The null hypothesis is that the model with fewer parameters is the best model, this hypothesis is tested through the $\chi^2$ statistic. If the $\chi^2$ statistic is large the null hypothesis is rejected. In last column the p-value of the $\chi^2$ statistic, in blue p-values below significance level $\alpha=0.05$ indicate that the null hypothesis is rejected. In yellow not significant p-values.}
+\label{tab:ModelComparison}
 \end{table}
-
 A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hybrid Rescorla-Wagner. In this case, since the models are not nested and they have same number of parameters, the best model was evaluated using the Bayesian Information Criterion (BIC), that is is a criterion for model selection among a finite set of models where the model with the lowest BIC is preferred (\cite{Schwarz}, \cite{NeathCavanaugh}). BIC is formally defined as 
-\begin{equation}
+\begin{equation*}
     BIC=k\log(n)-2\log(\hat{\mathcal{L}})
-\end{equation}
+\end{equation*}
 where:
 ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model.
 Following Raftery’s approach (\cite{Raftery}), a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 6 and 10 is strong, and a difference larger than 10 is very strong .\\

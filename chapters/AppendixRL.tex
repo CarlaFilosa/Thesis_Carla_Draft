@@ -5,7 +5,11 @@ V_s(t+1)=V_s(t)+k\cdot\alpha(t)\cdot\delta  \hspace{0.3cm} with \hspace{0.3cm}\d
 \label{VValues}
 \end{equation}
 where V is now a $
-T\times 2$ vector. $\delta$ is again the prediction error. Importantly V values are still modulated according to the time dependent component $\alpha(t)$, related to the uncertainty to get the reward. %The need to introduce a time dependent learning rate was emphasized first in works as \cite{Daw} and \cite{Funamizu}.
+T\times 2$ vector. $\delta$ is again the prediction error. Importantly V values are still modulated according to the time dependent component $\alpha(t)$, related to the uncertainty to get the reward.
+\begin{equation}
+    \alpha(t)=(1-\eta)\cdot\alpha(t-1)+\eta\cdot\abs{\delta(t)},\hspace{0.3cm} \eta\in[0,1]
+\end{equation}
+%The need to introduce a time dependent learning rate was emphasized first in works as \cite{Daw} and \cite{Funamizu}.
 In figure \ref{fig:PavRL_ex} is shown an example of, from the top to the bottom, the performance, the reward expectation values $V$, the uncertainty $\alpha$ and the reward prediction error $\delta$.
 \begin{figure}
     \centering
@@ -27,10 +31,11 @@ and
     \log(\mu_t)=\beta_0+\beta\cdot\delta(t)
 \end{equation*}
 From where $\beta$ parameters are estimated, which inform about correlations between observations and regressors, indicating the percentage variation in observations when the regressor changes of one unit. For detailed discussion see \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}.\\
-In figure \ref{fig:RL_alphadelta} we show on the left side box plots of standardized regression coefficients $\beta^*$, on the right side empirical cumulative distribution function of $\beta^*$.
+In figure \ref{fig:RL_alphadelta} we show on the left side box plots of standardized regression coefficients $\beta^*$, on the right side empirical cumulative distribution function of $\beta^*$.\\
 \begin{figure}
    \centering
     \includegraphics[scale=0.5]{figures/AlphaAndDeltaPavSPN1.png}
     \caption{$\alpha$ and $\delta$ were regressed out in two separated Poisson regression models with the SPN-DAN pairs activity. \textbf{Left:} box plot of standardized regression coefficients $\beta^*$. \textbf{Right:} empirical cumulative distribution function of $\beta^*$}
     \label{fig:RL_alphadelta}
 \end{figure}
+The regression of $\alpha$ and $\delta$ show, in line with what has been presented in \hyperref[sec:Regression]{~Session \ref*{sec:Regression}}, that SPN-DAN pairs anti-correlate with the uncertainty $\alpha$ whilst correlate with $\delta$, thus those assembly-pairs specifically encode the reward prediction error. The simplified and faster version of the model confirms what we proved in the last chapter, however the anti-correlation effect with $\alpha$ is much less evident using hybrid Rescorla-Wagner without licks as functional actions, than using the learning-forgetting model proposed in last chapter. The importance to consider he lick as functional action is implicit in the structure of the task, in which the $"$no-lick$"$ is part of the learning as well as the $lick$.\\In the near future we plan to set up a proper model comparison method in order to compare all models together, such a method could be the Bayesian model selection (BMS), already used in similar problems, which consists in a hierarchical Bayesian framework which, evaluates which model better represents the animals$'$ behavior through estimation of the posterior probabilities for the respective models given the animals$'$ actually observed sequence of behavioral choices (\cite{Koppe}), or the integrated Bayesian information criterion (iBIC), used in works where both and not nested models were compared (\cite{Dayan}).
