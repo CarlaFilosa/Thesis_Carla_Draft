@@ -148,11 +148,11 @@ A further test was needed to understand whether the Learning-Forgetting was the 
 where: ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model. Following Raftery$'$s approach (\cite{Raftery}), a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 6 and 10 is strong, and a difference larger than 10 is very strong.\\The Bayesian Information Criterion (BIC) elected the learning-forgetting model as the best model (figure \ref{fig:BIC}).
 \begin{figure}
     \centering
-    \includegraphics[scale=0.47]{figures/BIC_Value.png}
+    \includegraphics[scale=0.49]{figures/BIC_Value.png}
     
     \vspace{1cm}
     
-    \includegraphics[scale=0.47]{figures/DeltaBIC.png}
+    \includegraphics[scale=0.49]{figures/DeltaBIC.png}
     \caption{On top BIC for the three models proposed as alternative of the hybrid Rescorla-Wagner. The BIC was computed separately for each animal, and we reported the mean and the standard error. The best model was the model with the lower BIC, indicated as BIC*. The L-F model revealed to be the best model for the more than 80$\%$ of the animals. The $2\eta$ model was never the best model and the $2\kappa$ model was the best model for less the 20$\%$ of the animals. It is worth to notice that also when the L-F model was not the best model, the difference between its BIC and the BIC* rarely passed the value 5. On bottom the difference between the BIC of each model (BIC$_{model}$) and BIC*, this difference was computed separately for each animal and we report the mean and the standard error.}
     \label{fig:BIC}
 \end{figure}
