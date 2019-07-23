@@ -7,9 +7,9 @@ The cell assembly detection algorithm is designed to detect any coordinated spik
 Based on the unit classification (\hyperref[chap:UnitsAnalysis]{Chapter~ \ref*{chap:UnitsAnalysis}}), interregional assembly were classified according to their underlying cell-types (figure \ref{fig:PieAssembliesTot} (B.)).
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{figures/PieRegions1.pdf}
-    \includegraphics[scale=0.35]{figures/PieAsNotAs.pdf}
-    \includegraphics[scale=0.35]{figures/PieAssembliesTot1.png}
+    \includegraphics[scale=0.45]{figures/PieRegions1.pdf}
+    \includegraphics[scale=0.45]{figures/PieAsNotAs.pdf}
+    \includegraphics[scale=0.45]{figures/PieAssembliesTot1.pdf}
     \caption{(A.) Occurrence of classified and non-classified units in VS and VTA. (B.) Occurrence of classified and non-classified units of VS and VTA in interregional assembly-pairs. In VS, FSN occur in interregional pairs more often than SPN, even though more SPN than FSN were recorded.(C.) Pie charts of assemblies types. Cell types with $<1\%$ are not indicated. Missing pieces of cake indicates pairs that include non-classified units. The four more frequent interregional pairs, including only classified units, are pairs between fast spiking and gabaergic neurons ($20\%$), striatal projection neurons and dopamine neurons ($18\%$), fast spiking and dopamine units ($13\%$), and striatal projection and gabaergic units ($9\%$). }
     \label{fig:PieAssembliesTot}
 \end{figure}
@@ -110,19 +110,19 @@ In the previous session we have seen that in VS the neuronal occurrence in assem
 Detecting assemblies at any time scale, the detection algorithm dissects the time scales involved in interregional-interactions. A set of bin widths $\Delta \in \{\Delta_{min}...\Delta_{max}\}$ is provided as input, so that spike patterns can be detected at different bin-size, pairs are tested at all possible bin widths, then for each assembly, the width $\Delta^*$ associated with the lowest p-value is chosen as its characteristic temporal precision (\cite{RussoDurstewitz}, see \hyperref[chap:AssemblyMethod]{Chapter~ \ref*{chap:AssemblyMethod}}).\\
 Figure \ref{fig:BinDistr} shows the temporal scale ($\Delta$) distribution of VS-VTA interregional-interactions. Figures \ref{fig:BinDistrVS} and \ref{fig:BinDistrVTA} show VS-VS and VTA-VTA time-scale interactions distribution respectively.
 \begin{figure}[H]
-%\centering
+\centering
 \includegraphics[scale=0.46]{figures/VS_VTA_Short1.png}
 \caption{Bin distribution for interregional pairs. VS-VTA pairs show a bimodal distribution, revealing two temporal scales involved in interregional activation patterns.}
 \label{fig:BinDistr}
 \end{figure}
 \begin{figure}[H]
-%\centering
+\centering
 \includegraphics[scale=0.46]{figures/VS_VS_S.png}
 \caption{VS-VS pairs are more precise than VS-VTA pairs and the bin distribution presented with a peak at 50 $ms$}
 \label{fig:BinDistrVS}
 \end{figure}
 \begin{figure}[H]
-%\centering
+\centering
 \includegraphics[scale=0.46]{figures/VTA_VTA_S.png}
 \caption{VTA-VTA temporal scales were broadly distributed.}
 \label{fig:BinDistrVTA}
@@ -165,14 +165,14 @@ VTA dopamine neurons were laser tagged in first place, we can use the laser tagg
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.48]{figures/LagSec4Typo3VS.png}
+\includegraphics[scale=0.48]{figures/LagSec4Typo3VS.pdf}
 \caption{Lag distribution of four more represented pair-types in precise time scale. Only SPN-DAN pairs show a preferred directionality, namely $VS\rightarrow VTA$.}
 \label{fig:LagInSec4typo}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.48]{figures/LagSecLaser3VS.png}
-%\includegraphics[scale=0.4]{figures/OnlyLaserOriz.png}
+\includegraphics[scale=0.48]{figures/LagSecLaser3VS.pdf}
+%\includegraphics[scale=0.4]{figures/OnlyLaserOriz.pdf}
 \caption{Lag distribution of DAN$^{laser}$ in pair with SPN and FSN units, in precise time scales. Lag distributions were similar to the lag distributions of classified DAN in pairs with SPN and FSN, confirming the directionality expressed by SPN-DAN pairs and the validity of the classification adopted in VTA.}
 \label{fig:LagInSecLaser}
 \end{figure}
@@ -198,7 +198,7 @@ Assembly-pairs exhibiting directionality $VS \rightarrow VTA$ and detected in th
 \end{figure}
 %\begin{figure}[h!]
   %  \centering
-  %%  \includegraphics{figures/RewPred1.png}
+  %%  \includegraphics{figures/RewPred1.pdf}
    % \caption{Predictive reward signal in dopamine neurons. Adapted from \cite{Fiorillo}}
   %  \label{fig:RewPred}
 %\end{figure}
@@ -212,19 +212,19 @@ In the previous section we concluded that time scale segregation and directional
 To this purpose, we tested the responsiveness of each assembly-pair to the conditioned stimulus (CS $+/-$) and the unconditioned stimulus (US), through an analysis of variance performed using both a paired Friedman test and a non parametric version of repeated measures ANOVA test, on the basis of trial by trial assembly-pair activity. The results of the two tests were consistent each other. We choose to present here only Friedman test results, as it is free from gaussianity assumptions.\\Time intervals were 0.5 $sec$ long, and were chosen as follows: CS $+/-$ interval included all time steps $t \in [0, 0.5]$ $sec$ from the odor onset, CS$+/-$cont. was the window including each time $t$ with $t \in [-0.5, 0]$ $sec$ before the reward retrieval, in which the the odor was still present, US interval included times $t \in [0,0.5]$ from the reward delivery. The assembly-pair activity in the listed task relevant intervals was compared with the baseline interval including times $t \in [-0.8, -0.3]$ $sec$ before the odor onset, in which task related activity should be low.\\For each assembly-pair type we performed a large number of statistical tests, some will have p-values less than $0.05$ purely by chance, even if all null hypotheses of the family of tests performed are really true. Hence, Bonferroni correction for multiple comparison was applied. The Bonferroni correction is the classical approach to take in account the multiple comparison problem and consists in having a control on the familywise error rate ($\alpha=0.05$). This is possible by setting the critical value $\alpha$ for an individual test at lower value than 0.05 in such a way that, if all the null hypotheses are true, the probability that the family of tests includes one or more false positives due to chance is 0.05. The value $\alpha$ for an individual test is obtained by dividing the familywise error rate by the number of tests.\\Figure \ref{fig:Baseline} shows the heat map of the neural activity averaged across trials before and after the odor onset, during the baseline period (interval delimited by the two back lines) no activity patterns emerge besides the spontaneous neural activity.\\
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{figures/Baseline.png}
+    \includegraphics[scale=0.6]{figures/Baseline.pdf}
     \caption{Baseline interval choice. Neural activity averaged across trials. For each trial the baseline interval was a time window in which no task related activity could have interfered with the spontaneous neural activity. Again color map ranges from blue to yellow indicated with blue the minimum of activity and in yellow the maximum.}
     \label{fig:Baseline}
 \end{figure}
 Analysis of variance compares the means of several groups to test the hypothesis that they are all equal, against the general alternative that they are not all equal. This alternative was in our case too general. Hence, in the cases in which we obtained an omnibus significant $\chi^2$ test, the post-hoc procedure were designed using the matlab function $\textit{multcompare}$ whose critical values where computed with Bonferroni method (\cite{Bonferroni}, \cite{Dunn1958}, \cite{Dunn1961}).\\
 \begin{figure}
     \centering
-   % \includegraphics[scale=0.4]{figures/SPN_DANexStim1.png}
-    \includegraphics[scale=0.38]{figures/SPN_DANexPreRew.png}
+   % \includegraphics[scale=0.4]{figures/SPN_DANexStim1.pdf}
+    \includegraphics[scale=0.38]{figures/SPN_DANexPreRew.pdf}
     
    \vspace{1cm}
    
-   \includegraphics[scale=0.38]{figures/SPN_DANexStim1.png}
+   \includegraphics[scale=0.38]{figures/SPN_DANexStim1.pdf}
     \caption{Example of two assembly-pairs significant after the analysis of variance for which the post-hoc test shown that in both cases two groups out of four were significant different, respectively the baseline and the CS+$_{cont}$ window (top) and the baseline and the CS+ window (bottom).}
     \label{fig:SPN_Ex}
 \end{figure}
@@ -234,7 +234,7 @@ We start to prove this hypothesis by analysing the reward-related activity of as
 We focused the analysis on assemblies resulting significant for the Friedman test, the fraction in percentage of those assemblies is shown in figure \ref{fig:PercAsFried}. The histograms refer to the Friedman tests made on hit trials, in original and reversal phase separately.\\
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{figures/PercFriedHitTrialsBFf.png}
+    \includegraphics[scale=0.5]{figures/PercFriedHitTrialsBFf.pdf}
     \caption{Number in percentage of assembly-pairs exhibiting a significant task related pattern activity. The Bonferroni correction for multiple comparison was applied. In A. the significant assembly-pairs tested for the original phase, in B. the significant assembly-pairs tested in reversal. Assembly are divided in the four principal pair-types.}
     \label{fig:PercAsFried}
 \end{figure}
@@ -261,49 +261,49 @@ Assembly-pairs patterns of significant assemblies were plotted, and differences 
  \end{figure}
  \begin{figure}
     \centering
-    \includegraphics[scale=0.36]{figures/SPN_DANHisto.png}
+    \includegraphics[scale=0.36]{figures/SPN_DANHisto.pdf}
     
     \vspace{1cm}
     
-    \includegraphics[scale=0.36]{figures/FSN_DANHisto.png}
+    \includegraphics[scale=0.36]{figures/FSN_DANHisto.pdf}
 \caption{Percentage of assembly-pairs significant with respect to the baseline in the windows CS+, CS+$_{cont.}$, US. The total amount can exceed the $100\%$ because if  one pair were found for example significant in the US window and CS+$_{cont.}$ with respect to the baseline, this assembly-pair was double counted.}
     \label{fig:FriedHistoDAN}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.36]{figures/SPN_GABAHisto.png}
+    \includegraphics[scale=0.36]{figures/SPN_GABAHisto.pdf}
     
     \vspace{1cm}
     
-    \includegraphics[scale=0.36]{figures/FSN_GABAHisto.png}
+    \includegraphics[scale=0.36]{figures/FSN_GABAHisto.pdf}
     \caption{Percentage of assembly-pairs significant with respect to the baseline in the windows CS+, CS+$_{cont.}$, US. The total amount can exceed the $100\%$ because if one pair were found for example significant in the US window and CS+$_{cont.}$ with respect to the baseline, this assembly-pair was double counted.}
     \label{fig:FriedHistoGABA}
 \end{figure}\\
 \pagebreak
 \section{Hit, False Alarm and Correct Rejection Trials}
 \label{sec:FalseAlCorrRej}
-When the animal receives reward unexpectedly, DAN fire a burst of action potentials. If a sensory stimulus reliably predicts reward, however, DAN decrease their response to reward, and instead burst to the stimulus, and finally if an expected reward is omitted, DAN pause their firing at the time they usually receive reward (\cite{Schultz1997}, \cite{Wenzel}, \cite{Fiorillo2013b}, \cite{Schultz2015}).\\The comparison between Hit, False Alarm and Correct Rejection is interesting because we expect different VS-VTA assembly-pair activations in relation with reward prediction and reward occurrence.\\We assumed that assembly-pair task related patterns reflect the predictive coding of underlying units, furthermore we expected that assembly analysis could reveal how the prediction signal is formed in VS-VTA circuit, question that is in fact still discussed and unclear (\cite{Takahashi2016}, \cite{Saunders2018}).\\If our hypothesis of a circuit specialized code is true, we should observe differences in activity patterns of VS-VTA assembly-pairs composed by DAN with different cell-types in VS. In the previous session we introduced the two sequential components of neuronal response, the first called detection, and the main component, called identification and valuation. We suggested as well that sharp assembly-pairs FSN-DAN most probably encode a generic detection of the stimulus, whereas SPN-DAN assembly pairs, characterized by broader response could encode the valuation, that is the component associated to the prediction error in reinforcement learning models.\\ In the previous section we examined related response of assembly-pairs in Hit trials, namely trials in which the odor was followed by reward and the mouse went for the reward. We had identified, in specific moments of the trial, assembly-pairs with significant task-related activation.\\In the same way, we had analysed the assembly-pairs task-related response for False Alarm trials (unrewarded odor, the mouse went for reward) and Correct Rejection trials (unrewarded odor, the mouse sat quiet). The three windows of interest were set up for these trials types in the following ways: in False Alarm trials those windows were called CS-, CS-$_{cont.}$, 3rd Lick. The CS- window, analogously to the CS+ in Hit trials, was a time interval of 0.5 $sec$ starting from the stimulus onset (unrewarded in this case); the CS-$_{cont.}$ and 3rd Lick were respectively the time intervals, again 0.5 $sec$ long, immediately before and after the expected reward.\\We used the following assumption to establish the expected reward time: in the cases in which the rewarded odor was presented the mouse had to lick at least two or three times (depending on the paradigm) to get the reward, thus when it licked despite the odor was unrewarded, it was considered to expect the reward after the second or the third lick (depending on the current paradigm).\\In Correct Rejection trials, CS- and CS-$_{cont.}$ intervals were defined similar to the False Alarm trials. In this case the animal did not expect the reward, however, we analysed the assembly-pairs activity also in the $"$hypothetical reward$"$ window for comparison. We used as $"$hypothetical reward$"$ time, the average reward time obtained from Hit trials, to compare the assembly-pairs activity before and after the $"$hypothetical reward$"$ time with the activity before and after the reward time (Hit trials) or the expected reward time (False Alarm trials).\\
+When the animal receives reward unexpectedly, DAN fire a burst of action potentials. If a sensory stimulus reliably predicts reward, however, DAN decrease their response to reward, and instead burst to the stimulus, and finally if an expected reward is omitted, DAN pause their firing at the time they usually receive reward (\cite{Schultz1997}, \cite{Wenzel}, \cite{Fiorillo2013b}, \cite{Schultz2015}).\\The comparison between Hit, False Alarm and Correct Rejection is interesting because we expect different VS-VTA assembly-pair activations in relation with reward prediction and reward occurrence.\\We assumed that assembly-pair task related patterns reflect the predictive coding of underlying units, furthermore we expected that assembly analysis could reveal how the prediction signal is formed in VS-VTA circuit, question that is in fact still discussed and unclear (\cite{Takahashi2016}, \cite{Saunders2018}).\\If our hypothesis of a circuit specialized code is true, we should observe differences in activity patterns of VS-VTA assembly-pairs composed by DAN with different cell-types in VS. In the previous session we introduced the two sequential components of neuronal response, the first called detection, and the main component, called identification and valuation. We suggested as well that sharp assembly-pairs FSN-DAN most probably encode a generic detection of the stimulus, whereas SPN-DAN assembly pairs, characterized by broader response could encode the valuation, that is the component associated to the prediction error in reinforcement learning models.\\ In the previous section we examined related response of assembly-pairs in Hit trials, namely trials in which the odor was followed by reward and the mouse went for the reward. We had identified, in specific moments of the trial, assembly-pairs with significant task-related activation.\\In the same way, we had analysed the assembly-pairs task-related response for False Alarm trials (unrewarded odor, the mouse went for reward) and Correct Rejection trials (unrewarded odor, the mouse sat quiet). The three windows of interest were set up for these trials types in the following ways: in False Alarm trials those windows were called CS-, CS-$_{cont.}$, 3rd Lick. The CS- window, analogously to the CS+ in Hit trials, was a time interval of 0.5 $sec$ starting from the stimulus onset (unrewarded in this case); the CS-$_{cont.}$ and 3rd Lick were respectively the time intervals, again 0.5 $sec$ long, immediately before and after the expected reward.\\We used the following assumption to establish the expected reward time: in the cases in which the rewarded odor was presented the mouse had to lick at least two or three times (depending on the paradigm) to get the reward, thus when it licked despite the odor was unrewarded, it was considered to expect the reward after the second or the third lick (depending on the current paradigm).\\In Correct Rejection trials, CS- and CS-$_{cont.}$ intervals were defined similar to the False Alarm trials. In this case the animal did not expect the reward, however, we analysed the assembly-pairs activity also in the $"$hypothetical reward$"$ window for comparison. We used as $"$hypothetical reward$"$ time, the average reward time obtained from Hit trials, to compare the assembly-pairs activity before and after the $"$hypothetical reward$"$ time with the activity before and after the reward time (Hit trials) or the expected reward time (False Alarm trials).
 \subsection{SPN-DAN assembly-pairs}
 Figure \ref{fig:HeatSPN_DANComp} shows SPN-DAN pairs task-related activity in Hit, False Alarm and Correct Rejection trials. In Hit trials the assembly-pairs activation was lead mainly by the rewarded odor. A good portion of assemblies were active only in CS+ ($~ 45\%$), fewer were continuously active in CS+ and CS+$_{cont}$ ($~17\%$) and only $~5\%$ of assembly were active from the stimulus onset to the time including the retrieval. Finally we note that a relative small fraction was active around the reward time in CS+$_{cont}$ and US ($~ 14\%$).\\SPN-DAN pairs were less activated at the stimulus onset in False Alarm trials than in Hit trials. Indeed, in False Alarm trials the animal was unsure about the stimulus received and not able to predict the reward-outcome. While in Hit trials, the animal was more confident\footnote{we explain the distinction between the early and the final stage of the task in the next chapter.} about the output will be received, then, being able to predict the reward, reacted to the conditioned stimulus, in agreement with the prediction error signals.\\
 SPN-DAN assembly-pairs showed similar activity-patterns in Hit and Correct Rejection trials (figure \ref{fig:HeatSPN_DANComp}), however much less assembly-pairs show significant task-related response in Correct Rejection trials, suggesting that SPN-DAN assembly-pairs preferentially code for the rewarded odor.\\Figure \ref{fig:SD_HitCorrComp} shows the comparison of assembly-pair activity in Hit and Correct Rejection trials, for those assembly-pairs significant in Hit trials. While the rewarded odor lead the SPN-DAN pairs activity, those assembly-pairs were not equally activated by the unrewarded odor, this confirmed that SPN-DAN pairs were selective for the rewarded odor.
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.33]{figures/SPN_DANHit.png}
-\includegraphics[scale=0.33]{figures/HeatFA_SPN_DAN.png}
-\includegraphics[scale=0.33]{figures/HeatCR_SPN_DAN.png}
+\includegraphics[scale=0.33]{figures/SPN_DANHit.pdf}
+\includegraphics[scale=0.33]{figures/HeatFA_SPN_DAN.pdf}
+\includegraphics[scale=0.33]{figures/HeatCR_SPN_DAN.pdf}
 \caption{Heat map of significant activation of SPN-DAN assembly-pairs (Friedman test) in three trial segments (Hit, False Alarm and Correct Rejection). In Correct Rejection trials much less assembly-pairs are significant. SPN-DAN assembly-pairs preferentially code for the rewarded odor. The activity of each assembly was normalized as in eq.\ref{eq:norm} were $\max(I)$ ($\min(I)$) was the absolute maximum (minimum) of assembly-activity among the four windows.}
 \label{fig:HeatSPN_DANComp}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.41]{figures/SD_HitCorrRejComp.png}
+    \includegraphics[scale=0.41]{figures/SD_HitCorrRejComp.pdf}
     \caption{Heat map of significant activation of SPN-DAN (Friedman test in Hit trials), in Hit and Correct Rejection trials. The activity of each assembly was normalized as eq.\ref{eq:norm} were $\max(I)$ ($\min(I)$) was the absolute maximum (minimum) of assembly-activity in the two windows.}
     \label{fig:SD_HitCorrComp}
 \end{figure}
 Figure \ref{fig:Overlap} shows the fraction of assembly-pairs significant solely in the Hit trials or in both Hit and Correct Rejection trials. Of SPN-DAN assembly-pairs significant for Hit trials in any window  with respect to the baseline the $25\%$ was significant in Correct Rejection trials as well, and only the $12\%$ showed a stimulus related activity compatible with the Hit trials activity. This overlap between Hit trials and Correct Rejection trials was instead strong in FSN-DAN assembly-pairs ($68\%$). These results indicated that FSN-DAN pairs unspecifically respond to the stimulus. 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{figures/HItCorrRejPieOverlapSD_FD.png}
+    \includegraphics[scale=0.5]{figures/HItCorrRejPieOverlapSD_FD.pdf}
     \caption{Assembly-pairs significant in Hit trials divided in the fractions significant during CS+ only in Hit trials and in Hit and Correct Rejection trials. \textbf{Left:} SPN-DAN assembly-pairs. \textbf{Right:} FSN-DAN assembly-pairs.}
     \label{fig:Overlap}
 \end{figure}
@@ -320,7 +320,7 @@ FSN-DAN assembly-pair activity patterns were more diverse in their task dependen
 \end{largefigure}
 %\begin{figure}
  %   \centering
-   % \includegraphics[scale=0.5]{figures/RewardDoyaRLSUM.png}
+   % \includegraphics[scale=0.5]{figures/RewardDoyaRLSUM.pdf}
   %  \caption{Adapted from \cite{Doya}. In the first two panels response associated to rewarded trials. Last panel is related to unrewarded trials, in the cases in which the reward was predicted but it did not occur. Activity of the dopamine neuron is depressed exactly at the time when the reward would have occurred.}
  %   \label{fig:RewardDoya1}
 %\end{figure}
