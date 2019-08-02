@@ -19,7 +19,7 @@ Reinforcement learning model are usually set up as follows:
     \item Learned values are then translated into action probabilities via a softmax function, maximized with respect some free parameters.
 \end{itemize}
 In the contingencies of the experiment conducted in our lab, two odor were presented and only one was associated with a reward with a probability of 0.9. Each time one odor was presented the mouse chose to take the action (lick or not-lick) that maximized the reward and minimized his effort. The task was considered learnt when the animal was able to lick for the rewarded odor and not lick when the unrewarded odor was presented. The performance criterion was set at $79\%$.\\To model this learning process a Q Learning-Forgetting model (Q L-F model) starting from an hybrid Rescorla-Wagner model Pearce-Hall update mechanism (\cite{RescorlaWagner}, \cite{PearceHall}, \cite{Li}, \cite{Costa}, \cite{Koppe}). The model is also provided with an update of unchosen option using learning and forgetting parameters (\cite{ItoDoya1}, \cite{Katahira}).
-The model assignes each state $s$ and action $a$, an action value $Q_{s,a}(t)$, where $t$ is the index of the trial. In our specific case we have two states, corresponding to the two odors presented and two possible actions, i.e., lick or no-lick. 
+The model assigns each state $s$ and action $a$, an action value $Q_{s,a}(t)$, where $t$ is the index of the trial. In our specific case we have two states, corresponding to the two odors presented and two possible actions, i.e., lick or no-lick. 
 Based on the set of action values the model transforms the learned values into action probabilities via a softmax function to be maximized with respect to a set of parameters.\\The action value for the chosen option is updated by
 \begin{equation}
 Q_{s,a}(t+1)  = Q_{s,a}(t)+k_L\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-Q_{s,a}(t-1)
@@ -27,7 +27,7 @@ Q_{s,a}(t+1)  = Q_{s,a}(t)+k_L\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} wit
 \end{equation}
 where $\delta$ is the prediction error, i.e., the difference between the reward $r(t)$ and the expected reward value $Q_{s,a}(t)$ for an action $a$ given a state $s$, $k_L$ is the learning parameter and $\alpha_L(t)$ is the Pearce-Hall associability for the chosen option, is a trial-dependent rate component which adjusts in accordance with the average accuracy of recent predictions, evolving by
 \begin{equation}
-   \alpha_L(t)=(1-\eta)\cdot\alpha_L(t-1)+\eta\cdot\abs{\delta(t)},\hspace{0.3cm} \eta\in[0,1]
+   \alpha_L(t)=(1-\eta)\cdot\alpha(t-1)+\eta\cdot\abs{\delta(t)},\hspace{0.3cm} \eta\in[0,1]
     \label{eq:Alphalearning}
 \end{equation}
 Note that the $t$'s associability depends on absolute prediction errors from past trials, but not the current one, ensuring that $\delta(t)$ was not double counted in the value update.\\The associability term in eq. \ref{eq:Alphalearning} measures the attention that the animal has to put to the cue, in other terms it is nothing but the uncertainty of the animal to get the reward. 
@@ -53,7 +53,7 @@ Note that using $k_F = 0$ the model is reduced to the hybrid Rescorla Wagner mod
     \item[i.] \textbf{Hybrid Rescorla-Wagner (hRW).} The presented model is reducible to an hybrid Rescorla Wagner/Pearce Hall update mechanism when we use a learning parameter $k$, and no forgetting parameter, i.e. $k_F = 0$.
     Then, if $a$ represents the chosen option and $a'\neq a$ the unchosen option, the action values evolve as follows\\
     $\begin{array}{lcl}
-    Q_{s,a}(t+1)&=& Q_{s,a}(t)+k\cdot\alpha_L(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-q_{s,a}(t)\\
+    Q_{s,a}(t+1)&=& Q_{s,a}(t)+k\cdot\alpha(t)\cdot\delta(t), \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-q_{s,a}(t)\\
     Q_{s,a'}(t+1)&=&Q_{s,a'}(t)\\
     \end{array}$
     \item[ii.] \textbf{Rescorla-Wagner with two learning rate modulations $\kappa$ ($2\kappa$).} Let $a(t) \in \{1,0\}$ denote the option was chosen at trial $t$, where $1$ stands for "to lick" and $0$ stands for "not to lick". We introduce then two learning parameters $k_{1}$ and $k_{0}$ respectively for the choice $a=1$ and $a=0$ to be estimated by the model, while $k_F$ is fixed to zero.
@@ -67,10 +67,10 @@ Note that using $k_F = 0$ the model is reduced to the hybrid Rescorla Wagner mod
        Q_{s,0}(t+1)&=&Q_{s,0}(t)+k_0\cdot\alpha(t)\cdot\delta(t)\\
          Q_{s,1}(t+1)&=&Q_{s,1}(t)\\ 
     \end{array}$
-    \item[iii.] \textbf{Rescorla-Wagner with two $\eta$ parameters ($2\eta$).} We use a learning model, without forgetting parameters, and we introduce two $\eta$ parameters $\eta_1$ and $\eta_0$ for the choice $1$ and $0$ respectively, to be estimated by model. The associability $\alpha_L$ evolves as follow:\\
+    \item[iii.] \textbf{Rescorla-Wagner with two $\eta$ parameters ($2\eta$).} We use a learning model, without forgetting parameters, and we introduce two $\eta$ parameters $\eta_1$ and $\eta_0$ for the choice $1$ and $0$ respectively, to be estimated by model. The associability $\alpha$ evolves as follow:\\
    $\begin{array}{lcll}
-    \alpha_{L}(t) & = & (1-\eta_1)\cdot\alpha_{L}(t-1)+\eta_1\cdot\abs{\delta(t)} & \mbox{if\,\,}  a=1,\\
-    \alpha_{L}(t) & = & (1-\eta_0)\cdot\alpha_{L}(t-1)+\eta_0\cdot\abs{\delta(t)} & \mbox{if\,\,}  a=0.\\
+    \alpha(t) & = & (1-\eta_1)\cdot\alpha(t-1)+\eta_1\cdot\abs{\delta(t)} & \mbox{if\,\,}  a=1,\\
+    \alpha(t) & = & (1-\eta_0)\cdot\alpha(t-1)+\eta_0\cdot\abs{\delta(t)} & \mbox{if\,\,}  a=0.\\
     \end{array}$\\
     and action values for the chosen option evolving consequently as in the equation \ref{eq:Qlearning}.
 \end{description}
@@ -139,7 +139,7 @@ The simpler model (s) has fewer parameters than the general model (g), the latte
  17 & 2.67e-05 & 21.06 & \colorbox{cyan}{4.45e-06}\\
  \hline
 \end{tabular}
-\caption{Likelihood ratio test performed in 17 animals. The null hypothesis is that the model with fewer parameters is the best model, this hypothesis is tested through the $\chi^2$ statistic. If the $\chi^2$ statistic is large the null hypothesis is rejected. In last column the p-value of the $\chi^2$ statistic, in blue p-values below significance level $\alpha=0.05$ indicate that the null hypothesis is rejected. In yellow not significant p-values.}
+\caption{Likelihood ratio test performed in 17 animals. The null hypothesis is that the model with fewer parameters is the best model, this hypothesis is tested through the $\chi^2$ statistic. If the $\chi^2$ statistic is large the null hypothesis is rejected. In last column the p-value of the $\chi^2$ statistic, in blue p-values below significance level $\alpha_s=0.05$ indicate that the null hypothesis is rejected. In yellow not significant p-values.}
 \label{tab:ModelComparison}
 \end{table}
 A further test was needed to understand whether the Learning-Forgetting was the best model among the three adapted version of the hRW. In this case, since the models were not nested, but had same number of parameters, the best model was evaluated using the Bayesian Information Criterion (BIC), that is a criterion for model selection among a finite set of models where the model with the lowest BIC is preferred (\cite{Schwarz}, \cite{NeathCavanaugh}). BIC is formally defined as 
@@ -174,7 +174,7 @@ We assume that VS-VTA interactions are able to predict the reward and compute pr
     \caption{Adapted from \cite{Doya}. In panel A: \textbf{Top two panels:} response associated to rewarded trials. \textbf{Lower panel:} response associated to unrewarded trials. In panel B: scheme of prediction error computing. \textbf{Top:} no prediction, reward occurs, the prediction error is positive. \textbf{Middle:} the reward occurs as expected, the prediction error is equal to zero. \textbf{Bottom:} the reward was predicted but did not occur.}
     \label{fig:RewDoyaSum}
 \end{figure}%In \hyperref[sec:TaskResp]{~Section \ref*{sec:TaskResp}} we hinted which kind of trial variability in assembly activity we expected if the assembly predicts the reward and computes prediction error, doing a parallelism with the dopamine neurons response in case of probabilistic reward \cite{Fiorillo}.\\
-Based on broad knowledge on reward prediction signals, we assume that if the assembly-pairs activity codes for the reward prediction we expect intense activity in the CS+ window when the animal learnt the task and was able to predict the reward (see figure \ref{fig:RewDoyaSum} A. middle); whereas we expect few assembly-pair activation in CS+ window when the animal was uncertain to get the reward (see figure \ref{fig:RewDoyaSum} A. top), namely at beginning of the task. In other words we expected the assembly-pair activity in CS window to anti-correlate with the uncertainty $\alpha_L(t)$. Indeed, the uncertainty is high at the beginning of the task and goes down at the end of the original phase, to raise up again at the beginning of the reversal phase. 
+Based on broad knowledge on reward prediction signals, we assume that if the assembly-pairs activity codes for the reward prediction we expect intense activity in the CS+ window when the animal learnt the task and was able to predict the reward (see figure \ref{fig:RewDoyaSum} A. middle); whereas we expect few assembly-pair activation in CS+ window when the animal was uncertain to get the reward (see figure \ref{fig:RewDoyaSum} A. top), namely at beginning of the task. In other words we expected the assembly-pair activity in CS window to anti-correlate with the uncertainty to get the reward $\alpha_L(t)$, that we will call $\alpha(t)$ for ease from now on. Indeed, the uncertainty is high at the beginning of the task and goes down at the end of the original phase, to raise up again at the beginning of the reversal phase. 
 \begin{figure}
     \centering
     \includegraphics[scale=0.54]{figures/PreRegress.png}
