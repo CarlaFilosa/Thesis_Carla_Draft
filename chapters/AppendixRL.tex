@@ -1,4 +1,5 @@
 \chapter{Simplified RL model}
+\label{chap:SimpRL}
 The models presented in \hyperref[chap:RLModel]{~Chapter \ref*{chap:RLModel}} assume the lick to be a functional action, which is absolutely reasonable in our case because the task presented requires the achievement of the performance criterion both in hit and correct rejection. However, since the obtained reward is solely related to the performance, it is possible to build a simplified version of the hybrid Rescorla-Wagner model, without explicitly considering the actions.\\Thus the expected reward values are expressed as follows:
 \begin{equation}
 V_s(t+1)=V_s(t)+k\cdot\alpha(t)\cdot\delta  \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-V_s(t)
