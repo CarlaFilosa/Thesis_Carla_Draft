@@ -49,7 +49,9 @@
 \usepackage{textcomp}         %for copyright symbol and bullets
 \usepackage[nottoc]{tocbibind} %include bibliography in toc (don't put the toc itself in the toc)
 \usepackage{url}              %for url's in bibliography
-
+\newcommand{\citeay}[2][]{
+   \citeauthor{#2} (\citeyear[#1]{#2})
+}
 %\setlength{\parindent}{0pt}
 %\setlength{\parskip}{\baselineskip}
 
