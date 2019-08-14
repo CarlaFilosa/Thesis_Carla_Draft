@@ -148,7 +148,7 @@ Q L-F and hRW were nested model, that allowed the use of LRT for comparison. To 
 \begin{equation*}
     BIC=k\log(n)-2\log(\hat{\mathcal{L}})
 \end{equation*}
-where: ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model. Following Raftery$'$s approach (\cite{Raftery}), a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 6 and 10 is strong, and a difference larger than 10 is very strong.\\The Bayesian Information Criterion (BIC) elected the learning-forgetting model as the best model (figure \ref{fig:BIC}).
+where: ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function of the model, $n$ is the sample size, $k$ is the number of parameters estimated by the model. Following Raftery$'$s approach (\cite{Raftery}), a difference of BIC lower than 2 between two models is barely worth mentioning, a difference between 2 and 5 is positive, a difference between 6 and 10 is strong, and a difference larger than 10 is very strong.\\According to BIC the learning-forgetting model resulted by far the best model among the three (figure \ref{fig:BIC}). However, a limitation of BIC is that it does not select relevant features (variables, predictors) for use in model construction. I plan to implement in the future the Bayesian model comparison, which automatically, includes a penalty for including too much model structure.
 \begin{figure}
     \centering
     \includegraphics[scale=0.45]{figures/BIC_Value.png}
@@ -162,7 +162,7 @@ where: ${\hat{\mathcal{L}}}$ is the maximized value of the likelihood function o
 Figure \ref{fig:4models} displays action values of the four proposed models. In the gray box the animal's performance is reported as indication of actions taken in task. The importance of the forgetting term is particularly clear if I look at the action values $Q_{1,0}(t)$ in original phase and $Q_{2,0}(t)$ in reversal phase curves. The unchosen option (which often corresponded to no-lick for the unrewarded odor once that the task was learnt) did not update the action values in models devoid of the forgetting term (hRW, 2$\eta$, 2$\kappa$). This implied that the action value for the state-action combination of rewarded odor and no-lick action remained stable at the value of the last update when the no-lick action was chosen (see $Q_{1,0}$ in A.,B.,C.), until the no-lick was chosen again. This value however did not correspond to the real value assigned by animals persistently licking when that odor was presented; in such a task I could assume in fact that when an animal made a choice not only assigned a value to the current state according to that choice, but it also inferred the value of the current state for the unchosen option. The learning-forgetting model instead reproduced in this sense the entire perspective of learning dynamic, assuming that the unchosen option was consciously not taken at the moment that the opposite action was chosen. The small increases of $Q_{1,0}$ and $Q_{2,0}$ that occurred respectively before trial no. 50 and after trial no. 150 (figure \ref{fig:4models}) was due to the fact that when the animal was too reluctant to lick, a reward was given to encourage the lick choice for the rewarded odor. 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.66]{figures/Resume4models3.png}
+    \includegraphics[scale=0.7]{figures/Resume4models3.png}
     \caption{Animal performance (top left) compared to the action values of the four models (A.B.C.D.)}
     \label{fig:4models}
 \end{figure}
@@ -176,16 +176,30 @@ VS-VTA interactions are assumed to be able to predict the reward and compute the
     \label{fig:RewDoyaSum}
 \end{figure}
 Based on broad knowledge on reward prediction signals, I assume that if the assembly-pairs activity codes for the reward prediction I can expect intense activity in the CS+ window when the animal learnt the task and was able to predict the reward (see figure \ref{fig:RewDoyaSum} A. middle); whereas I can expect little assembly-pair activation in CS+ window when the animal was uncertain to get the reward (see figure \ref{fig:RewDoyaSum} A. top), namely at beginning of the task. In other words I expected the assembly-pair activity in CS window to anti-correlate with the uncertainty to get the reward $\alpha_L(t)$, that I will call $\alpha(t)$ for ease from now on. Indeed, the uncertainty is high at the beginning of the task and goes down at the end of the original phase, to rise again at the beginning of the reversal phase. 
-\begin{figure}
+In figure \ref{fig:StableUnstableAlphaCS} I show an intuitive way to use the task variability in order to see the correlations with model functions. I divided the task in two phases: a first phase constituted by first trials in which the animal was learning the task and was uncertain about the reward outcome (I called this phase the $'$unstable$'$ phase); a second phase was constituted by last trials of the task in which the animal has learnt the task rule and it was more certain about the reward outcome when a rewarded or unrewarded odor is presented ($'$stable$'$ phase).\\I compared the assembly-pairs activity in unstable and stable phase. The difference between the two phases was significantly different from zero only for SPN-DAN pairs.\\This finding highlighted a possible specificity of assembly-pairs types coding, that will be proved in the next sessions.
+\begin{figure}[H]
     \centering
- \includegraphics[scale=0.49]{figures/PreRegress.png}
+ \includegraphics[scale=0.54]{figures/PreRegress.png}
  \caption{(A) Comparison between the uncertainty $\alpha(t)$ and the SPN-DAN assembly pairs activity in the stable and unstable phase. For this example only trials in which the rewarded odor was presented are shown. The analysis was restricted to the CS+ window, because the prediction of the reward happens immediately after the stimulus onset. If assembly pairs code for reward prediction, in the unstable phase characterized by high uncertainty to get the reward the assembly-pairs activity in CS+ window is low, whereas in the stable phase characterized by low uncertainty the assembly-pairs activity is high. The difference between the assembly-pairs activity in stable and unstable phase is significantly different to zero (B).}
 \label{fig:StableUnstableAlphaCS}
-\end{figure}
-In figure \ref{fig:StableUnstableAlphaCS} I show an intuitive way to use the task variability in order to see the correlations with model functions. I divided the task in two phases: a first phase constituted by first trials in which the animal was learning the task and was uncertain about the reward outcome (I called this phase the $'$unstable$'$ phase); a second phase was constituted by last trials of the task in which the animal has learnt the task rule and it was more certain about the reward outcome when a rewarded or unrewarded odor is presented ($'$stable$'$ phase).\\I compared the assembly-pairs activity in unstable and stable phase. The difference between the two phases was significantly different from zero only for SPN-DAN pairs.\\This finding highlighted a possible specificity of assembly-pairs types coding, that will be proved in the next sessions.\\With similar arguments I can assume that, if the assembly-pairs compute reward prediction error their activity should correlate with the prediction error $\delta(t)$ in the US window. At the beginning of the task, when the prediction error is high I expect in the US window a high assembly-pairs response in conformity with the high surprise of the animal to get the reward, while when the task is learnt the surprise to get the reward and the prediction error are smaller and I expect less activity.\\In the next session I mathematically formalize these concepts in order to quantify the correlations with $\alpha(t)$ and $\delta(t)$; and hence test whether there is a specific VS-VTA interaction path involved in the reward prediction coding and prediction error computing. 
+\end{figure}With similar arguments I can assume that, if the assembly-pairs compute reward prediction error their activity should correlate with the prediction error $\delta(t)$ in the US window. At the beginning of the task, when the prediction error is high I expect in the US window a high assembly-pairs response in conformity with the high surprise of the animal to get the reward, while when the task is learnt the surprise to get the reward and the prediction error are smaller and I expect less activity.\\In the next session I mathematically formalize these concepts in order to quantify the correlations with $\alpha(t)$ and $\delta(t)$; and hence test whether there is a specific VS-VTA interaction path involved in the reward prediction coding and prediction error computing. 
 \section{Regression}
 \label{sec:Regression}
 In the previous sessions, I presented the Q Learning-Forgetting model to parameterize the learning functions. The main questions are: do assembly-pairs predict the reward and compute prediction error? Do different assembly-pair types compute different component of prediction error? More specifically, which assembly-pair types compute the evaluation component of the prediction error parameterized in the reinforcement learning model? As discussed in the previous session, if an assembly-pair computes reward prediction error I expect the assembly-activity being anti-correlated with the uncertainty $\alpha(t)$ in the CS window and correlated with the prediction error $\delta(t)$ in the US (real or expected reward) window. In order to quantify these correlations I regressed the assembly-pair activity on $\alpha (t)$ and $\delta (t)$. The two regressions were built separately: I regressed the assembly-pairs activity on the uncertainty $\alpha(t)$ in the CS window and on the prediction error $\delta(t)$ in the US (real or expected) window.\\Since the majority of the inter-regional pairs followed a Poisson distribution (see figure \ref{fig:DistributionEx}), I selected these pairs and built two generalized linear models with logarithmic link function, tailored for Poisson distributed data.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{figures/Rev2An2As1_rew.png}
+    \hspace{1cm}
+    \includegraphics[scale=0.25]{figures/Rev2An2As2.png}
+    
+    \vspace{1cm}
+    
+    \includegraphics[scale=0.25]{figures/Rev2An2As1.png}
+    \hspace{1cm}
+    \includegraphics[scale=0.25]{figures/Firstrev1An4As5.png}
+    \caption{Some example of pair activity distributions in CS and US window. Assembly-pair distribution can be approximated with Poisson's distribution. To regress the assembly-pair activity on $\alpha(t)$ and $\delta(t)$, I used a Poisson linear model which is tailored for Poisson distributed observations.}
+    \label{fig:DistributionEx}
+\end{figure}
 The assembly-pairs activity is a sample of n observations $\mathbf{Y}=(y_1, y_2,..., y_n)$ which can be treated as realizations of independent Poisson random variables, with $Y\sim P(\mu)$, in generalized linear model the mean (and therefore the variance), $\mu$, of the distribution depends on the independent variables, $X$, through:
 $E (\mathbf {Y} )={\boldsymbol {\mu }}=g^{-1}(\mathbf {X} {\boldsymbol {\beta }})$ where $g$ is the link function, logarithmic in this case, $\boldsymbol{\beta}$ are unknown parameters estimated by the model, through which is quantified the relationship between the dependent and independent variables. The two regression models used can be written as follow:
 \begin{equation}
@@ -218,17 +232,17 @@ If I now increase the covariate by 1, I get a new mean $\mu_1$,
 So the log of the mean of $Y$ increases by $\beta_1$ when $x$ is increased by 1.
 In general one can say that in Poisson regression, the regression coefficients $\beta$ are interpreted as the difference between the log of expected counts, where formally, this can be written as:
 \begin{equation}
-    \beta=\log(\mu_{t+1})-\log(\mu_t)
+    \beta=\log(\mu_{t_{x+1}})-\log(\mu_{t_{x}})
     \label{eq:BetaRelLog}
 \end{equation}
 One is in general not primarily interested in how the log mean changes and want to know on average how $Y$ changes. Therefore I performed an exponential transformation:
 \begin{equation}
-    \mu_{t+1}=\mu_t\cdot \exp(\beta)
+    \mu_{t_{x+1}}=\mu_{t_x}\cdot \exp(\beta)
     \label{eq:BetaRelExp}
 \end{equation}
 It is important to note the difference with the linear regression: in normal linear regression the relationship between the observations and $\beta$ is additive, whereas in Poisson linear regression the relationship is multiplicative.\\The equation \ref{eq:BetaRelExp} can be written in term of the percentage increase of the count number after dividing both members of the equation by $\mu_t$ and subtracting both members by 1, doing so I obtain:
 \begin{equation}
-\exp(\beta)-1=\frac{\mu_{t+1}-\mu_t}{\mu_t}
+\exp(\beta)-1=\frac{\mu_{t_{x+1}}-\mu_{t_x}}{\mu_{t_x}}
     \label{eq:BetaPerc}
 \end{equation}
 The last equation can be interpreted as the percentage increase of the count number.\\This interpretation allowed us to use the coefficients $\beta$ in order to understand how changes in percentage the assembly activity in relation to the change of the variables $\alpha$ and $\delta$.\\Since I compared results among different assembly-pairs and sessions, I needed to standardize the coefficients $\beta$ resulting from the regression. Standardized $\beta$ can be expressed through the following:
@@ -243,27 +257,13 @@ To easily read the plot in the term of percentage instead of the $\beta$ coeffic
     \beta^*\rightarrow \exp(\beta^*)-1
     \label{eq:BetaPlot}
 \end{equation}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.25]{figures/Rev2An2As1_rew.png}
-    \hspace{1cm}
-    \includegraphics[scale=0.25]{figures/Rev2An2As2.png}
-    
-    \vspace{1cm}
-    
-    \includegraphics[scale=0.25]{figures/Rev2An2As1.png}
-    \hspace{1cm}
-    \includegraphics[scale=0.25]{figures/Firstrev1An4As5.png}
-    \caption{Some example of pair activity distributions in CS and US window. Assembly-pair distribution can be approximated with Poisson's distribution. To regress the assembly-pair activity on $\alpha(t)$ and $\delta(t)$, I used a Poisson linear model which is tailored for Poisson distributed observations.}
-    \label{fig:DistributionEx}
-\end{figure}
 I reported only the statistically significant coefficients. After the pruning of only Poisson distributed assembly-pairs, and considering only statistically significant associations between the response and the regressor, I had in total the $33\%$ of SPN-DAN assembly-pairs when I regressed the activity on $\alpha$ and the $25\%$ of SPN-DAN assembly-pairs after regressing the activity on $\delta$.\\In figure \ref{fig:AlphaDeltaReg} the $\beta^*$ coefficients as defined above resulting from regression using the model with $\alpha$ as regressor defined in equation \ref{eq:regrAlpha} (figure \ref{fig:AlphaDeltaReg} top left) and from regression using the model with $\delta$ as regressor defined in equation \ref{eq:regrDelta} (figure \ref{fig:AlphaDeltaReg} bottom left). $\beta^*$ above zero indicated a positive correlation between the assembly-pair activity and the model variable $\alpha$ ($\delta$) whereas a $\beta^*$ below zero indicated a negative correlation. 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.42]{figures/alphaRegrNew3.png}
+    \includegraphics[scale=0.46]{figures/alphaRegrNew3.png}
     
     \vspace{1cm}
-    \includegraphics[scale=0.42]{figures/deltaRegr3.png}
+    \includegraphics[scale=0.46]{figures/deltaRegr3.png}
     \caption{\textbf{Top:} Results obtained regressing $\alpha$. \textbf{Bottom:} Results obtained regressing $\delta$. \textbf{Left:} Box plot of standardized $\beta^*$ regression coefficients. In Poisson linear model the coefficient $\beta$ indicate the variation in percentage of the observations values when the dependent variable increase of one unit. Since $\beta^*$ were approximately normally distributed, I plotted the $\beta^*$ in such a way that points in box plot were layed over a $1.96$ SEM ($95\%$ confidence interval) in the coloured box. Row data are jittered along x-axis for clarity. \textbf{Right:} empirical cumulative distribution function of $\beta^*$}
     \label{fig:AlphaDeltaReg}
 \end{figure}
