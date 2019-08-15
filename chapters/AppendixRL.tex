@@ -1,12 +1,12 @@
-\chapter{Simplified RL model}
+\chapter{Value-based RL model}
 \label{chap:SimpRL}
-The models presented in \hyperref[chap:RLModel]{~Chapter \ref*{chap:RLModel}} assume the lick to be a functional action, which is absolutely reasonable in our case because the task presented requires the achievement of the performance criterion both in hit and correct rejection. However, since the obtained reward is solely related to the performance, it is possible to build a simplified version of the hybrid Rescorla-Wagner model, without explicitly considering the actions.\\Thus the expected reward values are expressed as follows:
+The models presented in \hyperref[chap:RLModel]{~Chapter \ref*{chap:RLModel}} assume the lick to be a functional action, which is reasonable in our case because the task presented is conditioned to the animal performing three licks before reward. However, it is possible to build a simplified value-based version of the hybrid Rescorla-Wagner model, without explicitly considering licks as actions.\\Thus the expected reward values are expressed as follows:
 \begin{equation}
 V_s(t+1)=V_s(t)+k\cdot\alpha(t)\cdot\delta  \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-V_s(t)
 \label{VValues}
 \end{equation}
 where V is now a $
-T\times 2$ vector. $\delta$ is again the prediction error. Importantly V values are still modulated according to the time dependent component $\alpha(t)$, related to the uncertainty to get the reward.
+T\times 2$ vector, with $t$ the trials index and $T$ the number of trials. $\delta$ is the prediction error. Importantly V values are still modulated according to the time dependent component $\alpha(t)$, related to the uncertainty about the possible outcome.
 \begin{equation}
     \alpha(t)=(1-\eta)\cdot\alpha(t-1)+\eta\cdot\abs{\delta(t)},\hspace{0.3cm} \eta\in[0,1]
 \end{equation}
@@ -22,8 +22,8 @@ In figure \ref{fig:PavRL_ex} is shown an example of, from the top to the bottom,
     \caption{From the top to the bottom, the animal performance, the reward expectation values $V$, the uncertainty $\alpha$ and the reward prediction error $\delta$.}
     \label{fig:PavRL_ex}
 \end{figure}
-I tested whether SPN-DAN pairs encode reward prediction error signals using the same argument of \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}. If the prediction signal is conveyed by SPN-DAN pairs, their activity must correlate with the certainty, which implies an anticorrelation with the model function $\alpha$, and correlate with prediction error, exemplified by $\delta$ in reinforcement learning models.\\
-This hypothesis was tested regressing out $\alpha$ and $\delta$ in two distinct Poisson regression models, where the observations are the SPN-DAN pairs activity. The processes were modeled as follows:
+I tested whether SPN-DAN pairs encode reward prediction error signals as done in \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}. 
+The hypothesis was tested regressing out $\alpha$ and $\delta$ in two distinct Poisson regression models, where the observations are the SPN-DAN pairs activity. The processes were modeled as follows:
 \begin{equation*}
     \log(\mu_t)=\beta_0+\beta\cdot\alpha(t-1)
 \end{equation*}
@@ -31,8 +31,8 @@ and
 \begin{equation*}
     \log(\mu_t)=\beta_0+\beta\cdot\delta(t)
 \end{equation*}
-From where $\beta$ parameters are estimated, which inform about correlations between observations and regressors, indicating the percentage variation in observations when the regressor changes of one unit. For detailed discussion see \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}.\\
-In figure \ref{fig:RL_alphadelta} I show on the left side box plots of standardized regression coefficients $\beta^*$, on the right side empirical cumulative distribution function of $\beta^*$.\\
+For detailed discussion see \hyperref[sec:Regression]{~Chapter \ref*{sec:Regression}}.\\
+In figure \ref{fig:RL_alphadelta} I show on the left side box plots of standardized regression coefficients $\beta^*$, obon the right side empirical cumulative distribution function of $\beta^*$.\\
 \begin{figure}
    \centering
     \includegraphics[scale=0.45]{figures/AlphaAndDeltaPavSPN3.png}
