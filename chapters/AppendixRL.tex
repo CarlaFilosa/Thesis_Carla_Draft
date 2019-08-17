@@ -1,6 +1,6 @@
-\chapter{Value-based RL model}
+\chapter{Simplified RL model}
 \label{chap:SimpRL}
-The models presented in \hyperref[chap:RLModel]{~Chapter \ref*{chap:RLModel}} assume the lick to be a functional action, which is reasonable in our case because the task presented is conditioned to the animal performing three licks before reward. However, it is possible to build a simplified value-based version of the hybrid Rescorla-Wagner model, without explicitly considering licks as actions.\\Thus the expected reward values are expressed as follows:
+The models presented in \hyperref[chap:RLModel]{~Chapter \ref*{chap:RLModel}} assume the lick to be a functional action, which is reasonable in our case because the task presented is conditioned to the animal performing three licks before reward. However, it is possible to build a simplified version of the hybrid Rescorla-Wagner model, without explicitly considering licks as actions.\\Thus the expected reward values are expressed as follows:
 \begin{equation}
 V_s(t+1)=V_s(t)+k\cdot\alpha(t)\cdot\delta  \hspace{0.3cm} with \hspace{0.3cm}\delta(t)=r(t)-V_s(t)
 \label{VValues}
